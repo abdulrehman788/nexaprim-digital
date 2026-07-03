@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexaPrime Digital
+
+Production-grade digital marketing agency website built with Next.js 14, TypeScript, and Tailwind CSS.
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript (strict mode)
+- **Styling:** Tailwind CSS with custom design tokens
+- **Animations:** Framer Motion (entrance/scroll effects)
+- **Icons:** lucide-react
+- **Fonts:** next/font (Syne + DM Sans, self-hosted at build time)
+- **Forms:** React Hook Form + Zod (ready for contact pages)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
 
-## Learn More
+## Folder Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                    # App Router pages, layout, SEO routes
+│   ├── layout.tsx          # Root layout, fonts, metadata, header/footer
+│   ├── page.tsx            # Homepage (imports sections only)
+│   ├── globals.css
+│   ├── sitemap.ts
+│   ├── robots.ts
+│   └── (routes)/           # Future inner pages
+├── components/
+│   ├── sections/           # Homepage section components
+│   ├── layout/             # Header, Footer, Navbar, MobileMenu
+│   ├── ui/                 # Reusable UI primitives
+│   └── seo/                # JSON-LD structured data
+├── data/                   # All business content (no hardcoded copy in components)
+├── lib/                    # Constants, SEO helpers, utilities, fonts
+└── types/                  # Shared TypeScript interfaces
+public/
+├── images/                 # Image assets
+└── icons/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All business copy, navigation data, and section content lives in `src/data/`. Components import from data files — never hardcode marketing text inside components.
 
-## Deploy on Vercel
+## SEO
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Dynamic metadata via `generateMetadata` / `generatePageMetadata`
+- JSON-LD: Organization, WebSite, BreadcrumbList, Service schemas
+- Dynamic `sitemap.ts` and `robots.ts`
+- Semantic HTML5, single H1 per page, logical heading hierarchy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Optimized for [Vercel](https://vercel.com). Set `NEXT_PUBLIC_SITE_URL` in your environment variables.
+
+## Image Assets
+
+Placeholder SVG assets are included for development. Replace files in `public/images/` with production photography for hero mockups, industry cards, and case study imagery.

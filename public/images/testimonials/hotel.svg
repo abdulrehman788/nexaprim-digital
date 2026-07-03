@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a2332"/>
+      <stop offset="60%" stop-color="#c5a358" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#05080f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect x="0" y="650" width="800" height="350" fill="#05080f" opacity="0.75"/>
+  <text x="40" y="80" fill="#c5a358" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="3" opacity="0.5">HOSPITALITY</text>
+</svg>

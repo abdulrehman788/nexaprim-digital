@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0c1424"/>
+      <stop offset="100%" stop-color="#05080f"/>
+    </linearGradient>
+    <linearGradient id="peak1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d4a5c"/>
+      <stop offset="100%" stop-color="#1a2332"/>
+    </linearGradient>
+    <linearGradient id="peak2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a3544"/>
+      <stop offset="100%" stop-color="#0f1724"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#sky)"/>
+  <polygon points="0,750 0,420 180,280 360,380 520,180 720,260 920,120 1200,200 1200,750" fill="url(#peak1)"/>
+  <polygon points="0,750 0,520 220,400 440,480 640,340 860,420 1080,300 1200,360 1200,750" fill="url(#peak2)" opacity="0.9"/>
+  <rect width="1200" height="750" fill="#05080f" opacity="0.25"/>
+</svg>
