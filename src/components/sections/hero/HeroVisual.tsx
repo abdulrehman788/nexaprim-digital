@@ -18,15 +18,16 @@ export function HeroVisual() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative w-full origin-left lg:w-[112%] xl:w-[120%] 2xl:w-[128%]"
       >
-        <div className="relative aspect-[1024/682] w-full">
+        <div className="relative w-full">
           <Image
             src={heroContent.heroImage}
             alt={heroContent.heroImageAlt}
-            fill
+            width={HERO_IMAGE_WIDTH}
+            height={HERO_IMAGE_HEIGHT}
             priority
             unoptimized
             sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 62vw, 65vw"
-            className="object-cover object-left"
+            className="h-auto w-full"
           />
           <HeroImageLabels />
         </div>
