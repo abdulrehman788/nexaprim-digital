@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { Section } from "@/components/ui/Section";
 import { testimonials, testimonialsSection } from "@/data/testimonials";
 
@@ -33,11 +33,10 @@ export function TestimonialsSection() {
             <li key={item.id}>
               <article className="group relative overflow-hidden rounded-xl">
                 <div className="relative aspect-[4/5] sm:aspect-[3/4]">
-                  <Image
+                  <OptimizedImage
                     src={item.image}
                     alt={item.imageAlt}
                     fill
-                    loading="lazy"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />

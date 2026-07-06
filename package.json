@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "lighthouse": "node scripts/lighthouse.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

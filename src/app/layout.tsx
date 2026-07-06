@@ -1,12 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { WebVitals } from "@/components/analytics/WebVitals";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { fontVariables } from "@/lib/fonts";
 import { siteConfig } from "@/lib/constants";
 
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#05080f",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -86,11 +93,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontVariables}>
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://cal.com" />
+        <link rel="dns-prefetch" href="https://assets.calendly.com" />
         {process.env.NODE_ENV === "development" ? (
           <script dangerouslySetInnerHTML={{ __html: devChunkRecoveryInlineScript }} />
         ) : null}
       </head>
       <body>
+        <WebVitals />
         <JsonLd />
         <Header />
         {children}

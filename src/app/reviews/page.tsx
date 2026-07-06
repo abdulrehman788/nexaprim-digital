@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 import { ReviewsHero } from "@/components/sections/reviews/ReviewsHero";
-import { ReviewsSection } from "@/components/sections/reviews/ReviewsSection";
 import { reviews, reviewsPage } from "@/data/reviews";
 import { siteConfig } from "@/lib/constants";
 import { generatePageMetadata } from "@/lib/seo";
+
+const ReviewsSection = dynamic(
+  () =>
+    import("@/components/sections/reviews/ReviewsSection").then((mod) => ({
+      default: mod.ReviewsSection,
+    })),
+  {
+    loading: () => (
+      <div className="h-[48rem] animate-pulse bg-surface-primary" aria-hidden="true" />
+    ),
+  },
+);
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Client Reviews",

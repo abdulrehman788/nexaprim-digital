@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -18,7 +18,7 @@ export function IndustryPageCard({ industry }: IndustryPageCardProps) {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_30px_-12px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-2 hover:border-gold-300/50 hover:shadow-[0_24px_56px_-16px_rgba(15,23,42,0.2)]">
       <Link href={industry.href} className="flex h-full flex-col">
         <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
-          <Image
+          <OptimizedImage
             src={industry.image}
             alt={industry.imageAlt}
             fill

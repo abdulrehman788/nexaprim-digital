@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -78,7 +78,7 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
-        <Image
+        <OptimizedImage
           src={study.image}
           alt={study.imageAlt}
           fill

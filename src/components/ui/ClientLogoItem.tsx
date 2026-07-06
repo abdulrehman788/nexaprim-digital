@@ -14,6 +14,7 @@ export function ClientLogoItem({ name, logo, logoAlt }: ClientLogoItemProps) {
         alt={logoAlt}
         width={180}
         height={44}
+        loading="lazy"
         className="h-8 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-9"
       />
       <span className="sr-only">{name}</span>

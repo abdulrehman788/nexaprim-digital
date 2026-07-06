@@ -1,7 +1,35 @@
-import { CalEmbed } from "@/components/booking/CalEmbed";
-import { BookingSlotPicker } from "@/components/booking/BookingSlotPicker";
+import dynamic from "next/dynamic";
+
 import { bookingPage } from "@/data/booking";
 import { getBookingConfig } from "@/lib/booking";
+
+const CalEmbed = dynamic(
+  () => import("@/components/booking/CalEmbed").then((mod) => ({ default: mod.CalEmbed })),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="min-h-[640px] w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03]"
+        aria-hidden="true"
+      />
+    ),
+  },
+);
+
+const BookingSlotPicker = dynamic(
+  () =>
+    import("@/components/booking/BookingSlotPicker").then((mod) => ({
+      default: mod.BookingSlotPicker,
+    })),
+  {
+    loading: () => (
+      <div
+        className="min-h-[24rem] w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03]"
+        aria-hidden="true"
+      />
+    ),
+  },
+);
 
 export function ConsultationScheduler() {
   const bookingConfig = getBookingConfig();

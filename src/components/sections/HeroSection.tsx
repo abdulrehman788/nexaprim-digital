@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 
 import { HeroVisual } from "@/components/sections/hero/HeroVisual";
@@ -19,12 +16,7 @@ export function HeroSection() {
 
       <Container className="relative overflow-visible">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.22fr)] lg:gap-x-10 xl:gap-x-14">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative z-10 flex min-w-0 max-w-full flex-col justify-center"
-          >
+          <div className="animate-fade-in-up relative z-10 flex min-w-0 max-w-full flex-col justify-center">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-accent sm:text-sm">
               {heroContent.overline}
             </p>
@@ -68,19 +60,14 @@ export function HeroSection() {
                 {heroContent.secondaryCta}
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <div className="relative flex w-full items-center justify-center overflow-visible lg:justify-end">
+          <div className="animate-fade-in-up animation-delay-150 relative flex w-full items-center justify-center overflow-visible lg:justify-end">
             <HeroVisual />
           </div>
         </div>
 
-        <motion.ul
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-white/10 pt-6 sm:grid-cols-4 sm:gap-x-6 lg:mt-12"
-        >
+        <ul className="animate-fade-in-up animation-delay-300 mt-10 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-white/10 pt-6 sm:grid-cols-4 sm:gap-x-6 lg:mt-12">
           {heroTrustStats.map((stat) => {
             const Icon = stat.icon;
             return (
@@ -95,7 +82,7 @@ export function HeroSection() {
               </li>
             );
           })}
-        </motion.ul>
+        </ul>
       </Container>
     </section>
   );

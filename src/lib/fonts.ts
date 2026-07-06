@@ -5,6 +5,8 @@ export const fontDisplay = Syne({
   variable: "--font-display",
   weight: ["700", "800"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const fontSerif = Playfair_Display({
@@ -12,6 +14,8 @@ export const fontSerif = Playfair_Display({
   variable: "--font-serif",
   weight: ["700"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const fontSans = DM_Sans({
@@ -19,6 +23,8 @@ export const fontSans = DM_Sans({
   variable: "--font-sans",
   weight: ["400", "600", "700"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const fontVariables = `${fontDisplay.variable} ${fontSerif.variable} ${fontSans.variable}`;

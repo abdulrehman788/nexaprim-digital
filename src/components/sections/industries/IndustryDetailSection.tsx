@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -51,19 +52,21 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
               <p className="mt-2 text-sm text-content-muted">{industry.subtitle}</p>
             </div>
 
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
+              <OptimizedImage
+                src={industry.image}
+                alt={industry.imageAlt}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 opacity-35 mix-blend-multiply"
                 style={{
                   background: `linear-gradient(145deg, ${theme.gradientFrom} 0%, ${theme.gradientVia} 50%, ${theme.gradientTo} 100%)`,
                 }}
                 aria-hidden="true"
-              />
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${industry.image})` }}
-                role="img"
-                aria-label={industry.imageAlt}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/50 to-transparent" />
             </div>

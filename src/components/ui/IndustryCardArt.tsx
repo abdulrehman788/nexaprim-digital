@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import type { CaseStudyTheme } from "@/lib/case-study-themes";
 
 interface IndustryCardArtProps {
@@ -11,7 +10,7 @@ interface IndustryCardArtProps {
 export function IndustryCardArt({ theme, image, label }: IndustryCardArtProps) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200">
-      <Image
+      <OptimizedImage
         src={image}
         alt={label}
         fill

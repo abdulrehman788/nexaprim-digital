@@ -1,6 +1,19 @@
-import { ServiceFaqAccordion } from "@/components/sections/services/ServiceFaqAccordion";
+import dynamic from "next/dynamic";
+
 import { Container } from "@/components/ui/Container";
 import type { ServiceFaqSection as ServiceFaqSectionData } from "@/types";
+
+const ServiceFaqAccordion = dynamic(
+  () =>
+    import("@/components/sections/services/ServiceFaqAccordion").then((mod) => ({
+      default: mod.ServiceFaqAccordion,
+    })),
+  {
+    loading: () => (
+      <div className="h-48 animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.02]" />
+    ),
+  },
+);
 
 interface ServiceFaqSectionProps {
   content: ServiceFaqSectionData;

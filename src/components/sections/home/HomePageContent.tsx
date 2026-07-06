@@ -1,9 +1,18 @@
 import dynamic from "next/dynamic";
 
-import { ClientLogos } from "@/components/sections/ClientLogos";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { WhyUsSection } from "@/components/sections/WhyUsSection";
+
+const ClientLogos = dynamic(
+  () => import("@/components/sections/ClientLogos").then((mod) => ({ default: mod.ClientLogos })),
+  { loading: () => <SectionPlaceholder short /> },
+);
+
+const WhyUsSection = dynamic(
+  () =>
+    import("@/components/sections/WhyUsSection").then((mod) => ({ default: mod.WhyUsSection })),
+  { loading: () => <SectionPlaceholder /> },
+);
 
 const IndustriesSection = dynamic(
   () =>
@@ -53,10 +62,16 @@ const CTASection = dynamic(
   { loading: () => <SectionPlaceholder /> },
 );
 
-function SectionPlaceholder({ tall = false }: { tall?: boolean }) {
+function SectionPlaceholder({ tall = false, short = false }: { tall?: boolean; short?: boolean }) {
   return (
     <div
-      className={tall ? "h-[40rem] animate-pulse bg-black" : "h-64 animate-pulse bg-black"}
+      className={
+        tall
+          ? "h-[40rem] animate-pulse bg-black"
+          : short
+            ? "h-24 animate-pulse bg-black"
+            : "h-64 animate-pulse bg-black"
+      }
       aria-hidden="true"
     />
   );
