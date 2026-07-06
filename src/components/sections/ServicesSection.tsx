@@ -52,7 +52,7 @@ export function ServicesSection({ variant = "light" }: ServicesSectionProps) {
           </Button>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <ul className="mt-12 grid list-none gap-6 p-0 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {services.map((service) => (
             <li key={service.id}>
               <ServiceCard service={service} />

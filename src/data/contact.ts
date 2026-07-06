@@ -14,16 +14,19 @@ export const contactSection = {
 
 export const contactPage = {
   overline: "Get In Touch",
-  titleLine1: "Tell us what's",
-  titleAccent: "not working",
-  titleLine2: "We'll say if we can help.",
+  titleLine1: "Send us a message —",
+  titleAccent: "we'll reply fast",
   description:
-    "No pitch deck on the first message. Send what's frustrating you — flat leads, a site that doesn't convert, campaigns that eat budget — and we'll reply within one business day with an honest next step.",
+    "No pitch deck on the first message. Tell us what's not working — flat leads, a site that won't convert, campaigns eating budget — and we'll reply within one business day with an honest next step.",
+  bookCtaLabel: "Book a free consultation",
+  formOverline: "Message us",
   formTitle: "Send a message",
   formDescription:
     "Fields marked with * are required. Everything you share stays between us until you decide otherwise.",
+  detailsOverline: "Reach us",
+  detailsTitle: "Contact details",
   officeNote:
-    "Our Austin office is open by appointment. Walk in without one and we'll still make time if someone's free — but booking ahead gets you a strategist, not whoever's at the front desk.",
+    "Our Austin office is open by appointment. Book a consultation and you'll meet a strategist — not whoever's at the front desk.",
 } as const;
 
 export const contactDetails = [
@@ -106,10 +109,13 @@ export const contactPageFaq = [
 
 export const contactIntentOptions: ContactIntentOption[] = [
   { value: "strategy-call", label: "Book a strategy call" },
+  { value: "enterprise", label: "Enterprise — custom quote" },
+  { value: "all-in-one", label: "All-in-One package" },
   { value: "digital-strategy", label: "Digital strategy" },
   { value: "performance-marketing", label: "Performance marketing" },
   { value: "brand-creative", label: "Brand & creative" },
   { value: "web-development", label: "Web development" },
+  { value: "graphics-design", label: "Graphics design" },
   { value: "packages", label: "Packages & pricing" },
   { value: "other", label: "Something else" },
 ];

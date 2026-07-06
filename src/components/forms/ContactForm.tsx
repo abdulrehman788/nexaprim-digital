@@ -4,27 +4,14 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
+import { contactFormSchema, type ContactFormValues } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/Button";
 import {
   contactIntentOptions,
   contactSection,
 } from "@/data/contact";
 import { cn } from "@/lib/utils";
-
-const contactFormSchema = z.object({
-  name: z.string().min(2, "Please enter your full name"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().optional(),
-  phone: z.string().optional(),
-  intent: z.string().min(1, "Please select a topic"),
-  message: z
-    .string()
-    .min(10, "Please share a few more details (at least 10 characters)"),
-});
-
-type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 type ContactFormTheme = "dark" | "light";
 
@@ -35,9 +22,9 @@ interface ContactFormProps {
 
 const themeStyles = {
   dark: {
-    form: "rounded-2xl border border-border-subtle bg-surface-elevated p-6 shadow-card sm:p-8",
+    form: "relative",
     input:
-      "w-full rounded-lg border border-border bg-surface-primary px-4 py-3 text-sm text-content-primary placeholder:text-content-muted transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
+      "w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-sm text-content-primary placeholder:text-content-muted transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
     label: "mb-2 block text-sm font-medium text-content-primary",
     success:
       "flex flex-col items-center rounded-2xl border border-accent/30 bg-accent-muted px-6 py-12 text-center",
@@ -46,7 +33,7 @@ const themeStyles = {
     chevron: "text-accent",
   },
   light: {
-    form: "rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8",
+    form: "relative rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8",
     input:
       "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-500/20",
     label: "mb-2 block text-sm font-medium text-slate-900",
@@ -75,6 +62,7 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
       intent: defaultIntent ?? "",
       company: "",
       phone: "",
+      website: "",
     },
   });
 
@@ -95,7 +83,7 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
       }
 
       setSubmitState("success");
-      reset({ intent: defaultIntent ?? "", company: "", phone: "" });
+      reset({ intent: defaultIntent ?? "", company: "", phone: "", website: "" });
     } catch (error) {
       setSubmitState("error");
       setErrorMessage(
@@ -126,6 +114,17 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
+      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <label htmlFor="contact-name" className={styles.label}>
@@ -261,8 +260,13 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
       <Button
         type="submit"
         size="lg"
-        pill
-        className="mt-6 w-full sm:w-auto"
+        className={cn(
+          "mt-6 w-full sm:w-auto",
+          theme === "dark"
+            ? "bg-gold-gradient border-transparent text-black shadow-glow hover:opacity-90"
+            : undefined,
+        )}
+        pill={theme === "light"}
         disabled={submitState === "loading"}
         icon={
           submitState === "loading" ? (

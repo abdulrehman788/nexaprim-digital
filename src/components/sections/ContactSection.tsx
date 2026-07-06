@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactFormWithIntent } from "@/components/forms/ContactFormWithIntent";
 import { ContactDetailsList } from "@/components/ui/ContactDetailsList";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -6,11 +6,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contactDetails, contactSection } from "@/data/contact";
 
 interface ContactSectionProps {
-  defaultIntent?: string;
   variant?: "light" | "dark";
 }
 
-export function ContactSection({ defaultIntent, variant = "light" }: ContactSectionProps) {
+export function ContactSection({ variant = "light" }: ContactSectionProps) {
   const isDark = variant === "dark";
 
   return (
@@ -30,7 +29,7 @@ export function ContactSection({ defaultIntent, variant = "light" }: ContactSect
             </div>
           </div>
 
-          <ContactForm defaultIntent={defaultIntent} theme={variant} />
+          <ContactFormWithIntent theme={variant} />
         </div>
       </Container>
     </Section>

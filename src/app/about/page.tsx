@@ -17,7 +17,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="bg-surface-primary">
       <AboutHero />
       <AboutStorySection />
       <AboutPrinciplesSection />

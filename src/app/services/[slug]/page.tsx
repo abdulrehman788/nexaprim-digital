@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ServiceDetailSection } from "@/components/sections/services/ServiceDetailSection";
-import { getServiceById, services } from "@/data/services";
+import { getAllServiceSlugs, getServiceById } from "@/data/services";
 import { generatePageMetadata } from "@/lib/seo";
 
 interface ServicePageProps {
   params: { slug: string };
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.id }));
+  return getAllServiceSlugs().map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }: ServicePageProps): Metadata {
@@ -23,7 +25,7 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   return generatePageMetadata({
     title: service.title,
     description: service.description,
-    path: `/services/${service.id}`,
+    path: service.href,
   });
 }
 
@@ -35,7 +37,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   }
 
   return (
-    <main>
+    <main className="bg-surface-primary">
       <ServiceDetailSection service={service} />
     </main>
   );

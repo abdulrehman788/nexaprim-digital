@@ -15,9 +15,9 @@ export const heroContent = {
     "We help businesses and organizations grow with powerful websites, marketing, design, automation and strategies that drive real impact.",
   primaryCta: "Book a Free Strategy Call",
   secondaryCta: "Watch Our Showreel",
-  heroImage: "/images/hero/hero-composition.png",
+  heroImage: "/images/hero/hero-devices-hd.png",
   heroImageAlt:
-    "Laptop and smartphone showing digital marketing dashboards with growth metrics and service cards",
+    "Laptop and smartphone on a dark surface with golden light trails and mountain landscape on screen",
   laptopScreenImage: "/images/hero/mountain-landscape.jpg",
   laptopScreenAlt: "Moody mountain landscape on laptop screen mockup",
   laptopScreenLines: ["Strategy.", "Design.", "Growth.", "Impact."],

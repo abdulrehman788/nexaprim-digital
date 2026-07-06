@@ -17,7 +17,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Increased direct bookings by 220%",
     summary:
       "A four-property hotel group was bleeding margin to OTAs. We rebuilt the booking funnel and shifted paid spend to high-intent direct traffic.",
-    image: "/images/industries/hospitality.jpg",
+    image: "/images/industries/hospitality.svg",
     imageAlt: "Luxury hotel lobby — Grand Vista Hotel Group case study",
     stats: [
       { label: "Direct bookings", value: "+220%" },
@@ -45,7 +45,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Tripled new patient intake in six months",
     summary:
       "A regional clinic network needed compliant lead generation without sacrificing trust. Local SEO and education-first content did the heavy lifting.",
-    image: "/images/industries/healthcare.jpg",
+    image: "/images/industries/healthcare.svg",
     imageAlt: "Modern medical clinic — Meridian Health Network case study",
     stats: [
       { label: "New patient inquiries", value: "3x" },
@@ -73,7 +73,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Filled 40% more tables every week",
     summary:
       "A three-location restaurant group struggled with empty Tuesday–Thursday covers. Hyper-local ads and a simple loyalty loop changed the pattern.",
-    image: "/images/industries/restaurants.jpg",
+    image: "/images/industries/restaurants.svg",
     imageAlt: "Upscale restaurant interior — Urban Table case study",
     stats: [
       { label: "Weeknight covers", value: "+40%" },
@@ -101,7 +101,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Cut cost per qualified lead by 52%",
     summary:
       "A boutique brokerage competing against national portals needed a funnel that treated buyers and sellers differently — same brand, different paths.",
-    image: "/images/industries/real-estate.jpg",
+    image: "/images/industries/real-estate.svg",
     imageAlt: "Modern home exterior — Lakeside Realty Partners case study",
     stats: [
       { label: "Cost per lead", value: "-52%" },
@@ -129,7 +129,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Raised enrollment inquiries 175%",
     summary:
       "An online learning platform needed to stand out in a crowded ed-tech market without promising outcomes it could not guarantee.",
-    image: "/images/industries/education.jpg",
+    image: "/images/industries/education.svg",
     imageAlt: "University campus — BrightPath Academy case study",
     stats: [
       { label: "Enrollment inquiries", value: "+175%" },
@@ -157,7 +157,7 @@ export const caseStudies: CaseStudy[] = [
     headline: "Grew revenue 89% without raising ad budget",
     summary:
       "A DTC home goods brand was spending more each month for flat returns. We fixed the store, then optimized the ads.",
-    image: "/images/industries/ecommerce.jpg",
+    image: "/images/industries/ecommerce.svg",
     imageAlt: "Shipping and fulfillment — Nova Commerce case study",
     stats: [
       { label: "Revenue growth", value: "+89%" },

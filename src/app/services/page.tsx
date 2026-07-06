@@ -7,13 +7,13 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "Services",
   description:
-    "Digital strategy, SEO, paid media, social, brand creative, and marketing automation — full-funnel services from one accountable team.",
+    "Digital strategy, SEO, paid media, social, brand creative, graphics design, web development, Shopify, WordPress, software development, hosting, and marketing automation — full-stack services from one accountable team.",
   path: "/services",
 });
 
 export default function ServicesPage() {
   return (
-    <main>
+    <main className="bg-surface-primary">
       <ServicesHero />
       <ServicesGrid />
     </main>

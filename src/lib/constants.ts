@@ -24,23 +24,57 @@ export const primaryNavLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Book a Call", href: "/book" },
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Twitter", href: "https://twitter.com" },
   { label: "Instagram", href: "https://instagram.com" },
+  { label: "LinkedIn", href: "https://linkedin.com" },
   { label: "Facebook", href: "https://facebook.com" },
+  { label: "YouTube", href: "https://youtube.com" },
+  { label: "Twitter", href: "https://twitter.com" },
+];
+
+export const footerTagline =
+  "NexaPrime Digital turns complex digital strategies into measurable wins. We cut the noise and amplify your growth.";
+
+export const footerQuickLinks: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Packages", href: "/packages" },
+  { label: "About", href: "/about" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Contact", href: "/contact" },
+  { label: "Book a Call", href: "/book" },
+];
+
+export const footerServiceLinks: NavLink[] = [
+  { label: "Digital Strategy", href: "/services/digital-strategy" },
+  { label: "Search Engine Optimization", href: "/services/seo-content" },
+  { label: "Local SEO", href: "/services/local-seo" },
+  { label: "Pay Per Click", href: "/services/paid-media" },
+  { label: "Social Media Marketing", href: "/services/social-media" },
+  { label: "Web Development", href: "/services/web-development" },
+  { label: "Website Design", href: "/services/website-design" },
+  { label: "eCommerce Web Design", href: "/services/ecommerce-web-design" },
+  { label: "Shopify Web Design", href: "/services/shopify-development" },
+  { label: "WordPress Website Design", href: "/services/wordpress-development" },
+  { label: "Graphic Design", href: "/services/graphics-design" },
+  { label: "Marketing Automation", href: "/services/marketing-automation" },
 ];
 
 export const footerColumns: FooterColumn[] = [
   {
     title: "Solutions",
     links: [
-      { label: "Digital Strategy", href: "/services/digital-strategy" },
-      { label: "Brand & Creative", href: "/services/brand-creative" },
-      { label: "Paid Media & PPC", href: "/services/paid-media" },
-      { label: "Marketing Automation", href: "/services/marketing-automation" },
+      { label: "All-in-One Package", href: "/packages/all-in-one" },
+      { label: "Enterprise", href: "/packages/enterprise" },
+      { label: "Web Development", href: "/services/web-development" },
+      { label: "Shopify Web Design", href: "/services/shopify-development" },
+      { label: "eCommerce Web Design", href: "/services/ecommerce-web-design" },
+      { label: "Search Engine Optimization", href: "/services/seo-content" },
+      { label: "Pay Per Click", href: "/services/paid-media" },
     ],
   },
   {
@@ -75,8 +109,9 @@ export const footerColumns: FooterColumn[] = [
 ];
 
 export const ctaLinks = {
-  consultation: "/contact",
-  strategyCall: "/contact?intent=strategy-call",
+  consultation: "/book",
+  strategyCall: "/book",
+  freeConsultation: "/book",
   showreel: "/showreel",
   caseStudies: "/case-studies",
   methodologies: "/about#methodologies",

@@ -79,10 +79,17 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
 
           <div className="mx-auto mt-14 max-w-5xl text-center">
             <p className="text-base text-slate-600">
-              Want a proposal scoped to your goals and budget?
+              {pkg.isEnterprise
+                ? "Tell us what you need — we'll scope a custom proposal within one business day."
+                : "Want a proposal scoped to your goals and budget?"}
             </p>
-            <Button href={ctaLinks.strategyCall} size="lg" pill className="mt-4">
-              Book a Strategy Call
+            <Button
+              href={pkg.isEnterprise ? "/contact?intent=enterprise" : ctaLinks.strategyCall}
+              size="lg"
+              pill
+              className="mt-4"
+            >
+              {pkg.isEnterprise ? "Request a Custom Quote" : "Book a Strategy Call"}
             </Button>
           </div>
         </Container>

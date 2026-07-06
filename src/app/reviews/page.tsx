@@ -52,7 +52,7 @@ function ReviewsJsonLd() {
 
 export default function ReviewsPage() {
   return (
-    <main>
+    <main className="bg-surface-primary">
       <ReviewsJsonLd />
       <ReviewsHero />
       <ReviewsSection />

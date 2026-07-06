@@ -13,15 +13,11 @@ export const metadata: Metadata = generatePageMetadata({
   path: "/contact",
 });
 
-export default function ContactPage({
-  searchParams,
-}: {
-  searchParams?: { intent?: string };
-}) {
+export default function ContactPage() {
   return (
-    <main>
+    <main className="bg-surface-primary">
       <ContactHero />
-      <ContactMainSection defaultIntent={searchParams?.intent} />
+      <ContactMainSection />
       <ContactProcessSection />
       <ContactFaqSection />
     </main>

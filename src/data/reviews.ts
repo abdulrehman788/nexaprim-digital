@@ -3,11 +3,17 @@ import type { ClientReview } from "@/types";
 export const reviewsPage = {
   overline: "Client Reviews",
   titleLine1: "What clients say",
-  titleAccent: "after the dashboards close.",
+  titleAccent: "after the dashboards close",
   description:
-    "These are written by the people who sat in the weekly calls — not our marketing team. Names and companies are real; permission granted for each quote below.",
+    "Written by the people who sat in the weekly calls — not our marketing team. Real names, real companies, permission granted for every quote below.",
   aggregateRating: 4.9,
   totalReviews: 8,
+  projectsDelivered: "250+",
+  ctaOverline: "Next step",
+  ctaTitle: "Ready to see what we can do for you?",
+  ctaDescription:
+    "Book a free consultation — we'll share relevant references for your industry and map an honest next step.",
+  ctaLabel: "Get Your Free Consultation",
 } as const;
 
 export const reviews: ClientReview[] = [

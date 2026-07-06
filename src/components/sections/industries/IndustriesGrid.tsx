@@ -12,7 +12,7 @@ export function IndustriesGrid() {
           All industries
         </h2>
 
-        <ul className="grid gap-8 sm:grid-cols-2 sm:gap-9 lg:grid-cols-3 lg:gap-10">
+        <ul className="grid list-none gap-8 p-0 sm:grid-cols-2 sm:gap-9 lg:grid-cols-3 lg:gap-10">
           {industries.map((industry) => (
             <li key={industry.id}>
               <IndustryPageCard industry={industry} />

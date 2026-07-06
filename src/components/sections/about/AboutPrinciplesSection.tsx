@@ -5,35 +5,27 @@ import { aboutPrinciples, aboutPrinciplesSection } from "@/data/about";
 
 export function AboutPrinciplesSection() {
   return (
-    <Section variant="dark" aria-labelledby="about-principles-heading">
+    <Section variant="dark" aria-labelledby="about-principles-heading" className="bg-[#0a0c12]">
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-accent sm:text-sm">
-            {aboutPrinciplesSection.overline}
-          </p>
-          <h2
-            id="about-principles-heading"
-            className="font-serif text-display-sm font-bold text-content-primary sm:text-display-md"
-          >
-            {aboutPrinciplesSection.title}
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-content-secondary sm:text-lg">
-            {aboutPrinciplesSection.description}
-          </p>
-        </div>
+        <h2
+          id="about-principles-heading"
+          className="text-center font-serif text-display-sm font-bold text-white sm:text-[2.5rem]"
+        >
+          {aboutPrinciplesSection.title}
+        </h2>
 
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:gap-6">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:gap-6">
           {aboutPrinciples.map((principle) => {
             const Icon = aboutPrincipleIcons[principle.iconId];
             return (
               <li
                 key={principle.id}
-                className="group rounded-2xl border border-border-subtle bg-surface-elevated/60 p-6 transition-colors hover:border-accent/35 hover:shadow-glow sm:p-7"
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-7 sm:p-8"
               >
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg border border-accent/30 bg-accent-muted transition-colors group-hover:border-accent/50">
+                <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-lg border border-accent/30 bg-accent/10">
                   <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-content-primary">
+                <h3 className="font-display text-lg font-bold text-white sm:text-xl">
                   {principle.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-content-secondary sm:text-base">

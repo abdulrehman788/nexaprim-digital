@@ -3,7 +3,9 @@ import { ArrowRight, Star } from "lucide-react";
 
 import type { ClientReview } from "@/types";
 
-function StarRating({ rating }: { rating: number }) {
+function StarRating({ rating, dark = false }: { rating: number; dark?: boolean }) {
+  const emptyClass = dark ? "fill-white/10 text-white/10" : "fill-slate-200 text-slate-200";
+
   return (
     <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, i) => (
@@ -11,10 +13,10 @@ function StarRating({ rating }: { rating: number }) {
           key={i}
           className={`h-4 w-4 ${
             i < Math.floor(rating)
-              ? "fill-gold-400 text-gold-400"
+              ? "fill-accent text-accent"
               : i < rating
-                ? "fill-gold-400/50 text-gold-400"
-                : "fill-slate-200 text-slate-200"
+                ? "fill-accent/50 text-accent"
+                : emptyClass
           }`}
           aria-hidden="true"
         />
@@ -31,36 +33,36 @@ export function ReviewCard({ review }: ReviewCardProps) {
   const paragraphs = review.body.split("\n\n");
 
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(15,23,42,0.15)] sm:p-7">
+    <article className="flex h-full flex-col rounded-2xl border border-white/[0.06] bg-[#1c1c26] p-6 transition-colors hover:border-accent/20 sm:p-7">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <StarRating rating={review.rating} />
-        <p className="text-xs font-medium text-slate-500">{review.reviewed}</p>
+        <StarRating rating={review.rating} dark />
+        <p className="text-xs font-medium text-content-muted">{review.reviewed}</p>
       </div>
 
-      <p className="mt-4 inline-flex w-fit rounded-full bg-gold-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-700 ring-1 ring-gold-100">
+      <p className="mt-4 inline-flex w-fit rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent">
         {review.highlight}
       </p>
 
       <div className="mt-5 flex-1 space-y-4">
         {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 40)} className="text-sm leading-relaxed text-slate-700">
+          <p key={paragraph.slice(0, 40)} className="text-sm leading-relaxed text-content-secondary">
             {paragraph}
           </p>
         ))}
       </div>
 
-      <footer className="mt-6 border-t border-slate-100 pt-5">
-        <p className="font-display text-base font-bold text-slate-900">{review.author}</p>
-        <p className="mt-0.5 text-sm text-slate-600">
+      <footer className="mt-6 border-t border-white/[0.06] pt-5">
+        <p className="font-display text-base font-bold text-white">{review.author}</p>
+        <p className="mt-0.5 text-sm text-content-secondary">
           {review.role}, {review.client}
         </p>
-        <p className="mt-1 text-xs text-slate-500">
+        <p className="mt-1 text-xs text-content-muted">
           {review.industry} · {review.engagement} engagement
         </p>
         {review.caseStudySlug ? (
           <Link
             href={`/case-studies/${review.caseStudySlug}`}
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold-700 transition-colors hover:text-gold-800"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
           >
             Read the case study
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -77,7 +79,7 @@ interface ReviewsListProps {
 
 export function ReviewsList({ reviews }: ReviewsListProps) {
   return (
-    <ul className="grid gap-8 lg:grid-cols-2">
+    <ul className="grid gap-6 lg:grid-cols-2 lg:gap-8">
       {reviews.map((review) => (
         <li key={review.id}>
           <ReviewCard review={review} />
@@ -90,25 +92,30 @@ export function ReviewsList({ reviews }: ReviewsListProps) {
 interface ReviewsSummaryProps {
   aggregateRating: number;
   totalReviews: number;
+  projectsDelivered: string;
 }
 
-export function ReviewsSummary({ aggregateRating, totalReviews }: ReviewsSummaryProps) {
+export function ReviewsSummary({
+  aggregateRating,
+  totalReviews,
+  projectsDelivered,
+}: ReviewsSummaryProps) {
   return (
-    <div className="mb-12 grid gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:grid-cols-3 sm:p-8">
+    <div className="mb-12 grid gap-6 rounded-2xl border border-white/10 bg-[#111118] p-6 sm:grid-cols-3 sm:p-8">
       <div className="text-center sm:text-left">
-        <p className="font-display text-4xl font-bold text-slate-900">{aggregateRating}</p>
-        <p className="mt-1 text-sm text-slate-600">Average rating</p>
+        <p className="font-display text-4xl font-bold text-gold-gradient">{aggregateRating}</p>
+        <p className="mt-1 text-sm text-content-secondary">Average rating</p>
         <div className="mt-2 flex justify-center sm:justify-start">
-          <StarRating rating={aggregateRating} />
+          <StarRating rating={aggregateRating} dark />
         </div>
       </div>
       <div className="text-center sm:text-left">
-        <p className="font-display text-4xl font-bold text-slate-900">{totalReviews}</p>
-        <p className="mt-1 text-sm text-slate-600">Published reviews</p>
+        <p className="font-display text-4xl font-bold text-white">{totalReviews}</p>
+        <p className="mt-1 text-sm text-content-secondary">Published reviews</p>
       </div>
       <div className="text-center sm:text-left">
-        <p className="font-display text-4xl font-bold text-slate-900">250+</p>
-        <p className="mt-1 text-sm text-slate-600">Projects delivered since 2019</p>
+        <p className="font-display text-4xl font-bold text-white">{projectsDelivered}</p>
+        <p className="mt-1 text-sm text-content-secondary">Projects delivered since 2019</p>
       </div>
     </div>
   );

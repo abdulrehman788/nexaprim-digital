@@ -1,6 +1,5 @@
 import { faqItems } from "@/data/faq";
-import { packages } from "@/data/packages";
-import { services } from "@/data/services";
+import { schemaCatalogItems } from "@/data/schema-catalog";
 import { siteConfig } from "@/lib/constants";
 
 interface JsonLdProps {
@@ -67,7 +66,7 @@ export function JsonLd() {
     ],
   };
 
-  const serviceSchemas = [...services, ...packages].map((item) => ({
+  const serviceSchemas = schemaCatalogItems.map((item) => ({
     "@context": "https://schema.org",
     "@type": "Service",
     name: item.title,

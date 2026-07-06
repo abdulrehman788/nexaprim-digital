@@ -50,6 +50,8 @@ export interface IndustryDetail extends Industry {
   relatedCaseStudySlug?: string;
 }
 
+export type ServiceCategory = "marketing" | "design" | "development";
+
 export interface Service {
   id: string;
   title: string;
@@ -61,11 +63,65 @@ export interface Service {
   gradientVia: string;
   gradientTo: string;
   accentShape: "bars" | "circle" | "ring" | "grid" | "wave" | "diamond";
+  category: ServiceCategory;
 }
 
 export interface ServiceDeliverable {
   title: string;
   description: string;
+}
+
+export type ServiceFeatureIcon = "wallet" | "trending-up" | "cog" | "shopping-bag";
+
+export interface ServiceFeatureSection {
+  id: string;
+  cardLabel: string;
+  cardIcon: ServiceFeatureIcon;
+  cardPosition?: "left" | "right";
+  titleWhite: string;
+  titleAccent: string;
+  paragraphs: string[];
+  withDropCap?: boolean;
+  ctaLabel?: string;
+}
+
+export type ServiceCapabilityIcon =
+  | "search"
+  | "shopping-bag"
+  | "bar-chart"
+  | "monitor"
+  | "layers";
+
+export interface ServiceCapabilityItem {
+  id: string;
+  icon: ServiceCapabilityIcon;
+  title: string;
+  description: string;
+}
+
+export interface ServiceCapabilitiesSection {
+  id: string;
+  titleWhite: string;
+  titleAccent: string;
+  description: string;
+  items: ServiceCapabilityItem[];
+  secondaryItems?: ServiceCapabilityItem[];
+}
+
+export interface ServiceHighlightSection {
+  id: string;
+  titleWhite: string;
+  titleAccent: string;
+  paragraphs: string[];
+  ctaLabel: string;
+}
+
+export interface ServiceFaqSection {
+  id: string;
+  title?: string;
+  titleWhite?: string;
+  titleAccent?: string;
+  items: FaqItem[];
 }
 
 export interface ServiceDetail extends Service {
@@ -74,6 +130,17 @@ export interface ServiceDetail extends Service {
   deliverables: ServiceDeliverable[];
   outcomes: string[];
   idealFor: string;
+  heroLayout?: "centered" | "split";
+  heroTitleBefore?: string;
+  heroTitleAccent?: string;
+  heroOverline?: string;
+  heroSecondaryLine?: string;
+  heroCtaLabel?: string;
+  featureSections?: ServiceFeatureSection[];
+  closingFeatureSection?: ServiceFeatureSection;
+  capabilitiesSection?: ServiceCapabilitiesSection;
+  highlightSection?: ServiceHighlightSection;
+  faqSection?: ServiceFaqSection;
 }
 
 export interface Package {
@@ -97,6 +164,7 @@ export interface PackageDetail extends Package {
   includes: PackageFeature[];
   idealFor: string;
   timeline: string;
+  isEnterprise?: boolean;
 }
 
 export interface WhyUsFeature {

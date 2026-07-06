@@ -37,6 +37,7 @@ export function TestimonialsSection() {
                     src={item.image}
                     alt={item.imageAlt}
                     fill
+                    loading="lazy"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />

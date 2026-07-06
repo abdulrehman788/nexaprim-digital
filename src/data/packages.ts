@@ -1,24 +1,71 @@
-import { Layers, Rocket, Target, Zap } from "lucide-react";
+import { Building2, Layers, Rocket, Sparkles, Target, Zap } from "lucide-react";
 
 import type { PackageDetail } from "@/types";
 
 export const packagesSection = {
   title: "Flexible Packages. Maximum Impact.",
   description:
-    "Modular growth systems built to match your stage, budget, and ambitions — from focused niche plays to full-funnel dominance.",
+    "Start with one niche, bundle everything in All-in-One, or tell us what you need — we'll build a custom Enterprise quote.",
   ctaLabel: "Compare all packages",
   ctaHref: "/packages",
 } as const;
 
 export const packagesPage = {
   overline: "Packages",
-  titleLine1: "Growth systems scoped to",
-  titleAccent: "your stage and budget.",
+  titleLine1: "Modular niches or",
+  titleAccent: "full coverage.",
   description:
-    "Four modular programs — from a focused niche play to a full-funnel engine. Every package includes a named strategist, clear deliverables, and reporting your leadership can follow.",
+    "Six programs — from a focused niche play to our All-in-One bundle and custom Enterprise engagements. Every package includes clear deliverables and a named lead.",
 } as const;
 
 export const packages: PackageDetail[] = [
+  {
+    id: "all-in-one",
+    title: "All-in-One Package",
+    description:
+      "Every service under one roof — strategy, marketing, design, graphics, web development, and automation in a single accountable program.",
+    href: "/packages/all-in-one",
+    icon: Sparkles,
+    featured: true,
+    badge: "All Services",
+    headline: "Every niche. One team. One roadmap.",
+    longDescription:
+      "Our complete engagement for brands that want one partner across the full stack — not six vendors pointing fingers. Digital strategy, SEO, paid and social media, brand and graphics design, web development, and marketing automation run as one program with unified reporting and a senior lead accountable to outcomes.",
+    includes: [
+      {
+        title: "Digital strategy & quarterly roadmap",
+        description:
+          "Prioritized initiatives across every channel — with owners, KPIs, and budget governance leadership signs off on.",
+      },
+      {
+        title: "Full-funnel marketing",
+        description:
+          "SEO, content, paid media, and social programs managed together — not in silos.",
+      },
+      {
+        title: "Brand, graphics & creative production",
+        description:
+          "Identity support, campaign creative, ad sets, and sales assets on a production calendar your team can rely on.",
+      },
+      {
+        title: "Web development & CRO",
+        description:
+          "Site builds, landing page systems, performance optimization, and conversion testing tied to media and SEO.",
+      },
+      {
+        title: "Marketing automation & CRM",
+        description:
+          "Lifecycle email, lead scoring, routing, and attribution hooks that connect traffic to pipeline.",
+      },
+      {
+        title: "Executive reporting cadence",
+        description:
+          "Monthly business reviews with channel contribution, CAC, and pipeline — not vanity dashboards.",
+      },
+    ],
+    idealFor: "Mid-market brands that want one accountable partner across marketing, design, and development.",
+    timeline: "90-day onboarding; ongoing partnership with quarterly planning cycles.",
+  },
   {
     id: "niche-growth",
     title: "Niche Growth System",
@@ -61,8 +108,6 @@ export const packages: PackageDetail[] = [
       "Our flagship end-to-end system — strategy, creative, media, automation, and analytics under one roof.",
     href: "/packages/complete-growth",
     icon: Rocket,
-    featured: true,
-    badge: "Best Value",
     headline: "The full funnel — one team, one roadmap, one set of numbers.",
     longDescription:
       "Our flagship engagement for brands ready to treat marketing as a revenue system, not a collection of vendors. Strategy, creative, paid and organic channels, automation, and reporting run as one program with a senior lead accountable to outcomes.",
@@ -165,6 +210,52 @@ export const packages: PackageDetail[] = [
     ],
     idealFor: "Advertisers spending $10K–$100K/month who need hands-on optimization, not set-and-forget.",
     timeline: "4-week audit and rebuild; ongoing management with weekly optimization.",
+  },
+  {
+    id: "enterprise",
+    title: "Enterprise",
+    description:
+      "Custom scope for complex organizations — tell us your requirements and we'll deliver a tailored proposal.",
+    href: "/packages/enterprise",
+    icon: Building2,
+    isEnterprise: true,
+    headline: "Your requirements. Our custom quote.",
+    longDescription:
+      "Multi-brand portfolios, international rollouts, complex tech stacks, or engagements that don't fit a standard package — Enterprise is built around your brief. Share your goals, constraints, and timeline; we'll scope deliverables, team structure, and investment in a proposal within one business day of our discovery call.",
+    includes: [
+      {
+        title: "Discovery & requirements workshop",
+        description:
+          "Stakeholder interviews, technical audit, and success criteria documented before we quote.",
+      },
+      {
+        title: "Custom service mix",
+        description:
+          "Any combination of strategy, marketing, design, graphics, development, and automation — scoped to your org.",
+      },
+      {
+        title: "Dedicated account leadership",
+        description:
+          "Named senior lead with escalation path and executive reporting cadence you define.",
+      },
+      {
+        title: "Flexible commercial terms",
+        description:
+          "Retainer, project-based, or hybrid models — structured for procurement and finance review.",
+      },
+      {
+        title: "SLA-backed delivery",
+        description:
+          "Turnaround commitments, change-order process, and governance documented in the SOW.",
+      },
+      {
+        title: "Security & compliance alignment",
+        description:
+          "NDA, vendor onboarding, and data-handling requirements addressed in the proposal.",
+      },
+    ],
+    idealFor: "Organizations with multi-market needs, complex stakeholders, or requirements beyond standard packages.",
+    timeline: "Proposal within 1 business day after discovery; kickoff timeline agreed in SOW.",
   },
 ];
 

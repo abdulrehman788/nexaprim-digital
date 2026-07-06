@@ -21,7 +21,7 @@ export function Header() {
             href={ctaLinks.consultation}
             className="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-accent-hover lg:inline-flex"
           >
-            Book a Consultation
+            Book a Free Call
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <MobileMenu />

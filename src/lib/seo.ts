@@ -14,7 +14,7 @@ export function generatePageMetadata({
   title,
   description = siteConfig.description,
   path = "",
-  ogImage = "/images/og-default.jpg",
+  ogImage = "/images/hero/hero-devices-hd.png",
   noIndex = false,
 }: PageMetadataOptions): Metadata {
   const canonicalUrl = new URL(path, siteConfig.url).toString();
