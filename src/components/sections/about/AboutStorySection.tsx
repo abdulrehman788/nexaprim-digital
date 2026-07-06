@@ -1,48 +1,72 @@
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 import { aboutStory } from "@/data/about";
 
 export function AboutStorySection() {
   return (
-    <Section variant="light" aria-labelledby="about-story-heading" divider={false} id={aboutStory.id}>
+    <section
+      id={aboutStory.id}
+      aria-labelledby="about-story-heading"
+      className="border-t border-white/[0.06] bg-surface-primary py-20 lg:py-28"
+    >
       <Container>
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-          <div className="lg:pt-2">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+          <div className="lg:col-span-5 lg:pt-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+              {aboutStory.overline}
+            </p>
             <h2
               id="about-story-heading"
-              className="font-serif text-display-sm font-bold text-slate-900 sm:text-[2.5rem] sm:leading-tight"
+              className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-white sm:text-3xl lg:text-[2.25rem]"
             >
               {aboutStory.title}
             </h2>
 
-            <p className="mt-6 font-serif text-xl font-bold leading-snug text-slate-800 sm:text-2xl">
-              {aboutStory.pullQuote}
-            </p>
+            <blockquote className="mt-8 border-l-2 border-accent pl-5">
+              <p className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+                &ldquo;{aboutStory.pullQuote}&rdquo;
+              </p>
+              <footer className="mt-3 text-sm text-content-muted">
+                {aboutStory.pullQuoteAttribution}
+              </footer>
+            </blockquote>
 
-            <ul className="mt-8 space-y-4">
-              {aboutStory.bullets.map((bullet) => (
-                <li key={bullet.slice(0, 32)} className="flex gap-3 text-base leading-relaxed text-slate-600">
-                  <span
-                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                    aria-hidden="true"
-                  />
-                  {bullet}
+            <ol className="mt-10 space-y-0 border-t border-white/[0.06]">
+              {aboutStory.milestones.map((milestone) => (
+                <li
+                  key={milestone.year}
+                  className="grid grid-cols-[4.5rem_1fr] gap-4 border-b border-white/[0.06] py-5"
+                >
+                  <span className="font-display text-lg font-bold text-accent">{milestone.year}</span>
+                  <div>
+                    <p className="font-display text-sm font-bold text-white">{milestone.label}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-content-secondary">
+                      {milestone.detail}
+                    </p>
+                  </div>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
 
-          <div className="rounded-2xl bg-slate-100/90 p-7 sm:p-9 lg:p-10">
-            <div className="space-y-6">
-              {aboutStory.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="text-base leading-[1.75] text-slate-600 sm:text-[1.05rem]">
-                  {paragraph}
-                </p>
+          <div className="lg:col-span-7">
+            <div className="space-y-5">
+              {aboutStory.paragraphs.map((paragraph, index) => (
+                <article
+                  key={paragraph.slice(0, 40)}
+                  className="rounded-2xl border border-white/[0.06] bg-[#111118] p-6 sm:p-8"
+                >
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-content-muted">
+                    Chapter {index + 1}
+                  </span>
+                  <p className="mt-4 text-base leading-[1.8] text-content-secondary sm:text-[1.05rem]">
+                    {paragraph}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }

@@ -21,10 +21,23 @@ export const serviceCategories: { id: ServiceCategory; label: string }[] = [
 export const servicesSection = {
   title: "Every Niche. One Accountable Team.",
   description:
-    "Separate specialists for strategy, SEO, paid media, social, automation, brand, graphics, and web development — or bundle everything in one package.",
+    "Nine core capabilities across strategy, SEO, paid media, social, brand, graphics, and web development — with every specialty on our full services page.",
   ctaLabel: "Explore All Services",
   ctaHref: "/services",
 } as const;
+
+/** Nine flagship services shown on the homepage; all 21+ lines live on /services. */
+export const homepageServiceIds = [
+  "digital-strategy",
+  "seo-content",
+  "paid-media",
+  "social-media",
+  "brand-creative",
+  "graphics-design",
+  "web-development",
+  "shopify-development",
+  "custom-website-design",
+] as const;
 
 export const servicesPage = {
   overline: "Services",
@@ -1110,4 +1123,13 @@ export function getServiceById(id: string): ServiceDetail | undefined {
 
 export function getAllServiceSlugs(): string[] {
   return services.map((service) => service.id);
+}
+
+export const homepageServices: ServiceDetail[] = homepageServiceIds.flatMap((id) => {
+  const service = services.find((item) => item.id === id);
+  return service ? [service] : [];
+});
+
+export function getHomepageServices(): ServiceDetail[] {
+  return homepageServices;
 }

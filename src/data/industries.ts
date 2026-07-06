@@ -23,7 +23,8 @@ export const industries: IndustryDetail[] = [
     title: "Hospitality",
     subtitle: "Hotels, Resorts, Villas & Airbnb Businesses",
     href: "/industries/hospitality",
-    image: "/images/industries/hospitality.svg",
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Luxury villa with pool representing hospitality industry solutions",
     iconId: "hotel",
     headline: "Turn empty rooms into direct bookings — not OTA dependency.",
@@ -66,7 +67,8 @@ export const industries: IndustryDetail[] = [
     title: "Restaurants",
     subtitle: "Fine Dining, Cafes, Catering & Food Brands",
     href: "/industries/restaurants",
-    image: "/images/industries/restaurants.svg",
+    image:
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Plated gourmet dish representing restaurant industry solutions",
     iconId: "utensils",
     headline: "Fill tables on the nights that matter — without training deal-seekers.",
@@ -109,7 +111,8 @@ export const industries: IndustryDetail[] = [
     title: "Education",
     subtitle: "Universities, Colleges & Online Learning Platforms",
     href: "/industries/education",
-    image: "/images/industries/education.svg",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "University campus building representing education industry solutions",
     iconId: "graduation-cap",
     headline: "Enrollment marketing that speaks to one audience at a time.",
@@ -152,7 +155,8 @@ export const industries: IndustryDetail[] = [
     title: "Healthcare",
     subtitle: "Clinics, Hospitals & Wellness Practices",
     href: "/industries/healthcare",
-    image: "/images/industries/healthcare.svg",
+    image:
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Modern medical clinic representing healthcare industry solutions",
     iconId: "heart-pulse",
     headline: "Patient acquisition that earns trust — and passes compliance review.",
@@ -195,7 +199,8 @@ export const industries: IndustryDetail[] = [
     title: "Real Estate",
     subtitle: "Agents, Developers & Property Management",
     href: "/industries/real-estate",
-    image: "/images/industries/real-estate.svg",
+    image:
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Modern luxury home representing real estate industry solutions",
     iconId: "building",
     headline: "Leads that know whether they are buying or selling before they call.",
@@ -238,7 +243,8 @@ export const industries: IndustryDetail[] = [
     title: "E-commerce",
     subtitle: "Online Stores, DTC Brands & Marketplaces",
     href: "/industries/ecommerce",
-    image: "/images/industries/ecommerce.svg",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Shipping boxes representing e-commerce industry solutions",
     iconId: "shopping-cart",
     headline: "Grow revenue on the traffic you already pay for.",

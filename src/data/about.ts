@@ -1,41 +1,37 @@
 import type { AboutMethodologyStep, AboutPrinciple, AboutStat } from "@/types";
 
 export const aboutHero = {
-  overline: "Who We Are",
+  overline: "About Us",
   titleLine1: "Built for brands that need",
   titleAccent: "marketing that connects.",
   description:
-    "We help mid-market brands build long-term growth through strategy, creative, and media that actually moves revenue — not slide decks full of impressions.",
-  primaryCta: "Let's Talk",
-  primaryCtaHref: "/book",
-  secondaryCta: "Who we work with",
-  secondaryCtaHref: "#our-story",
-  highlights: [
-    { id: "industry", label: "Industry", value: "Agency" },
-    { id: "founded", label: "Founded", value: "2019" },
-    { id: "base", label: "Location", value: "Austin, TX" },
-    { id: "team", label: "Team", value: "18+" },
-  ],
+    "NexaPrime Digital is an Austin-based studio helping mid-market brands grow with strategy, creative, and media under one accountable team.",
+  ctaLabel: "Book a Free Consultation",
 } as const;
 
 export const aboutStory = {
   id: "our-story",
+  overline: "Our Story",
   title: "How we ended up here",
   pullQuote: "Your success is our success.",
-  bullets: [
-    "We started in Austin after watching great ad budgets die in broken funnels and outdated sites.",
-    "We stayed intentionally small — senior strategists on every account, no bait-and-switch handoffs.",
-    "We work best with brands between $2M and $50M who need one accountable team across the stack.",
-  ],
+  pullQuoteAttribution: "The standard we hold every engagement to",
   paragraphs: [
     "The first NexaPrime client was a boutique hotel group spending $18,000 a month on paid search. Bookings were flat. The problem was not the budget — their booking engine sent people to a landing page built three years earlier for a different property. We rebuilt the funnel in six weeks. Direct bookings rose 34% that quarter.",
-    "We have turned down projects that needed a 200-person agency and projects that wanted a logo swap in 48 hours. Fit matters more than revenue. That scoping rule still governs every new inquiry we take on.",
-    "Today we are 18 people across strategy, design, development, and media — all under one roof, with a handful of senior contractors we have worked with for years. When you work with us, the person on your kickoff call reviews your weekly numbers.",
+    "We stayed intentionally small. No account managers reading scripts, no bait-and-switch handoffs. When you work with us, the strategist on your kickoff call reviews your weekly numbers.",
+    "Most clients sit between $2M and $50M in annual revenue — big enough to need real infrastructure, small enough that leadership still reads the reports. We have turned down projects that needed a 200-person agency and projects that wanted a logo swap in 48 hours.",
+  ],
+  milestones: [
+    { year: "2019", label: "Founded in Austin", detail: "Two marketers, one hotel client, one rebuilt funnel." },
+    { year: "2021", label: "Healthcare & education", detail: "Three referral-only years before expanding verticals." },
+    { year: "2024", label: "250+ projects", detail: "Delivered without opening a second office." },
   ],
 } as const;
 
 export const aboutPrinciplesSection = {
+  overline: "Operating Standards",
   title: "What we refuse to do",
+  description:
+    "Not marketing slogans — rules we apply when scoping work and when a campaign is underperforming.",
 } as const;
 
 export const aboutPrinciples: AboutPrinciple[] = [
@@ -67,6 +63,7 @@ export const aboutPrinciples: AboutPrinciple[] = [
 
 export const aboutMethodologiesSection = {
   id: "methodologies",
+  overline: "How We Work",
   title: "The NexaPrime Method",
   titleAccent: "NexaPrime Method",
   description:
@@ -78,36 +75,38 @@ export const aboutMethodologySteps: AboutMethodologyStep[] = [
     id: "listen",
     step: "01",
     title: "Listen",
-    body: "Two weeks of discovery — sales interviews, support tickets, and the customer journey walked as if we were buying. Assumptions get written down and tested.",
+    body: "Two weeks of discovery — sales interviews, support tickets, and the customer journey walked as if we were buying.",
   },
   {
     id: "learn",
     step: "02",
     title: "Learn",
-    body: "Funnel audit, competitive teardown, and a gap sheet showing where you lose people and what it costs. You get this before we propose any tactics.",
+    body: "Funnel audit, competitive teardown, and a gap sheet showing where you lose people and what it costs.",
   },
   {
     id: "build",
     step: "03",
     title: "Build",
-    body: "Work ships in two-week sprints — creative, landing pages, automations, and campaigns in small batches so we read results early.",
+    body: "Work ships in two-week sprints — creative, landing pages, automations, and campaigns in small batches.",
   },
   {
     id: "measure",
     step: "04",
     title: "Measure",
-    body: "A shared scorecard updated weekly. Spend, conversions, and pipeline contribution in one place — reviewed together on a fixed cadence.",
+    body: "A shared scorecard updated weekly. Spend, conversions, and pipeline contribution in one place.",
   },
   {
     id: "refine",
     step: "05",
     title: "Refine",
-    body: "Underperforming ads get paused fast. Winners get budget. We document what we learned so your team keeps the knowledge.",
+    body: "Underperforming ads get paused fast. Winners get budget. Knowledge stays with your team.",
   },
 ];
 
 export const aboutStatsSection = {
+  overline: "Track Record",
   title: "By the numbers",
+  description: "Snapshot as of early 2026 — real outcomes, not inflated rounding.",
 } as const;
 
 export const aboutStats: AboutStat[] = [
@@ -118,11 +117,12 @@ export const aboutStats: AboutStat[] = [
 ];
 
 export const aboutCta = {
+  overline: "Work With Us",
   title: "Tell us what is not working",
   description:
     "No pitch deck on the first call. Bring your numbers, your frustrations, and twenty minutes — we will tell you honestly if we can help.",
-  primaryCta: "Start a Project",
-  primaryCtaHref: "/contact",
+  primaryCta: "Book a Free Consultation",
+  primaryCtaHref: "/book",
   secondaryCta: "View Our Services",
   secondaryCtaHref: "/services",
 } as const;

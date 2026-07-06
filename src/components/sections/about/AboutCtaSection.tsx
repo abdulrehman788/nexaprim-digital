@@ -1,85 +1,75 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 import { aboutCta } from "@/data/about";
 import { siteConfig } from "@/lib/constants";
 
-const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.region} ${siteConfig.address.postalCode}`;
+const addressLine = `${siteConfig.address.city}, ${siteConfig.address.region} ${siteConfig.address.postalCode}`;
 
 export function AboutCtaSection() {
   return (
-    <Section variant="light" aria-labelledby="about-cta-heading" className="bg-white !py-16 lg:!py-20" divider={false}>
+    <section
+      aria-labelledby="about-cta-heading"
+      className="border-t border-white/[0.06] bg-[#111118] py-20 lg:py-28"
+    >
       <Container>
-        <div className="overflow-hidden rounded-2xl shadow-[0_8px_40px_-12px_rgba(15,23,42,0.2)]">
-          <div className="grid lg:grid-cols-2">
-            <div className="bg-[#050505] px-7 py-12 sm:px-10 sm:py-14 lg:py-16">
-              <h2
-                id="about-cta-heading"
-                className="font-serif text-[1.75rem] font-bold leading-tight text-white sm:text-[2.25rem]"
-              >
-                {aboutCta.title}
-              </h2>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-content-secondary">
-                {aboutCta.description}
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link
-                  href={aboutCta.primaryCtaHref}
-                  className="bg-gold-gradient inline-flex min-h-11 items-center justify-center rounded-full px-7 text-sm font-semibold uppercase tracking-wide text-black transition-opacity hover:opacity-90"
-                >
-                  {aboutCta.primaryCta}
-                </Link>
-                <Link
-                  href={aboutCta.secondaryCtaHref}
-                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/40 px-7 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:border-white hover:bg-white/5"
-                >
-                  {aboutCta.secondaryCta}
-                </Link>
-              </div>
-            </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+            {aboutCta.overline}
+          </p>
+          <h2
+            id="about-cta-heading"
+            className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-white sm:text-3xl"
+          >
+            {aboutCta.title}
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-content-secondary">
+            {aboutCta.description}
+          </p>
 
-            <div className="bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 px-7 py-12 sm:px-10 sm:py-14 lg:py-16">
-              <ul className="flex flex-col gap-8">
-                <li className="flex gap-4">
-                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-navy-950/70" aria-hidden="true" />
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-navy-950/60">Email</p>
-                    <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="mt-1 block font-display text-base font-bold text-navy-950 hover:underline sm:text-lg"
-                    >
-                      {siteConfig.email}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <Phone className="mt-0.5 h-5 w-5 shrink-0 text-navy-950/70" aria-hidden="true" />
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-navy-950/60">Phone</p>
-                    <a
-                      href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-                      className="mt-1 block font-display text-base font-bold text-navy-950 hover:underline sm:text-lg"
-                    >
-                      {siteConfig.phone}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-navy-950/70" aria-hidden="true" />
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-navy-950/60">Office</p>
-                    <p className="mt-1 font-display text-base font-bold leading-snug text-navy-950 sm:text-lg">
-                      {addressLine}
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href={aboutCta.primaryCtaHref}
+              className="bg-gold-gradient inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-lg px-8 text-sm font-semibold text-black shadow-glow transition-opacity hover:opacity-90 sm:w-auto sm:text-base"
+            >
+              {aboutCta.primaryCta}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href={aboutCta.secondaryCtaHref}
+              className="inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-lg border border-white/20 px-8 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:w-auto sm:text-base"
+            >
+              {aboutCta.secondaryCta}
+            </Link>
           </div>
         </div>
+
+        <ul className="mt-14 flex flex-col items-center justify-center gap-6 border-t border-white/[0.06] pt-10 sm:flex-row sm:gap-10 lg:gap-14">
+          <li>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="flex items-center gap-2.5 text-sm text-content-secondary transition-colors hover:text-accent"
+            >
+              <Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+              {siteConfig.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+              className="flex items-center gap-2.5 text-sm text-content-secondary transition-colors hover:text-accent"
+            >
+              <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+              {siteConfig.phone}
+            </a>
+          </li>
+          <li className="flex items-center gap-2.5 text-sm text-content-secondary">
+            <MapPin className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+            {addressLine}
+          </li>
+        </ul>
       </Container>
-    </Section>
+    </section>
   );
 }

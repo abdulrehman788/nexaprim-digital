@@ -20,9 +20,9 @@ export default function AboutPage() {
     <main className="bg-surface-primary">
       <AboutHero />
       <AboutStorySection />
+      <AboutStatsSection />
       <AboutPrinciplesSection />
       <AboutMethodologiesSection />
-      <AboutStatsSection />
       <AboutCtaSection />
     </main>
   );

@@ -44,17 +44,17 @@ export function Footer() {
 
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-content-secondary">{footerTagline}</p>
 
-            <ul className="mt-8 flex flex-wrap gap-3" aria-label="Social media links">
+            <ul className="mt-8 flex flex-nowrap items-center gap-2" aria-label="Social media links">
               {socialLinks.map((social) => (
-                <li key={social.label}>
+                <li key={social.label} className="shrink-0">
                   <a
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full text-white transition-opacity hover:opacity-90 ${socialStyles[social.label] ?? "bg-surface-elevated"}`}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full text-white transition-opacity hover:opacity-90 ${socialStyles[social.label] ?? "bg-surface-elevated"}`}
                   >
-                    <SocialIcon name={social.label} />
+                    <SocialIcon name={social.label} className="h-3.5 w-3.5" />
                   </a>
                 </li>
               ))}

@@ -35,7 +35,7 @@ console.log(`Starting Next.js on http://localhost:${PORT}`);
 if (shouldClean) {
   console.log("Clean start: close ALL localhost:3000 tabs, wait for Ready, then open a new tab.");
 } else {
-  console.log("Wait for Ready before opening the site. Stale tabs cause 404/MIME errors.");
+  console.log("Wait for Ready before opening the site. After a restart, close old tabs or hard-refresh (Ctrl+Shift+R).");
 }
 
 const child = spawn(process.execPath, [nextCli, "dev", "-p", PORT], {

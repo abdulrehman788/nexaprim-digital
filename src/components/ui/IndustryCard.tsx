@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
+import { IndustryCardArt } from "@/components/ui/IndustryCardArt";
+import { getIndustryTheme } from "@/lib/case-study-themes";
 import { industryIcons } from "@/lib/industry-icons";
 import type { Industry } from "@/types";
 
@@ -10,31 +10,25 @@ interface IndustryCardProps {
 }
 
 export function IndustryCard({ industry }: IndustryCardProps) {
+  const theme = getIndustryTheme(industry.id);
   const Icon = industryIcons[industry.iconId];
 
   return (
-    <article className="group w-[17.5rem] shrink-0 snap-start sm:w-[18.5rem]">
+    <article className="group w-[16.75rem] shrink-0 snap-start sm:w-[18rem] lg:w-[19rem]">
       <Link href={industry.href} className="block">
-        <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl">
-          <Image
-            src={industry.image}
-            alt={industry.imageAlt}
-            fill
-            sizes="(max-width: 640px) 280px, 296px"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute -bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-full border border-slate-900 bg-white shadow-md">
-            <Icon className="h-4 w-4 text-slate-900" strokeWidth={1.75} aria-hidden="true" />
+        <div className="relative">
+          <IndustryCardArt theme={theme} image={industry.image} label={industry.imageAlt} />
+          <div className="absolute -bottom-4 left-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/80 bg-white shadow-[0_4px_14px_-2px_rgba(15,23,42,0.12)] transition-transform duration-300 group-hover:scale-105">
+            <Icon className="h-4 w-4 text-slate-800" strokeWidth={1.75} aria-hidden="true" />
           </div>
         </div>
 
-        <h3 className="font-display text-lg font-bold text-slate-900">{industry.title}</h3>
-        <p className="mt-1.5 text-sm leading-snug text-slate-500">{industry.subtitle}</p>
-        <ArrowRight
-          className="mt-4 h-4 w-4 text-slate-900 transition-transform group-hover:translate-x-0.5"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
+        <div className="pt-7">
+          <h3 className="font-display text-[1.05rem] font-bold text-slate-900 transition-colors group-hover:text-slate-700 sm:text-lg">
+            {industry.title}
+          </h3>
+          <p className="mt-1.5 text-sm leading-snug text-slate-500">{industry.subtitle}</p>
+        </div>
       </Link>
     </article>
   );

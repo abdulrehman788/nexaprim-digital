@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { ServiceCard } from "@/components/ui/ServiceCard";
-import { services, servicesSection } from "@/data/services";
+import { homepageServices, servicesSection } from "@/data/services";
 import { cn } from "@/lib/utils";
 
 interface ServicesSectionProps {
@@ -53,7 +53,7 @@ export function ServicesSection({ variant = "light" }: ServicesSectionProps) {
         </div>
 
         <ul className="mt-12 grid list-none gap-6 p-0 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {services.map((service) => (
+          {homepageServices.map((service) => (
             <li key={service.id}>
               <ServiceCard service={service} />
             </li>

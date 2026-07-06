@@ -8,16 +8,19 @@ export function FaqSection() {
   return (
     <Section id="faq" variant="light" aria-labelledby="faq-heading">
       <Container>
-        <SectionHeading
-          headingId="faq-heading"
-          title={faqSection.title}
-          description={faqSection.description}
-          align="center"
-          className="mb-12 lg:mb-14"
-        />
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-14 xl:gap-16">
+          <div className="max-lg:mx-auto max-lg:max-w-2xl max-lg:text-center lg:col-span-4">
+            <SectionHeading
+              headingId="faq-heading"
+              title={faqSection.title}
+              description={faqSection.description}
+              align="left"
+            />
+          </div>
 
-        <div className="mx-auto max-w-3xl">
-          <Accordion items={faqItems} theme="light" />
+          <div className="lg:col-span-8">
+            <Accordion items={faqItems} theme="light" />
+          </div>
         </div>
       </Container>
     </Section>

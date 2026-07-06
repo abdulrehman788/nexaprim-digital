@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { DevChunkRecovery } from "@/components/dev/DevChunkRecovery";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { fontVariables } from "@/lib/fonts";
 import { siteConfig } from "@/lib/constants";
@@ -35,17 +34,21 @@ export const metadata: Metadata = {
   },
 };
 
-/** Runs before any Next chunk — recovers stale tabs after dev server restarts. */
+/** Runs in <head> before Next assets — recovers stale tabs after dev server restarts. */
 const devChunkRecoveryInlineScript = `
 (function () {
-  var KEY = "nexaprime-dev-reload";
+  var KEY = "nexaprime-dev-reload-attempts";
+  var MAX_ATTEMPTS = 4;
+
   function bustReload() {
-    if (sessionStorage.getItem(KEY)) return;
-    sessionStorage.setItem(KEY, "1");
-    var url = new URL(window.location.href);
-    url.searchParams.set("__dev", String(Date.now()));
-    window.location.replace(url.toString());
+    var attempts = parseInt(sessionStorage.getItem(KEY) || "0", 10);
+    if (attempts >= MAX_ATTEMPTS) return;
+    sessionStorage.setItem(KEY, String(attempts + 1));
+    window.setTimeout(function () {
+      window.location.reload();
+    }, attempts === 0 ? 400 : 1200 + attempts * 400);
   }
+
   window.addEventListener(
     "error",
     function (event) {
@@ -61,6 +64,7 @@ const devChunkRecoveryInlineScript = `
     },
     true
   );
+
   window.addEventListener("load", function () {
     window.setTimeout(function () {
       sessionStorage.removeItem(KEY);
@@ -69,7 +73,7 @@ const devChunkRecoveryInlineScript = `
         clean.searchParams.delete("__dev");
         window.history.replaceState({}, "", clean.toString());
       }
-    }, 4000);
+    }, 6000);
   });
 })();
 `;
@@ -81,11 +85,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontVariables}>
-      <body>
+      <head>
         {process.env.NODE_ENV === "development" ? (
           <script dangerouslySetInnerHTML={{ __html: devChunkRecoveryInlineScript }} />
         ) : null}
-        <DevChunkRecovery />
+      </head>
+      <body>
         <JsonLd />
         <Header />
         {children}

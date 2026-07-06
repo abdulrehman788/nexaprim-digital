@@ -7,7 +7,7 @@ import { ctaLinks } from "@/lib/constants";
 
 export function ReviewsSection() {
   return (
-    <section aria-labelledby="reviews-list-heading" className="bg-surface-primary pb-20 sm:pb-24">
+    <section aria-labelledby="reviews-list-heading" className="overflow-x-hidden bg-surface-primary pb-20 sm:pb-24">
       <Container>
         <h2 id="reviews-list-heading" className="sr-only">
           Client reviews
@@ -18,6 +18,17 @@ export function ReviewsSection() {
           totalReviews={reviewsPage.totalReviews}
           projectsDelivered={reviewsPage.projectsDelivered}
         />
+
+        <div className="mb-8 max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+            Interactive review studio
+          </p>
+          <p className="mt-3 text-base leading-relaxed text-content-secondary">
+            Filter by industry and use the arrows or client cards below to browse each testimonial.
+            Reviews auto-advance — hover to pause, or press spacebar to toggle playback.
+          </p>
+        </div>
+
         <ReviewsList reviews={reviews} />
 
         <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-white/10 bg-[#111118] px-6 py-12 text-center sm:px-10 sm:py-14">

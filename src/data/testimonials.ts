@@ -8,6 +8,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import { caseStudies } from "@/data/case-studies";
 import type { CTABenefit, Testimonial, WhyUsFeature } from "@/types";
 
 export const whyUsSection = {
@@ -55,38 +56,30 @@ export const testimonialsSection = {
   ctaHref: "/reviews",
 } as const;
 
-export const testimonials: Testimonial[] = [
-  {
-    id: "grand-vista-hotel",
-    headline: "Increased direct bookings by 220%",
-    description:
-      "A four-property hotel group was bleeding margin to OTAs. We rebuilt the booking funnel and shifted paid spend to high-intent direct traffic.",
-    href: "/case-studies/grand-vista-hotel",
-    image: "/images/industries/hospitality.svg",
-    imageAlt: "Luxury hotel lobby — Grand Vista Hotel Group case study",
-    industry: "Hospitality",
-  },
-  {
-    id: "meridian-health",
-    headline: "Tripled new patient intake in six months",
-    description:
-      "A regional clinic network needed compliant lead generation without sacrificing trust. Local SEO and education-first content did the heavy lifting.",
-    href: "/case-studies/meridian-health",
-    image: "/images/industries/healthcare.svg",
-    imageAlt: "Modern medical clinic — Meridian Health Network case study",
-    industry: "Healthcare",
-  },
-  {
-    id: "urban-table",
-    headline: "Filled 40% more tables every week",
-    description:
-      "A three-location restaurant group struggled with empty Tuesday–Thursday covers. Hyper-local ads and a simple loyalty loop changed the pattern.",
-    href: "/case-studies/urban-table",
-    image: "/images/industries/restaurants.svg",
-    imageAlt: "Upscale restaurant interior — Urban Table case study",
-    industry: "Restaurants",
-  },
-];
+const homepageCaseStudySlugs = [
+  "grand-vista-hotel",
+  "meridian-health",
+  "urban-table",
+] as const;
+
+export const testimonials: Testimonial[] = homepageCaseStudySlugs.flatMap((slug) => {
+  const study = caseStudies.find((item) => item.slug === slug);
+  if (!study) {
+    return [];
+  }
+
+  return [
+    {
+      id: study.id,
+      headline: study.headline,
+      description: study.summary,
+      href: `/case-studies/${study.slug}`,
+      image: study.image,
+      imageAlt: study.imageAlt,
+      industry: study.industry,
+    },
+  ];
+});
 
 export const ctaSection = {
   title: "Let's Build Your Digital Future",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -76,19 +77,20 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_30px_-12px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-2 hover:border-gold-300/50 hover:shadow-[0_24px_56px_-16px_rgba(15,23,42,0.2),0_0_0_1px_rgba(197,163,88,0.15)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
+        <Image
+          src={study.image}
+          alt={study.imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-35 mix-blend-multiply"
           style={{
             background: `linear-gradient(145deg, ${theme.gradientFrom} 0%, ${theme.gradientVia} 50%, ${theme.gradientTo} 100%)`,
           }}
           aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 scale-100 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-          style={{ backgroundImage: `url(${study.image})` }}
-          role="img"
-          aria-label={study.imageAlt}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-navy-950/25 to-navy-950/10" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />

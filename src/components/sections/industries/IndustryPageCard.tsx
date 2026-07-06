@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -16,19 +17,20 @@ export function IndustryPageCard({ industry }: IndustryPageCardProps) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_30px_-12px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-2 hover:border-gold-300/50 hover:shadow-[0_24px_56px_-16px_rgba(15,23,42,0.2)]">
       <Link href={industry.href} className="flex h-full flex-col">
-        <div className="relative aspect-[16/10] overflow-hidden">
+        <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
+          <Image
+            src={industry.image}
+            alt={industry.imageAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 opacity-40 mix-blend-multiply"
             style={{
               background: `linear-gradient(145deg, ${theme.gradientFrom} 0%, ${theme.gradientVia} 50%, ${theme.gradientTo} 100%)`,
             }}
             aria-hidden="true"
-          />
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-            style={{ backgroundImage: `url(${industry.image})` }}
-            role="img"
-            aria-label={industry.imageAlt}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/30 to-transparent" />
 
