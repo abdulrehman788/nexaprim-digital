@@ -17,6 +17,7 @@ export function OptimizedImage({
   blurDataURL,
   loading,
   src,
+  alt,
   ...props
 }: OptimizedImageProps) {
   const srcString = typeof src === "string" ? src : "";
@@ -26,6 +27,7 @@ export function OptimizedImage({
     <Image
       {...props}
       src={src}
+      alt={alt}
       priority={priority}
       quality={quality ?? getImageQuality(priority)}
       loading={priority ? undefined : loading ?? "lazy"}

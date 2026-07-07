@@ -49,7 +49,9 @@ export function AdminButton({
         variant === "ghost" && "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900",
         className,
       )}
-    />
+    >
+      {children}
+    </button>
   );
 }
 
