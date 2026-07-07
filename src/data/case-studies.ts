@@ -134,7 +134,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "An online learning platform needed to stand out in a crowded ed-tech market without promising outcomes it could not guarantee.",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "University campus — BrightPath Academy case study",
     stats: [
       { label: "Enrollment inquiries", value: "+175%" },

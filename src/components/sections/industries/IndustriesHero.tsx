@@ -19,7 +19,7 @@ export function IndustriesHero() {
   return (
     <section
       aria-labelledby="industries-hero-heading"
-      className="relative overflow-hidden bg-[#050505] pb-16 pt-32 lg:pb-20 lg:pt-36"
+      className="relative overflow-hidden bg-[#050505] pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-40"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.09),transparent_60%)]" />
       <HeroDecorations />
@@ -35,10 +35,15 @@ export function IndustriesHero() {
           {industriesPage.titleLine1}{" "}
           <span className="font-serif text-gold-gradient">{industriesPage.titleAccent}</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-content-secondary sm:text-lg">
-          {industriesPage.description}
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-content-secondary sm:text-lg">
+          Funnels, content, and media tailored to your sector — not recycled agency playbooks.
         </p>
       </Container>
+
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-white"
+        aria-hidden="true"
+      />
     </section>
   );
 }

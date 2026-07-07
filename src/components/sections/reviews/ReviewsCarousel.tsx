@@ -88,70 +88,98 @@ export function StarRating({ rating, dark = false }: { rating: number; dark?: bo
 
 interface ReviewSlideProps {
   review: ClientReview;
+  theme?: "light" | "dark";
 }
 
-function ReviewSlide({ review }: ReviewSlideProps) {
+function ReviewSlide({ review, theme = "dark" }: ReviewSlideProps) {
+  const light = theme === "light";
   const [lead, ...rest] = review.body.split("\n\n");
-  const theme = getTheme(review.industry);
+  const themeColors = getTheme(review.industry);
 
   return (
     <article className="flex flex-col">
-      <header className="flex flex-col gap-4 border-b border-white/[0.06] pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <header
+        className={cn(
+          "flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-center sm:justify-between",
+          light ? "border-slate-200" : "border-white/[0.06]",
+        )}
+      >
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <span
             className={cn(
               "rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider",
-              theme.accent,
+              light ? "border-accent/30 bg-accent/10 text-accent" : themeColors.accent,
             )}
           >
             {review.industry}
           </span>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-content-muted">
+          <span className={cn("text-[11px] font-semibold uppercase tracking-wider", light ? "text-slate-500" : "text-content-muted")}>
             Verified client review
           </span>
-          <span className="hidden h-1 w-1 rounded-full bg-white/20 sm:block" aria-hidden="true" />
-          <span className="text-xs text-content-muted">{review.reviewed}</span>
-          <span className="text-xs text-content-muted">· {review.engagement}</span>
+          <span className={cn("hidden h-1 w-1 rounded-full sm:block", light ? "bg-slate-300" : "bg-white/20")} aria-hidden="true" />
+          <span className={cn("text-xs", light ? "text-slate-500" : "text-content-muted")}>{review.reviewed}</span>
+          <span className={cn("text-xs", light ? "text-slate-500" : "text-content-muted")}>· {review.engagement}</span>
         </div>
-        <StarRating rating={review.rating} dark />
+        <StarRating rating={review.rating} dark={!light} />
       </header>
 
       <div className="grid gap-8 py-8 lg:grid-cols-[11.5rem_minmax(0,1fr)] lg:gap-10">
         <aside className="flex flex-col gap-4 lg:pt-1">
-          <div className="rounded-xl border border-white/[0.08] bg-[#1c1c26]/90 p-5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-content-muted">
+          <div
+            className={cn(
+              "rounded-xl border p-5",
+              light ? "border-slate-200 bg-slate-50" : "border-white/[0.08] bg-[#1c1c26]/90",
+            )}
+          >
+            <p className={cn("text-[10px] font-semibold uppercase tracking-[0.28em]", light ? "text-slate-500" : "text-content-muted")}>
               Measured result
             </p>
-            <p className="mt-3 font-display text-xl font-bold leading-snug text-white">
+            <p className={cn("mt-3 font-display text-xl font-bold leading-snug", light ? "text-slate-900" : "text-white")}>
               {review.highlight}
             </p>
           </div>
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-content-muted">
+          <div
+            className={cn(
+              "rounded-xl border px-4 py-3",
+              light ? "border-slate-200 bg-white" : "border-white/[0.06] bg-white/[0.02]",
+            )}
+          >
+            <p className={cn("text-[10px] font-semibold uppercase tracking-[0.2em]", light ? "text-slate-500" : "text-content-muted")}>
               Engagement
             </p>
-            <p className="mt-1 text-sm font-medium text-content-secondary">{review.engagement}</p>
+            <p className={cn("mt-1 text-sm font-medium", light ? "text-slate-600" : "text-content-secondary")}>{review.engagement}</p>
           </div>
         </aside>
 
         <div className="relative min-w-0">
           <span
-            className="pointer-events-none absolute -left-1 -top-3 font-serif text-6xl leading-none text-white/[0.06]"
+            className={cn(
+              "pointer-events-none absolute -left-1 -top-3 font-serif text-6xl leading-none",
+              light ? "text-slate-200" : "text-white/[0.06]",
+            )}
             aria-hidden="true"
           >
             &ldquo;
           </span>
 
-          <blockquote className="relative font-serif text-lg leading-relaxed text-white sm:text-xl sm:leading-8">
+          <blockquote
+            className={cn(
+              "relative font-serif text-lg leading-relaxed sm:text-xl sm:leading-8",
+              light ? "text-slate-800" : "text-white",
+            )}
+          >
             {lead}
           </blockquote>
 
           {rest.length > 0 ? (
-            <div className="mt-5 space-y-4 border-l border-white/[0.08] pl-5">
+            <div className={cn("mt-5 space-y-4 border-l pl-5", light ? "border-slate-200" : "border-white/[0.08]")}>
               {rest.map((paragraph) => (
                 <p
                   key={`${review.id}-${paragraph.slice(0, 40)}`}
-                  className="text-sm leading-relaxed text-content-secondary sm:text-[0.95rem] sm:leading-7"
+                  className={cn(
+                    "text-sm leading-relaxed sm:text-[0.95rem] sm:leading-7",
+                    light ? "text-slate-600" : "text-content-secondary",
+                  )}
                 >
                   {paragraph}
                 </p>
@@ -161,22 +189,30 @@ function ReviewSlide({ review }: ReviewSlideProps) {
         </div>
       </div>
 
-      <footer className="flex flex-col gap-5 border-t border-white/[0.06] pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <footer
+        className={cn(
+          "flex flex-col gap-5 border-t pt-6 sm:flex-row sm:items-center sm:justify-between",
+          light ? "border-slate-200" : "border-white/[0.06]",
+        )}
+      >
         <div className="flex items-center gap-4">
           <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-sm font-bold text-black">
             {getInitials(review.author)}
           </span>
           <div>
-            <p className="font-display text-base font-bold text-white">{review.author}</p>
-            <p className="mt-0.5 text-sm text-content-secondary">{review.role}</p>
-            <p className="text-sm text-content-muted">{review.client}</p>
+            <p className={cn("font-display text-base font-bold", light ? "text-slate-900" : "text-white")}>{review.author}</p>
+            <p className={cn("mt-0.5 text-sm", light ? "text-slate-600" : "text-content-secondary")}>{review.role}</p>
+            <p className={cn("text-sm", light ? "text-slate-500" : "text-content-muted")}>{review.client}</p>
           </div>
         </div>
 
         {review.caseStudySlug ? (
           <Link
             href={`/case-studies/${review.caseStudySlug}`}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-accent sm:w-auto"
+            className={cn(
+              "inline-flex w-full items-center justify-center gap-2 rounded-lg border px-5 py-3 text-sm font-semibold transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-accent sm:w-auto",
+              light ? "border-slate-300 bg-slate-50 text-slate-800" : "border-white/15 bg-white/[0.04] text-white",
+            )}
           >
             View case study
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -189,9 +225,11 @@ function ReviewSlide({ review }: ReviewSlideProps) {
 
 interface ReviewsCarouselProps {
   reviews: ClientReview[];
+  theme?: "light" | "dark";
 }
 
-export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
+export function ReviewsCarousel({ reviews, theme = "dark" }: ReviewsCarouselProps) {
+  const light = theme === "light";
   const prefersReducedMotion = useReducedMotion();
   const [activeIndustry, setActiveIndustry] = useState("All");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -294,7 +332,7 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     return null;
   }
 
-  const theme = getTheme(activeReview.industry);
+  const industryTheme = getTheme(activeReview.industry);
 
   return (
     <div className="space-y-6 overflow-x-hidden">
@@ -317,7 +355,9 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 "rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors",
                 isActive
                   ? "border-accent/50 bg-accent/15 text-accent"
-                  : "border-white/10 bg-white/[0.03] text-content-secondary hover:border-white/20 hover:text-white",
+                  : light
+                    ? "border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:text-slate-900"
+                    : "border-white/10 bg-white/[0.03] text-content-secondary hover:border-white/20 hover:text-white",
               )}
             >
               {industry}
@@ -333,18 +373,25 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
         onFocusCapture={() => setIsPaused(true)}
         onBlurCapture={() => setIsPaused(false)}
       >
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0d0d12] shadow-card">
+        <div
+          className={cn(
+            "relative overflow-hidden rounded-2xl border shadow-card",
+            light ? "border-slate-200 bg-white" : "border-white/[0.08] bg-[#0d0d12]",
+          )}
+        >
           <div
             className={cn(
               "pointer-events-none absolute inset-0 bg-gradient-to-br opacity-70",
-              theme.glow,
+              industryTheme.glow,
             )}
             aria-hidden="true"
           />
-          <div
-            className="pointer-events-none absolute right-0 top-0 h-48 w-48 translate-x-1/4 rounded-full bg-accent/10 blur-3xl opacity-60"
-            aria-hidden="true"
-          />
+          {!light ? (
+            <div
+              className="pointer-events-none absolute right-0 top-0 h-48 w-48 translate-x-1/4 rounded-full bg-accent/10 blur-3xl opacity-60"
+              aria-hidden="true"
+            />
+          ) : null}
 
           <div className="relative px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
             <AnimatePresence mode="wait" custom={direction}>
@@ -380,13 +427,13 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 aria-live="polite"
                 className="touch-pan-y"
               >
-                <ReviewSlide review={activeReview} />
+                <ReviewSlide review={activeReview} theme={theme} />
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="relative border-t border-white/[0.06] px-5 py-4 sm:px-8">
-            <div className="mb-4 h-0.5 overflow-hidden rounded-full bg-white/10">
+          <div className={cn("relative border-t px-5 py-4 sm:px-8", light ? "border-slate-200" : "border-white/[0.06]")}>
+            <div className={cn("mb-4 h-0.5 overflow-hidden rounded-full", light ? "bg-slate-200" : "bg-white/10")}>
               <motion.div
                 className="h-full origin-left rounded-full bg-gold-gradient"
                 style={{ width: `${progress}%` }}
@@ -395,7 +442,7 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <p className="text-xs text-content-muted">
+              <p className={cn("text-xs", light ? "text-slate-500" : "text-content-muted")}>
                 Review {activeIndex + 1} of {total}
                 {activeIndustry !== "All" ? ` · ${activeIndustry}` : ""}
               </p>
@@ -404,7 +451,12 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 <button
                   type="button"
                   onClick={() => setIsPaused((value) => !value)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition-colors hover:border-accent/40 hover:text-accent"
+                  className={cn(
+                    "flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:border-accent/40 hover:text-accent",
+                    light
+                      ? "border-slate-300 bg-slate-50 text-slate-700"
+                      : "border-white/15 bg-white/[0.04] text-white",
+                  )}
                   aria-label={isPaused ? "Resume autoplay" : "Pause autoplay"}
                   aria-pressed={isPaused}
                 >
@@ -418,7 +470,12 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 <button
                   type="button"
                   onClick={goPrev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition-colors hover:border-accent/40 hover:text-accent"
+                  className={cn(
+                    "flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:border-accent/40 hover:text-accent",
+                    light
+                      ? "border-slate-300 bg-slate-50 text-slate-700"
+                      : "border-white/15 bg-white/[0.04] text-white",
+                  )}
                   aria-label="Previous review"
                 >
                   <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -437,7 +494,9 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                         "h-2 rounded-full transition-all",
                         index === activeIndex
                           ? "w-7 bg-accent"
-                          : "w-2 bg-white/20 hover:bg-white/40",
+                          : light
+                            ? "w-2 bg-slate-300 hover:bg-slate-400"
+                            : "w-2 bg-white/20 hover:bg-white/40",
                       )}
                     />
                   ))}
@@ -446,7 +505,12 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition-colors hover:border-accent/40 hover:text-accent"
+                  className={cn(
+                    "flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:border-accent/40 hover:text-accent",
+                    light
+                      ? "border-slate-300 bg-slate-50 text-slate-700"
+                      : "border-white/15 bg-white/[0.04] text-white",
+                  )}
                   aria-label="Next review"
                 >
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -475,24 +539,28 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
               className={cn(
                 "flex flex-col rounded-xl border p-3 text-left transition-all sm:p-4",
                 isActive
-                  ? "border-accent/35 bg-[#1c1c26] ring-1 ring-accent/25"
-                  : "border-white/[0.06] bg-[#14141c] hover:border-white/12",
+                  ? light
+                    ? "border-accent/35 bg-gold-50 ring-1 ring-accent/25"
+                    : "border-accent/35 bg-[#1c1c26] ring-1 ring-accent/25"
+                  : light
+                    ? "border-slate-200 bg-white hover:border-slate-300"
+                    : "border-white/[0.06] bg-[#14141c] hover:border-white/12",
               )}
             >
               <div className="flex items-center gap-2.5">
                 <span
                   className={cn(
                     "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[11px] font-bold",
-                    isActive ? "bg-gold-gradient text-black" : "bg-white/10 text-white",
+                    isActive ? "bg-gold-gradient text-black" : light ? "bg-slate-100 text-slate-700" : "bg-white/10 text-white",
                   )}
                 >
                   {getInitials(review.author)}
                 </span>
                 <span className="min-w-0">
-                  <span className="block truncate text-xs font-semibold text-white">
+                  <span className={cn("block truncate text-xs font-semibold", light ? "text-slate-900" : "text-white")}>
                     {review.author}
                   </span>
-                  <span className="block truncate text-[11px] text-content-muted">
+                  <span className={cn("block truncate text-[11px]", light ? "text-slate-500" : "text-content-muted")}>
                     {review.client}
                   </span>
                 </span>

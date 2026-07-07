@@ -10,32 +10,32 @@ export function ServiceCapabilitiesSection({ content }: ServiceCapabilitiesSecti
   return (
     <section
       aria-labelledby={`service-capabilities-${content.id}`}
-      className="border-t border-white/[0.06] bg-[#111118] py-20 sm:py-24 lg:py-28"
+      className="border-b border-white/[0.06] bg-[#050505] py-10 sm:py-12 lg:py-14"
     >
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-5xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Capabilities</p>
           <h2
             id={`service-capabilities-${content.id}`}
-            className="mt-4 text-balance font-display text-[1.75rem] font-bold leading-[1.15] text-white sm:text-3xl lg:text-[2.25rem]"
+            className="mt-2 max-w-2xl font-serif text-2xl font-bold text-white sm:text-3xl"
           >
             {content.titleWhite}{" "}
             <span className="text-gold-gradient">{content.titleAccent}</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-content-secondary sm:text-lg">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-content-secondary sm:text-base">
             {content.description}
           </p>
-        </div>
 
-        <div className="mt-14">
-          <CapabilityCardGrid items={content.items} />
-        </div>
-
-        {content.secondaryItems?.length ? (
-          <div className="mt-6 lg:mt-8">
-            <CapabilityCardGrid items={content.secondaryItems} />
+          <div className="mt-10">
+            <CapabilityCardGrid items={content.items} />
           </div>
-        ) : null}
+
+          {content.secondaryItems?.length ? (
+            <div className="mt-6 lg:mt-8">
+              <CapabilityCardGrid items={content.secondaryItems} />
+            </div>
+          ) : null}
+        </div>
       </Container>
     </section>
   );

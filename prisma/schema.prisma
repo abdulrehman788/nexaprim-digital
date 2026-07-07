@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model BlogPost {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  excerpt       String
+  content       String
+  coverImage    String?
+  coverImageAlt String?
+  author        String   @default("NexaPrime Digital")
+  tags          String   @default("[]")
+  status        String   @default("DRAFT")
+  publishAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model CaseStudy {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  client      String
+  industry    String
+  headline    String
+  summary     String
+  image       String
+  imageAlt    String
+  stats       String
+  challenge   String
+  approach    String
+  outcome     String
+  quote       String?
+  quoteAuthor String?
+  status      String   @default("DRAFT")
+  publishAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

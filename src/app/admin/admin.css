@@ -1,0 +1,101 @@
+/* Admin CMS — SaaS light theme */
+
+body:has(.admin-theme) {
+  background-color: #f9f9f9 !important;
+  color: #111827 !important;
+}
+
+.admin-theme {
+  --admin-primary: #7c3aed;
+  --admin-primary-hover: #6d28d9;
+  --admin-primary-light: #ede9fe;
+  --color-content-primary: #111827;
+  --color-content-secondary: #4b5563;
+  --color-content-muted: #6b7280;
+
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  color: #111827;
+}
+
+.admin-theme h1,
+.admin-theme h2,
+.admin-theme h3,
+.admin-theme h4,
+.admin-theme h5,
+.admin-theme h6 {
+  color: #111827;
+}
+
+.admin-theme .bg-white,
+.admin-theme .bg-white h1,
+.admin-theme .bg-white h2,
+.admin-theme .bg-white h3,
+.admin-theme .bg-white p,
+.admin-theme .bg-white span,
+.admin-theme .bg-white td,
+.admin-theme .bg-white th {
+  color: #111827;
+}
+
+.admin-theme .bg-white .text-zinc-500,
+.admin-theme .bg-white .text-gray-500 {
+  color: #6b7280 !important;
+}
+
+.admin-theme .bg-white .text-zinc-600,
+.admin-theme .bg-white .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.admin-theme .bg-white .text-violet-600 {
+  color: #7c3aed !important;
+}
+
+.admin-theme .text-white,
+.admin-theme .text-white * {
+  color: #ffffff;
+}
+
+.admin-theme .admin-hero,
+.admin-theme .admin-hero h1,
+.admin-theme .admin-hero p,
+.admin-theme .admin-hero span {
+  color: #ffffff;
+}
+
+.admin-theme .admin-hero .text-white\/80 {
+  color: rgb(255 255 255 / 0.8) !important;
+}
+
+.admin-gradient-hero {
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 45%, #c4b5fd 100%);
+}
+
+.admin-card {
+  border-radius: 1rem;
+  border: 1px solid #f3f4f6;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+}
+
+.admin-panel {
+  border-radius: 1.25rem;
+  border: 1px solid #ececec;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+}
+
+.admin-nav-active {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.admin-btn-primary {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.admin-btn-primary:hover {
+  background: #6d28d9;
+}

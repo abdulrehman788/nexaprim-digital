@@ -39,7 +39,10 @@ export function BookPageContent() {
         </Container>
       </section>
 
-      <section aria-label="Consultation scheduling" className="pb-20 sm:pb-24">
+      <section
+        aria-label="Consultation scheduling"
+        className="border-t border-slate-200/80 bg-white pb-20 sm:pb-24"
+      >
         <Container>
           <div className="mx-auto max-w-3xl">
             <ConsultationScheduler />

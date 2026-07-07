@@ -29,6 +29,9 @@ export const packages: PackageDetail[] = [
     featured: true,
     badge: "All Services",
     headline: "Every niche. One team. One roadmap.",
+    heroImage:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Strategy team collaborating around a roadmap",
     longDescription:
       "Our complete engagement for brands that want one partner across the full stack — not six vendors pointing fingers. Digital strategy, SEO, paid and social media, brand and graphics design, web development, and marketing automation run as one program with unified reporting and a senior lead accountable to outcomes.",
     includes: [
@@ -65,6 +68,34 @@ export const packages: PackageDetail[] = [
     ],
     idealFor: "Mid-market brands that want one accountable partner across marketing, design, and development.",
     timeline: "90-day onboarding; ongoing partnership with quarterly planning cycles.",
+    highlights: [
+      "One senior lead accountable to your leadership team",
+      "Weekly readouts on every active workstream",
+      "Quarterly planning cycles you approve before we spend",
+      "Strategy, creative, dev, and media — one roadmap",
+    ],
+    outcomes: [
+      "One roadmap across every channel — no siloed vendors",
+      "Faster launches with named owners on each initiative",
+      "Executive reporting tied to pipeline, CAC, and revenue",
+    ],
+    engagementSteps: [
+      {
+        title: "Discovery & roadmap",
+        description:
+          "Stakeholder workshops, channel audit, and a 90-day plan with owners, KPIs, and budget your leadership approves.",
+      },
+      {
+        title: "Integrated launch",
+        description:
+          "Campaigns, creative, site work, and automation go live as one program — not six vendors in parallel.",
+      },
+      {
+        title: "Review & scale",
+        description:
+          "Monthly business reviews, quarterly planning, and budget shifts toward what actually moves pipeline.",
+      },
+    ],
   },
   {
     id: "niche-growth",
@@ -74,6 +105,9 @@ export const packages: PackageDetail[] = [
     href: "/packages/niche-growth",
     icon: Target,
     headline: "Win one segment completely before you scale everywhere.",
+    heroImage:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Analytics dashboard showing niche market growth",
     longDescription:
       "Built for brands that need traction in a defined niche — a geography, service line, or buyer persona — without funding a full agency retainer. We concentrate spend and creative on the segment where you can win fastest, then document what works for expansion.",
     includes: [
@@ -109,6 +143,9 @@ export const packages: PackageDetail[] = [
     href: "/packages/complete-growth",
     icon: Rocket,
     headline: "The full funnel — one team, one roadmap, one set of numbers.",
+    heroImage:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Growth team planning a full-funnel campaign",
     longDescription:
       "Our flagship engagement for brands ready to treat marketing as a revenue system, not a collection of vendors. Strategy, creative, paid and organic channels, automation, and reporting run as one program with a senior lead accountable to outcomes.",
     includes: [
@@ -140,6 +177,34 @@ export const packages: PackageDetail[] = [
     ],
     idealFor: "Mid-market brands spending $20K+/month who want one partner across the full funnel.",
     timeline: "90-day onboarding; ongoing partnership with quarterly planning cycles.",
+    highlights: [
+      "Dedicated growth lead on every engagement",
+      "Paid, organic, and automation under one plan",
+      "Monthly business reviews with pipeline metrics",
+      "Creative and media aligned to the same KPIs",
+    ],
+    outcomes: [
+      "Full-funnel programs that compound over quarters",
+      "Unified reporting across paid, SEO, and email",
+      "Budget shifts toward proven channels every month",
+    ],
+    engagementSteps: [
+      {
+        title: "Discovery & roadmap",
+        description:
+          "Revenue goals, channel audit, and a quarterly plan with prioritized initiatives your leadership approves.",
+      },
+      {
+        title: "Launch & optimize",
+        description:
+          "Creative, media, SEO, and automation go live in coordinated sprints — with weekly performance readouts.",
+      },
+      {
+        title: "Review & scale",
+        description:
+          "Monthly business reviews surface what moves pipeline; we shift budget and effort toward proven winners.",
+      },
+    ],
   },
   {
     id: "brand-acceleration",
@@ -149,6 +214,9 @@ export const packages: PackageDetail[] = [
     href: "/packages/brand-acceleration",
     icon: Layers,
     headline: "Look and sound like the market leader before you outspend everyone.",
+    heroImage:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Brand design mood board and creative direction",
     longDescription:
       "For companies whose product is strong but their market presence still looks like a startup. We refine identity, messaging, and campaign creative so every touchpoint — site, ads, decks, social — feels cohesive and premium.",
     includes: [
@@ -184,6 +252,9 @@ export const packages: PackageDetail[] = [
     href: "/packages/performance-engine",
     icon: Zap,
     headline: "Scale what converts. Cut what doesn't. Every week.",
+    heroImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Performance marketing metrics on screen",
     longDescription:
       "For teams that already have offers and landing pages but need paid media and CRO run with discipline. We treat accounts like a trading desk — creative tests, audience splits, and landing feedback loops with fast iteration.",
     includes: [
@@ -220,6 +291,9 @@ export const packages: PackageDetail[] = [
     icon: Building2,
     isEnterprise: true,
     headline: "Your requirements. Our custom quote.",
+    heroImage:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+    heroImageAlt: "Modern corporate headquarters representing enterprise scale",
     longDescription:
       "Multi-brand portfolios, international rollouts, complex tech stacks, or engagements that don't fit a standard package — Enterprise is built around your brief. Share your goals, constraints, and timeline; we'll scope deliverables, team structure, and investment in a proposal within one business day of our discovery call.",
     includes: [
@@ -261,4 +335,29 @@ export const packages: PackageDetail[] = [
 
 export function getPackageById(id: string): PackageDetail | undefined {
   return packages.find((pkg) => pkg.id === id);
+}
+
+export interface PackageSummary {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  badge?: string;
+  featured?: boolean;
+  timeline: string;
+}
+
+export function getRelatedPackages(currentId: string, limit = 3): PackageSummary[] {
+  return packages
+    .filter((pkg) => pkg.id !== currentId)
+    .slice(0, limit)
+    .map(({ id, title, description, href, badge, featured, timeline }) => ({
+      id,
+      title,
+      description,
+      href,
+      badge,
+      featured,
+      timeline,
+    }));
 }

@@ -25,7 +25,7 @@ export function ServiceFaqSection({ content }: ServiceFaqSectionProps) {
   return (
     <section
       aria-labelledby={headingId}
-      className="border-t border-white/[0.06] bg-[#111118] py-20 sm:py-24 lg:py-28"
+      className="border-b border-white/[0.06] bg-[#08080c] py-10 sm:py-12 lg:py-14"
     >
       <Container>
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Questions</p>

@@ -10,11 +10,13 @@ import { cn } from "@/lib/utils";
 interface ServiceFaqAccordionProps {
   items: FaqItem[];
   className?: string;
+  theme?: "dark" | "light";
 }
 
-export function ServiceFaqAccordion({ items, className }: ServiceFaqAccordionProps) {
+export function ServiceFaqAccordion({ items, className, theme = "dark" }: ServiceFaqAccordionProps) {
   const baseId = useId();
   const [openId, setOpenId] = useState<string | null>(null);
+  const isLight = theme === "light";
 
   return (
     <div className={cn("flex flex-col gap-4", className)}>
@@ -26,7 +28,12 @@ export function ServiceFaqAccordion({ items, className }: ServiceFaqAccordionPro
         return (
           <div
             key={item.id}
-            className="overflow-hidden rounded-xl border border-white/[0.06] bg-[#1c1c26] transition-colors hover:border-white/10"
+            className={cn(
+              "overflow-hidden rounded-xl border transition-colors",
+              isLight
+                ? "border-slate-200 bg-slate-50 hover:border-slate-300"
+                : "border-white/[0.06] bg-[#1c1c26] hover:border-white/10",
+            )}
           >
             <h3 className="m-0">
               <button
@@ -66,7 +73,14 @@ export function ServiceFaqAccordion({ items, className }: ServiceFaqAccordionPro
                   transition={{ duration: 0.25, ease: "easeOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="border-t border-border-subtle px-5 py-4 pl-12 text-sm leading-relaxed text-content-secondary sm:px-6 sm:py-5 sm:pl-14 sm:text-base">
+                  <p
+                    className={cn(
+                      "border-t px-5 py-4 pl-12 text-sm leading-relaxed sm:px-6 sm:py-5 sm:pl-14 sm:text-base",
+                      isLight
+                        ? "border-slate-200 text-slate-600"
+                        : "border-border-subtle text-content-secondary",
+                    )}
+                  >
                     {item.answer}
                   </p>
                 </motion.div>

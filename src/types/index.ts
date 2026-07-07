@@ -158,13 +158,23 @@ export interface PackageFeature {
   description: string;
 }
 
+export interface PackageEngagementStep {
+  title: string;
+  description: string;
+}
+
 export interface PackageDetail extends Package {
   headline: string;
   longDescription: string;
   includes: PackageFeature[];
   idealFor: string;
   timeline: string;
+  heroImage: string;
+  heroImageAlt: string;
+  highlights?: string[];
+  outcomes?: string[];
   isEnterprise?: boolean;
+  engagementSteps?: PackageEngagementStep[];
 }
 
 export interface WhyUsFeature {

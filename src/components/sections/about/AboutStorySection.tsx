@@ -6,7 +6,7 @@ export function AboutStorySection() {
     <section
       id={aboutStory.id}
       aria-labelledby="about-story-heading"
-      className="border-t border-white/[0.06] bg-surface-primary py-20 lg:py-28"
+      className="border-t border-slate-200/80 bg-white py-20 lg:py-28"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
@@ -16,30 +16,30 @@ export function AboutStorySection() {
             </p>
             <h2
               id="about-story-heading"
-              className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-white sm:text-3xl lg:text-[2.25rem]"
+              className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-slate-900 sm:text-3xl lg:text-[2.25rem]"
             >
               {aboutStory.title}
             </h2>
 
             <blockquote className="mt-8 border-l-2 border-accent pl-5">
-              <p className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+              <p className="font-display text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
                 &ldquo;{aboutStory.pullQuote}&rdquo;
               </p>
-              <footer className="mt-3 text-sm text-content-muted">
+              <footer className="mt-3 text-sm text-slate-500">
                 {aboutStory.pullQuoteAttribution}
               </footer>
             </blockquote>
 
-            <ol className="mt-10 space-y-0 border-t border-white/[0.06]">
+            <ol className="mt-10 space-y-0 border-t border-slate-200">
               {aboutStory.milestones.map((milestone) => (
                 <li
                   key={milestone.year}
-                  className="grid grid-cols-[4.5rem_1fr] gap-4 border-b border-white/[0.06] py-5"
+                  className="grid grid-cols-[4.5rem_1fr] gap-4 border-b border-slate-200 py-5"
                 >
                   <span className="font-display text-lg font-bold text-accent">{milestone.year}</span>
                   <div>
-                    <p className="font-display text-sm font-bold text-white">{milestone.label}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-content-secondary">
+                    <p className="font-display text-sm font-bold text-slate-900">{milestone.label}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
                       {milestone.detail}
                     </p>
                   </div>
@@ -53,12 +53,12 @@ export function AboutStorySection() {
               {aboutStory.paragraphs.map((paragraph, index) => (
                 <article
                   key={paragraph.slice(0, 40)}
-                  className="rounded-2xl border border-white/[0.06] bg-[#111118] p-6 sm:p-8"
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-content-muted">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                     Chapter {index + 1}
                   </span>
-                  <p className="mt-4 text-base leading-[1.8] text-content-secondary sm:text-[1.05rem]">
+                  <p className="mt-4 text-base leading-[1.8] text-slate-600 sm:text-[1.05rem]">
                     {paragraph}
                   </p>
                 </article>

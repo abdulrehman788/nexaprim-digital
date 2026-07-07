@@ -3,7 +3,7 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["framer-motion"],
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -69,25 +69,35 @@ const nextConfig = {
       });
     }
 
+    // Long-lived immutable caching is only safe in production, where Next.js
+    // fingerprints asset filenames. In dev, Turbopack reuses chunk filenames
+    // across rebuilds, so immutable caching pins the browser to stale JS/CSS.
+    const immutableCacheHeaders =
+      process.env.NODE_ENV === "production"
+        ? [
+            {
+              source: "/_next/static/:path*",
+              headers: [
+                {
+                  key: "Cache-Control",
+                  value: "public, max-age=31536000, immutable",
+                },
+              ],
+            },
+            {
+              source: "/images/:path*",
+              headers: [
+                {
+                  key: "Cache-Control",
+                  value: "public, max-age=31536000, immutable",
+                },
+              ],
+            },
+          ]
+        : [];
+
     return [
-      {
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/images/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
+      ...immutableCacheHeaders,
       {
         source: "/:path*",
         headers: securityHeaders,

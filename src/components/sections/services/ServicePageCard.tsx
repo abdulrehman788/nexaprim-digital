@@ -2,27 +2,48 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { getServiceIconStyle } from "@/lib/service-icon-styles";
-import { featureGridCardClass, featureGridIconClass } from "@/lib/service-card-styles";
+import {
+  featureGridCardClass,
+  featureGridCardLightClass,
+  featureGridIconClass,
+} from "@/lib/service-card-styles";
+import { cn } from "@/lib/utils";
 import type { ServiceDetail } from "@/types";
 
 interface ServicePageCardProps {
   service: ServiceDetail;
+  variant?: "dark" | "light";
 }
 
-export function ServicePageCard({ service }: ServicePageCardProps) {
+export function ServicePageCard({ service, variant = "dark" }: ServicePageCardProps) {
   const Icon = service.icon;
   const iconStyle = getServiceIconStyle(service.id);
+  const isLight = variant === "light";
 
   return (
-    <Link href={service.href} className={featureGridCardClass} aria-label={service.imageAlt}>
+    <Link
+      href={service.href}
+      className={isLight ? featureGridCardLightClass : featureGridCardClass}
+      aria-label={service.imageAlt}
+    >
       <div className={`${featureGridIconClass} ${iconStyle.bgClass} ${iconStyle.glowClass}`}>
         <Icon className={`h-7 w-7 ${iconStyle.iconClass}`} strokeWidth={1.75} aria-hidden="true" />
       </div>
 
-      <h3 className="mt-6 font-display text-lg font-bold leading-snug text-white sm:text-xl">
+      <h3
+        className={cn(
+          "mt-6 font-display text-lg font-bold leading-snug sm:text-xl",
+          isLight ? "text-slate-900" : "text-white",
+        )}
+      >
         {service.title}
       </h3>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-content-secondary/90 sm:text-[0.9375rem]">
+      <p
+        className={cn(
+          "mt-3 flex-1 text-sm leading-relaxed sm:text-[0.9375rem]",
+          isLight ? "text-slate-600" : "text-content-secondary/90",
+        )}
+      >
         {service.description}
       </p>
 

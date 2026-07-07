@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { WebVitals } from "@/components/analytics/WebVitals";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { fontVariables } from "@/lib/fonts";
 import { siteConfig } from "@/lib/constants";
 
@@ -45,42 +42,91 @@ export const metadata: Metadata = {
 const devChunkRecoveryInlineScript = `
 (function () {
   var KEY = "nexaprime-dev-reload-attempts";
-  var MAX_ATTEMPTS = 4;
+  var PAGE_KEY = "nexaprime-package-page-ver";
+  var MAX_ATTEMPTS = 6;
 
-  function bustReload() {
+  function hardReload() {
     var attempts = parseInt(sessionStorage.getItem(KEY) || "0", 10);
     if (attempts >= MAX_ATTEMPTS) return;
     sessionStorage.setItem(KEY, String(attempts + 1));
-    window.setTimeout(function () {
-      window.location.reload();
-    }, attempts === 0 ? 400 : 1200 + attempts * 400);
+    var url = new URL(window.location.href);
+    url.searchParams.set("__r", String(Date.now()));
+    window.location.replace(url.toString());
   }
+
+  // Recover immediately when webpack serves a stale/missing module factory.
+  var _prevOnError = window.onerror;
+  window.onerror = function (message) {
+    var msg = (message || "") + "";
+    if (msg.indexOf("reading 'call'") !== -1 || msg.indexOf("ChunkLoadError") !== -1) {
+      hardReload();
+      return true;
+    }
+    if (typeof _prevOnError === "function") {
+      return _prevOnError.apply(this, arguments);
+    }
+    return false;
+  };
 
   window.addEventListener(
     "error",
     function (event) {
       var target = event.target;
+      var message = (event.message || "") + "";
+      if (
+        message.indexOf("reading 'call'") !== -1 ||
+        message.indexOf("ChunkLoadError") !== -1
+      ) {
+        hardReload();
+        return;
+      }
       if (!target) return;
       var assetUrl = target.src || target.href || "";
       if (
         assetUrl.indexOf("/_next/static/") !== -1 ||
         assetUrl.indexOf("/_next/webpack") !== -1
       ) {
-        bustReload();
+        hardReload();
       }
     },
     true
   );
 
+  window.addEventListener("unhandledrejection", function (event) {
+    var reason = (event.reason && (event.reason.message || event.reason + "")) || "";
+    if (
+      reason.indexOf("reading 'call'") !== -1 ||
+      reason.indexOf("ChunkLoadError") !== -1 ||
+      reason.indexOf("Loading chunk") !== -1
+    ) {
+      hardReload();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var main = document.querySelector("main[data-page-ver], main[data-package-page]");
+    if (main) {
+      var version =
+        main.getAttribute("data-page-ver") || main.getAttribute("data-package-page") || "";
+      var seen = sessionStorage.getItem(PAGE_KEY);
+      if (seen && seen !== version) {
+        sessionStorage.setItem(PAGE_KEY, version);
+        hardReload();
+        return;
+      }
+      sessionStorage.setItem(PAGE_KEY, version);
+    }
+  });
+
   window.addEventListener("load", function () {
     window.setTimeout(function () {
       sessionStorage.removeItem(KEY);
-      if (window.location.search.indexOf("__dev=") !== -1) {
-        var clean = new URL(window.location.href);
-        clean.searchParams.delete("__dev");
-        window.history.replaceState({}, "", clean.toString());
+      var url = new URL(window.location.href);
+      if (url.searchParams.has("__r")) {
+        url.searchParams.delete("__r");
+        window.history.replaceState({}, "", url.toString());
       }
-    }, 6000);
+    }, 5000);
   });
 })();
 `;
@@ -101,12 +147,9 @@ export default function RootLayout({
           <script dangerouslySetInnerHTML={{ __html: devChunkRecoveryInlineScript }} />
         ) : null}
       </head>
-      <body>
+      <body className="antialiased">
         <WebVitals />
-        <JsonLd />
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

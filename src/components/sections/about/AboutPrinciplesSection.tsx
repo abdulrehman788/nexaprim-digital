@@ -6,7 +6,7 @@ export function AboutPrinciplesSection() {
   return (
     <section
       aria-labelledby="about-principles-heading"
-      className="border-t border-white/[0.06] bg-[#111118] py-20 lg:py-28"
+      className="border-t border-slate-200/80 bg-[#f8f7f4] py-20 lg:py-28"
     >
       <Container>
         <div className="mx-auto max-w-2xl text-center">
@@ -15,11 +15,11 @@ export function AboutPrinciplesSection() {
           </p>
           <h2
             id="about-principles-heading"
-            className="mt-4 font-display text-[1.75rem] font-bold text-white sm:text-3xl"
+            className="mt-4 font-display text-[1.75rem] font-bold text-slate-900 sm:text-3xl"
           >
             {aboutPrinciplesSection.title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-content-secondary">
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
             {aboutPrinciplesSection.description}
           </p>
         </div>
@@ -32,10 +32,10 @@ export function AboutPrinciplesSection() {
             return (
               <li
                 key={principle.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-surface-primary p-7 transition-colors hover:border-accent/25 sm:p-8"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-colors hover:border-accent/25 sm:p-8"
               >
                 <span
-                  className="pointer-events-none absolute -right-2 -top-4 font-display text-7xl font-bold text-white/[0.03] transition-colors group-hover:text-accent/[0.06]"
+                  className="pointer-events-none absolute -right-2 -top-4 font-display text-7xl font-bold text-slate-100 transition-colors group-hover:text-accent/10"
                   aria-hidden="true"
                 >
                   {number}
@@ -45,8 +45,8 @@ export function AboutPrinciplesSection() {
                     <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-white">{principle.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-content-secondary sm:text-base">
+                    <h3 className="font-display text-lg font-bold text-slate-900">{principle.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                       {principle.body}
                     </p>
                   </div>

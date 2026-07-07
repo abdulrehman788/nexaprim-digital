@@ -11,20 +11,20 @@ export function AboutCtaSection() {
   return (
     <section
       aria-labelledby="about-cta-heading"
-      className="border-t border-white/[0.06] bg-[#111118] py-20 lg:py-28"
+      className="border-t border-slate-200/80 bg-white py-20 lg:py-28"
     >
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">
             {aboutCta.overline}
           </p>
           <h2
             id="about-cta-heading"
-            className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-white sm:text-3xl"
+            className="mt-4 font-display text-[1.75rem] font-bold leading-tight text-slate-900 sm:text-3xl"
           >
             {aboutCta.title}
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-content-secondary">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600">
             {aboutCta.description}
           </p>
 
@@ -38,18 +38,18 @@ export function AboutCtaSection() {
             </Link>
             <Link
               href={aboutCta.secondaryCtaHref}
-              className="inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-lg border border-white/20 px-8 text-sm font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:w-auto sm:text-base"
+              className="inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-lg border border-slate-300 px-8 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50 sm:w-auto sm:text-base"
             >
               {aboutCta.secondaryCta}
             </Link>
           </div>
         </div>
 
-        <ul className="mt-14 flex flex-col items-center justify-center gap-6 border-t border-white/[0.06] pt-10 sm:flex-row sm:gap-10 lg:gap-14">
+        <ul className="mt-14 flex flex-col items-center justify-center gap-6 border-t border-slate-200 pt-10 sm:flex-row sm:gap-10 lg:gap-14">
           <li>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="flex items-center gap-2.5 text-sm text-content-secondary transition-colors hover:text-accent"
+              className="flex items-center gap-2.5 text-sm text-slate-600 transition-colors hover:text-accent"
             >
               <Mail className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
               {siteConfig.email}
@@ -58,13 +58,13 @@ export function AboutCtaSection() {
           <li>
             <a
               href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-              className="flex items-center gap-2.5 text-sm text-content-secondary transition-colors hover:text-accent"
+              className="flex items-center gap-2.5 text-sm text-slate-600 transition-colors hover:text-accent"
             >
               <Phone className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
               {siteConfig.phone}
             </a>
           </li>
-          <li className="flex items-center gap-2.5 text-sm text-content-secondary">
+          <li className="flex items-center gap-2.5 text-sm text-slate-600">
             <MapPin className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
             {addressLine}
           </li>

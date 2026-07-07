@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Trophy } from "lucide-react";
 
-import { StarryNightBackground } from "@/components/sections/services/StarryNightBackground";
 import { Container } from "@/components/ui/Container";
 import { ctaLinks } from "@/lib/constants";
 import type { ServiceHighlightSection as ServiceHighlightSectionData } from "@/types";
@@ -14,35 +13,31 @@ export function ServiceHighlightSection({ content }: ServiceHighlightSectionProp
   return (
     <section
       aria-labelledby={`service-highlight-${content.id}`}
-      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
+      className="border-b border-white/[0.06] bg-[#111118] py-10 sm:py-12 lg:py-14"
     >
-      <StarryNightBackground />
-
-      <Container className="relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 xl:gap-20">
-          <div className="flex items-center justify-center">
-            <Trophy
-              className="h-40 w-40 text-accent sm:h-48 sm:w-48 lg:h-56 lg:w-56"
-              strokeWidth={1.1}
-              aria-hidden="true"
-            />
+      <Container>
+        <div className="mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[auto_1fr] lg:gap-12">
+          <div className="flex justify-center lg:justify-start">
+            <span className="flex h-20 w-20 items-center justify-center rounded-2xl border border-accent/25 bg-accent/10 text-accent sm:h-24 sm:w-24">
+              <Trophy className="h-10 w-10 sm:h-12 sm:w-12" strokeWidth={1.25} aria-hidden="true" />
+            </span>
           </div>
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Why NexaPrime</p>
             <h2
               id={`service-highlight-${content.id}`}
-              className="mt-4 font-display text-[1.75rem] font-bold leading-[1.18] text-white sm:text-3xl lg:text-[2.15rem] lg:leading-[1.2]"
+              className="mt-3 font-serif text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl"
             >
               {content.titleWhite}{" "}
               <span className="text-gold-gradient">{content.titleAccent}</span>
             </h2>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-5 space-y-4">
               {content.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 40)}
-                  className="text-base leading-relaxed text-content-primary sm:text-[1.05rem] sm:leading-8"
+                  className="text-sm leading-relaxed text-content-secondary sm:text-base"
                 >
                   {paragraph}
                 </p>
@@ -51,7 +46,7 @@ export function ServiceHighlightSection({ content }: ServiceHighlightSectionProp
 
             <Link
               href={ctaLinks.strategyCall}
-              className="bg-gold-gradient mt-10 inline-flex min-h-[3.25rem] items-center justify-center rounded-lg px-8 py-3.5 text-sm font-semibold text-black shadow-glow transition-opacity hover:opacity-90 sm:text-base"
+              className="mt-6 inline-flex min-h-[3rem] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-black transition-opacity hover:opacity-90"
             >
               {content.ctaLabel}
             </Link>
