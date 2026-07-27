@@ -24,6 +24,7 @@ export const primaryNavLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -44,6 +45,7 @@ export const footerQuickLinks: NavLink[] = [
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
