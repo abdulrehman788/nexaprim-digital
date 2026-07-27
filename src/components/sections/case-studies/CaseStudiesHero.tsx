@@ -23,7 +23,7 @@ export function CaseStudiesHero() {
       aria-labelledby="case-studies-hero-heading"
       className="relative overflow-hidden bg-[#050505] pb-16 pt-32 lg:pb-20 lg:pt-36"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.09),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.09),transparent_60%)]" />
       <HeroDecorations />
 
       <Container className="relative">

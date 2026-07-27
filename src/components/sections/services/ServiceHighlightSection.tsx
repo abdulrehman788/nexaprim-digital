@@ -24,7 +24,7 @@ export function ServiceHighlightSection({ content }: ServiceHighlightSectionProp
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Why NexaPrime</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Why Expandova</p>
             <h2
               id={`service-highlight-${content.id}`}
               className="mt-3 font-serif text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl"

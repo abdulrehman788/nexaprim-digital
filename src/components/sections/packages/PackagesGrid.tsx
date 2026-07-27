@@ -22,7 +22,7 @@ export function PackagesGrid() {
       className="relative overflow-hidden border-t border-navy-100 bg-[#f6f4ef] py-14 sm:py-16 lg:py-20"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(197,163,88,0.07),transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(139,92,246,0.07),transparent_65%)]"
         aria-hidden="true"
       />
 
@@ -53,7 +53,7 @@ export function PackagesGrid() {
                   className={cn(
                     "group relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 sm:p-7",
                     isFeatured
-                      ? "border-accent/30 bg-gradient-to-br from-[#12121a] via-[#0d0d12] to-[#08080c] text-white shadow-[0_24px_48px_-20px_rgba(0,0,0,0.45)] hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_32px_64px_-24px_rgba(197,163,88,0.28)]"
+                      ? "border-accent/30 bg-gradient-to-br from-[#12121a] via-[#0d0d12] to-[#08080c] text-white shadow-[0_24px_48px_-20px_rgba(0,0,0,0.45)] hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_32px_64px_-24px_rgba(139,92,246,0.28)]"
                       : isEnterprise
                         ? "border-dashed border-slate-300 bg-white/80 hover:-translate-y-1 hover:border-gold-400 hover:bg-white hover:shadow-[0_20px_48px_-18px_rgba(15,23,42,0.14)]"
                         : "border-slate-200/90 bg-white hover:-translate-y-1 hover:border-gold-300/60 hover:shadow-[0_20px_48px_-18px_rgba(15,23,42,0.14)]",

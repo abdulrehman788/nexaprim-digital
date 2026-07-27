@@ -21,7 +21,7 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
     <article>
       <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#050505] pb-10 pt-28 sm:pb-12 sm:pt-32">
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.1),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.1),transparent_55%)]"
           aria-hidden="true"
         />
         <Container className="relative">

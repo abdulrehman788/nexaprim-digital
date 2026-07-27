@@ -7,7 +7,7 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "Blog",
   description:
-    "Digital marketing, SEO, paid media, and web development insights from NexaPrime Digital.",
+    "Digital marketing, SEO, paid media, and web development insights from Expandova.",
   path: "/blog",
 });
 

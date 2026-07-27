@@ -80,7 +80,7 @@ export function HeroImageLabels() {
       >
         <span className="h-0 w-0 border-b-[0.5cqw] border-l-[0.4cqw] border-r-[0.4cqw] border-b-[#D4AF37] border-l-transparent border-r-transparent" />
         <span className="font-sans font-semibold tracking-wide text-white [font-size:1.35cqw]">
-          NexaPrime
+          Expandova
         </span>
       </div>
 

@@ -140,7 +140,7 @@ export const nicheServices: ServiceDetail[] = [
       titleAccent: "Revenue Engine",
       paragraphs: [
         "Traffic without conversion is an expense. We build websites where every page has a job — educate, qualify, or close — and where speed and SEO support every channel you run.",
-        "From marketing sites and product launches to multi-location brands, NexaPrime Digital delivers development that marketing and leadership can measure, not just admire.",
+        "From marketing sites and product launches to multi-location brands, Expandova delivers development that marketing and leadership can measure, not just admire.",
       ],
       ctaLabel: "Get Your Free Consultation",
     },
@@ -306,7 +306,7 @@ export const nicheServices: ServiceDetail[] = [
       titleWhite: "Creative That Performs Across",
       titleAccent: "Every Channel",
       paragraphs: [
-        "Design is not decoration — it's the first test of whether someone stops, clicks, or trusts you. NexaPrime Digital produces graphics that look premium and are built for the platforms and funnels where your buyers actually live.",
+        "Design is not decoration — it's the first test of whether someone stops, clicks, or trusts you. Expandova produces graphics that look premium and are built for the platforms and funnels where your buyers actually live.",
         "From high-volume ad creative to executive-ready decks, we help brands show up consistently and test relentlessly — so creative compounds instead of resetting every quarter.",
       ],
       ctaLabel: "Get Your Free Consultation",

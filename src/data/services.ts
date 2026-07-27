@@ -41,10 +41,10 @@ export const homepageServiceIds = [
 
 export const servicesPage = {
   overline: "Services",
-  titleLine1: "Pick your niche — or",
-  titleAccent: "bundle them all",
+  titleLine1: "Everything you need to",
+  titleAccent: "grow, in one place",
   description:
-    "Twenty-one dedicated service lines across marketing, design, and development — from SEO, local search, and paid social to Shopify, WordPress, custom apps, and hosting.",
+    "From websites, apps, and branding to SEO, ads, AI automation, and growth strategy — Build, Brand, Market, Automate, and Scale with one accountable team.",
   ctaLabel: "Get Your Free Consultation",
   packagesOverline: "Packages",
   packagesTitle: "Need more than one service?",
@@ -63,9 +63,9 @@ export const services: ServiceDetail[] = [
     href: "/services/digital-strategy",
     icon: Target,
     imageAlt: "Digital strategy consulting and growth planning services",
-    gradientFrom: "#5c4520",
-    gradientVia: "#e8c878",
-    gradientTo: "#2a1f0c",
+    gradientFrom: "#3a2a6b",
+    gradientVia: "#8b5cf6",
+    gradientTo: "#1a1230",
     accentShape: "bars",
     category: "marketing",
     heroLayout: "centered",
@@ -110,6 +110,7 @@ export const services: ServiceDetail[] = [
         id: "smart-spending",
         cardLabel: "Smart Spending",
         cardIcon: "wallet",
+        cardImage: "/images/services/strategy-devices.webp",
         cardPosition: "left",
         titleWhite: "Stop Wasting Budget—A Strategy Partner That",
         titleAccent: "Optimizes Every Dollar",
@@ -117,13 +118,14 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "In today's competitive landscape, every marketing dollar must earn its place. Brands pour budget into channels that look busy on reports but never connect to pipeline or revenue. Without a clear strategy, teams chase trends instead of outcomes — and leadership loses confidence in the numbers.",
           "We audit where spend leaks, which channels actually convert, and where your funnel breaks before sales ever gets involved. Our roadmaps rank initiatives by impact and effort so quick wins fund bigger bets — not the other way around.",
-          "From positioning and messaging to measurement architecture, we build a system your leadership can fund, track, and scale. Partner with NexaPrime Digital and turn scattered spend into a growth engine with owners, timelines, and KPIs tied to the P&L.",
+          "From positioning and messaging to measurement architecture, we build a system your leadership can fund, track, and scale. Partner with Expandova and turn scattered spend into a growth engine with owners, timelines, and KPIs tied to the P&L.",
         ],
       },
       {
         id: "automated-growth",
         cardLabel: "Automated Growth",
         cardIcon: "trending-up",
+        cardImage: "/images/services/strategy-sales.webp",
         cardPosition: "right",
         titleWhite: "Double Your Revenue Without Doubling Your Effort—",
         titleAccent: "Strategy Works While You Sleep",
@@ -143,7 +145,7 @@ export const services: ServiceDetail[] = [
       ctaLabel: "Get Your Free Consultation",
       paragraphs: [
         "In today's hyper-competitive digital landscape, guesswork is a liability. While rivals burn budgets on scattered tactics, precision-engineered strategy captures market share with ruthless efficiency. We identify funnel gaps, channel leaks, and messaging mismatches — then build a roadmap your team can actually run.",
-        "Our frameworks target the metrics that matter: cost per lead, conversion rate, pipeline velocity, and revenue per channel. Every initiative ties to a KPI leadership can track weekly. Partner with NexaPrime Digital and convert clicks into customers — without doubling your team's workload.",
+        "Our frameworks target the metrics that matter: cost per lead, conversion rate, pipeline velocity, and revenue per channel. Every initiative ties to a KPI leadership can track weekly. Partner with Expandova and convert clicks into customers — without doubling your team's workload.",
       ],
     },
     capabilitiesSection: {
@@ -204,7 +206,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Strategy into Sales With",
       titleAccent: "Award-Winning Growth Partners",
       paragraphs: [
-        "In a crowded market, visibility alone is not enough — you need a strategy that converts attention into pipeline. NexaPrime Digital builds roadmaps that align channels, creative, and spend to revenue goals, so every initiative has an owner, a timeline, and a number leadership can track.",
+        "In a crowded market, visibility alone is not enough — you need a strategy that converts attention into pipeline. Expandova builds roadmaps that align channels, creative, and spend to revenue goals, so every initiative has an owner, a timeline, and a number leadership can track.",
         "From funnel audits and positioning frameworks to measurement architecture and 90-day execution plans, we help mid-market brands stop guessing and start scaling. Partner with a team that has delivered measurable outcomes across hospitality, healthcare, ecommerce, and more — and bring that rigor to your growth plan.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -302,6 +304,7 @@ export const services: ServiceDetail[] = [
         id: "smart-spending",
         cardLabel: "Smart Spending",
         cardIcon: "shopping-bag",
+        cardImage: "/images/services/seo-sketch.webp",
         cardPosition: "left",
         titleWhite: "Stop Wasting Budget—SEO That",
         titleAccent: "Compounds Over Time",
@@ -309,13 +312,15 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "Organic search is the highest-ROI channel when it is done right — but most teams publish content without a plan, ignore technical debt, and wonder why rankings stall. Every month without a keyword strategy is budget shifted back to paid.",
           "We fix crawlability, map topics to buyer intent, and produce content that answers the questions your sales team hears on calls. Technical SEO unlocks what you already have; editorial fills the gaps competitors ignore.",
-          "From audits and cluster strategy to production and internal linking, we build an organic engine leadership can fund with confidence. Partner with NexaPrime Digital and turn search into a durable acquisition channel.",
+          "From audits and cluster strategy to production and internal linking, we build an organic engine leadership can fund with confidence. Partner with Expandova and turn search into a durable acquisition channel.",
         ],
       },
       {
         id: "automated-growth",
         cardLabel: "Automated Growth",
         cardIcon: "trending-up",
+        cardImage: "/images/services/seo-growth.webp",
+        cardImageFit: "cover",
         cardPosition: "right",
         titleWhite: "Double Your Traffic Without Doubling Your Effort—",
         titleAccent: "Content Works While You Sleep",
@@ -383,7 +388,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Search Into Pipeline With",
       titleAccent: "Award-Winning SEO Partners",
       paragraphs: [
-        "Ranking is not the goal — qualified traffic that converts is. NexaPrime Digital builds SEO programs that tie content to revenue: technical foundations, topic clusters mapped to buyer stage, and reporting your leadership trusts.",
+        "Ranking is not the goal — qualified traffic that converts is. Expandova builds SEO programs that tie content to revenue: technical foundations, topic clusters mapped to buyer stage, and reporting your leadership trusts.",
         "Whether you need to fix a site that should rank higher or build authority in a competitive vertical, we deliver the roadmap, the content, and the measurement to prove impact quarter over quarter.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -475,6 +480,8 @@ export const services: ServiceDetail[] = [
         id: "smart-spending",
         cardLabel: "Smart Spending",
         cardIcon: "shopping-bag",
+        cardImage: "/images/services/paid-media.webp",
+        cardImageFit: "cover",
         cardPosition: "left",
         titleWhite: "Stop Wasting Budget—Paid Media That",
         titleAccent: "Optimizes Every Dollar",
@@ -482,13 +489,15 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "In a competitive auction landscape, poorly structured accounts burn budget on clicks that never convert. Teams scale spend before fixing tracking, creative, or landing pages — then wonder why ROAS looks fine until finance asks harder questions.",
           "We structure campaigns around profitable SKUs, services, and geos — not platform defaults. Creative testing, audience segmentation, and landing page feedback run weekly so spend scales only where unit economics hold.",
-          "From account architecture to bid governance and offline conversion imports, we build paid programs your CFO can follow. Partner with NexaPrime Digital and turn ad spend into accountable pipeline.",
+          "From account architecture to bid governance and offline conversion imports, we build paid programs your CFO can follow. Partner with Expandova and turn ad spend into accountable pipeline.",
         ],
       },
       {
         id: "automated-growth",
         cardLabel: "Automated Growth",
         cardIcon: "trending-up",
+        cardImage: "/images/services/paid-media-growth.webp",
+        cardImageFit: "cover",
         cardPosition: "right",
         titleWhite: "Double Your Revenue Without Doubling Your Effort—",
         titleAccent: "Campaigns Work While You Sleep",
@@ -556,7 +565,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Ad Spend Into Sales With",
       titleAccent: "Performance Media Experts",
       paragraphs: [
-        "Platform dashboards tell one story — your P&L tells another. NexaPrime Digital aligns Google, Meta, and LinkedIn campaigns to margin, capacity, and qualified pipeline so growth scales without surprises.",
+        "Platform dashboards tell one story — your P&L tells another. Expandova aligns Google, Meta, and LinkedIn campaigns to margin, capacity, and qualified pipeline so growth scales without surprises.",
         "From restructuring underperforming accounts to building creative testing programs that actually move CPA, we help advertisers spending five figures monthly get accountability beyond vanity metrics.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -648,6 +657,7 @@ export const services: ServiceDetail[] = [
         id: "smart-spending",
         cardLabel: "Smart Spending",
         cardIcon: "shopping-bag",
+        cardImage: "/images/services/social-mindmap.webp",
         cardPosition: "left",
         titleWhite: "Stop Wasting Budget—Social That",
         titleAccent: "Supports Every Sale",
@@ -655,13 +665,14 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "In today's feed-first landscape, brands burn budget on posts that earn likes but never move pipeline. Without platform-native creative and paid social tied to conversion events, teams fill calendars while sales still waits for qualified inquiries.",
           "We map which channels build trust, which formats drive site visits, and where paid social fills gaps organic cannot reach. Our approach pairs community management with conversion campaigns — proper pixel setup, retargeting pools, and creative tested for message match.",
-          "From channel strategy to short-form creative and reputation management, we build social systems your team can run and measure. Partner with NexaPrime Digital and turn engagement into inquiries, foot traffic, and revenue — not vanity metrics.",
+          "From channel strategy to short-form creative and reputation management, we build social systems your team can run and measure. Partner with Expandova and turn engagement into inquiries, foot traffic, and revenue — not vanity metrics.",
         ],
       },
       {
         id: "automated-growth",
         cardLabel: "Automated Growth",
         cardIcon: "trending-up",
+        cardImage: "/images/services/social-effort.webp",
         cardPosition: "right",
         titleWhite: "Double Your Reach Without Doubling Your Effort—",
         titleAccent: "Social Works While You Sleep",
@@ -729,7 +740,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Followers Into Customers With",
       titleAccent: "Social Media That Sells",
       paragraphs: [
-        "Likes do not pay invoices — inquiries do. NexaPrime Digital builds social programs where organic trust, paid amplification, and community management work as one system tied to site visits, leads, and revenue.",
+        "Likes do not pay invoices — inquiries do. Expandova builds social programs where organic trust, paid amplification, and community management work as one system tied to site visits, leads, and revenue.",
         "Whether you need platform-native creative, conversion campaigns with proper tracking, or reputation management in a regulated industry, we deliver the strategy and execution to make social a sales channel — not a calendar checkbox.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -829,7 +840,7 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "In a crowded market, weak creative is a tax on every dollar you spend. Brands invest in ads and websites that look interchangeable — stock templates, mismatched decks, and guidelines nobody uses — while competitors with sharper identity win trust at first glance.",
           "We design for the feed, the inbox, and the sales conversation — not just the brand PDF sitting in a shared drive. Visual systems stay flexible for rapid testing while keeping your positioning unmistakable across every touchpoint.",
-          "From identity refinements and campaign suites to sales collateral and asset libraries, we build creative infrastructure your team can deploy daily. Partner with NexaPrime Digital and turn design from a bottleneck into a growth lever.",
+          "From identity refinements and campaign suites to sales collateral and asset libraries, we build creative infrastructure your team can deploy daily. Partner with Expandova and turn design from a bottleneck into a growth lever.",
         ],
       },
       {
@@ -903,7 +914,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Creative Into Revenue With",
       titleAccent: "Brand Systems That Scale",
       paragraphs: [
-        "Premium positioning dies when your ads, site, and sales deck look like they came from three different companies. NexaPrime Digital builds visual systems flexible enough for rapid testing and strict enough to keep your brand unmistakable.",
+        "Premium positioning dies when your ads, site, and sales deck look like they came from three different companies. Expandova builds visual systems flexible enough for rapid testing and strict enough to keep your brand unmistakable.",
         "From identity refreshes and campaign suites to asset libraries your team deploys daily, we help growing brands look as ambitious as their product — and perform that way in paid channels.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -1002,7 +1013,7 @@ export const services: ServiceDetail[] = [
         paragraphs: [
           "Most leads die in the gap between form fill and first contact. Teams pour budget into traffic while follow-up stays manual — slow handoffs, generic emails, and CRM data nobody trusts. Without automation tied to behavior, prospects go cold before sales ever dials.",
           "We wire CRM, email, and SMS flows so the right message reaches the right person at the right moment. Lead scoring, routing rules, and lifecycle sequences run 24/7 — so hot inquiries hit sales in minutes, not days.",
-          "From stack integration and nurture programs to attribution hooks your leadership can trust, we build systems that feel personal at scale. Partner with NexaPrime Digital and turn automation from a checkbox into a revenue engine.",
+          "From stack integration and nurture programs to attribution hooks your leadership can trust, we build systems that feel personal at scale. Partner with Expandova and turn automation from a checkbox into a revenue engine.",
         ],
       },
       {
@@ -1076,7 +1087,7 @@ export const services: ServiceDetail[] = [
       titleWhite: "Turn Leads Into Revenue With",
       titleAccent: "Automation That Feels Personal",
       paragraphs: [
-        "Most leads do not die from lack of interest — they die from slow, generic follow-up. NexaPrime Digital wires CRM, email, and SMS flows so prospects get nurtured automatically and sales gets context before every conversation.",
+        "Most leads do not die from lack of interest — they die from slow, generic follow-up. Expandova wires CRM, email, and SMS flows so prospects get nurtured automatically and sales gets context before every conversation.",
         "From HubSpot and Salesforce integrations to lifecycle programs and attribution dashboards, we help teams generating leads stop losing them in the gap between form fill and first call.",
       ],
       ctaLabel: "Get Your Free Consultation",

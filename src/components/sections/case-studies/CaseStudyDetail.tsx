@@ -18,7 +18,7 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
         aria-labelledby="case-study-heading"
         className="relative overflow-hidden bg-[#050505] pb-12 pt-32 lg:pt-36"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_40%_20%,rgba(197,163,88,0.08),transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_40%_20%,rgba(139,92,246,0.08),transparent_55%)]" />
         <Container className="relative">
           <Link
             href="/case-studies"

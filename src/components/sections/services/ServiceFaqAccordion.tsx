@@ -2,7 +2,6 @@
 
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 
 import type { FaqItem } from "@/types";
 import { cn } from "@/lib/utils";
@@ -61,31 +60,28 @@ export function ServiceFaqAccordion({ items, className, theme = "dark" }: Servic
               </button>
             </h3>
 
-            <AnimatePresence initial={false}>
-              {isOpen ? (
-                <motion.div
-                  id={panelId}
-                  role="region"
-                  aria-labelledby={triggerId}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="overflow-hidden"
+            <div
+              id={panelId}
+              role="region"
+              aria-labelledby={triggerId}
+              className={cn(
+                "grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none",
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+              )}
+            >
+              <div className="overflow-hidden">
+                <p
+                  className={cn(
+                    "border-t px-5 py-4 pl-12 text-sm leading-relaxed sm:px-6 sm:py-5 sm:pl-14 sm:text-base",
+                    isLight
+                      ? "border-slate-200 text-slate-600"
+                      : "border-border-subtle text-content-secondary",
+                  )}
                 >
-                  <p
-                    className={cn(
-                      "border-t px-5 py-4 pl-12 text-sm leading-relaxed sm:px-6 sm:py-5 sm:pl-14 sm:text-base",
-                      isLight
-                        ? "border-slate-200 text-slate-600"
-                        : "border-border-subtle text-content-secondary",
-                    )}
-                  >
-                    {item.answer}
-                  </p>
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
+                  {item.answer}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}

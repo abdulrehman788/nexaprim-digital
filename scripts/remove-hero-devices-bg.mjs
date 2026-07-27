@@ -7,11 +7,7 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 
-const files = [
-  "hero-devices.png",
-  "hero-devices-hd.png",
-  "hero-devices-hd@2x.png",
-];
+const files = ["hero-devices-hd.png"];
 
 function isBackgroundPixel(r, g, b, tolerance = 28) {
   return r <= tolerance && g <= tolerance && b <= tolerance;

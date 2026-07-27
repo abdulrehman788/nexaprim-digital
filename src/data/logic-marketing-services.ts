@@ -73,7 +73,7 @@ function createMarketingService(seed: MarketingServiceSeed): ServiceDetail {
         paragraphs: [
           `Most brands pour budget into ${seed.title.toLowerCase()} tactics that look busy on reports but never tie to pipeline or revenue. Without a clear system, teams chase trends instead of outcomes.`,
           `We build disciplined programs with owners, KPIs, and weekly optimization — so every dollar earns its place and leadership can see what's working.`,
-          `From audits and strategy through execution and reporting, NexaPrime Digital turns ${seed.title.toLowerCase()} into a compounding channel your finance team can fund with confidence.`,
+          `From audits and strategy through execution and reporting, Expandova turns ${seed.title.toLowerCase()} into a compounding channel your finance team can fund with confidence.`,
         ],
       },
       {
@@ -85,7 +85,7 @@ function createMarketingService(seed: MarketingServiceSeed): ServiceDetail {
         titleAccent: "While You Focus on the Business",
         paragraphs: [
           "Growth compounds when systems run consistently — content calendars, bid governance, testing loops, and reporting your team trusts.",
-          "Partner with NexaPrime Digital for programs that adapt as markets shift, with clear metrics tied to revenue — not vanity dashboards.",
+          "Partner with Expandova for programs that adapt as markets shift, with clear metrics tied to revenue — not vanity dashboards.",
           "Unlike one-off campaigns that reset every quarter, disciplined programs keep delivering qualified leads and sales long after launch.",
         ],
       },
@@ -104,7 +104,7 @@ function createMarketingService(seed: MarketingServiceSeed): ServiceDetail {
       titleAccent: "Real Numbers",
       paragraphs: [
         `${seed.title} should connect directly to leads, sales, and margin — not slide decks full of impressions.`,
-        "From strategy through execution and reporting, NexaPrime Digital delivers accountable programs your leadership can fund and measure.",
+        "From strategy through execution and reporting, Expandova delivers accountable programs your leadership can fund and measure.",
       ],
       ctaLabel: "Get Your Free Consultation",
     },

@@ -11,7 +11,7 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "About Us",
   description:
-    "NexaPrime Digital is an Austin-based marketing studio founded in 2019. We build connected digital systems for mid-market brands — strategy, creative, media, and automation under one team.",
+    "Expandova is an Austin-based marketing studio founded in 2019. We build connected digital systems for mid-market brands — strategy, creative, media, and automation under one team.",
   path: "/about",
 });
 

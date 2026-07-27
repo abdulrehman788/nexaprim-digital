@@ -8,7 +8,7 @@ export function AboutStatsSection() {
       className="relative overflow-hidden border-y border-accent/20 bg-[#0d0b08]"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(197,163,88,0.08),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(139,92,246,0.08),transparent_70%)]"
         aria-hidden="true"
       />
       <Container className="relative py-14 sm:py-16 lg:py-20">

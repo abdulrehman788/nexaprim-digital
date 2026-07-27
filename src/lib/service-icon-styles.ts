@@ -115,7 +115,7 @@ export const serviceIconStyles: Record<string, ServiceIconStyle> = {
 export const defaultServiceIconStyle: ServiceIconStyle = {
   iconClass: "text-gold-400",
   bgClass: "bg-gold-400/12",
-  glowClass: "shadow-[0_0_24px_-6px_rgba(197,163,88,0.3)]",
+  glowClass: "shadow-[0_0_24px_-6px_rgba(139,92,246,0.3)]",
 };
 
 export function getServiceIconStyle(serviceId: string): ServiceIconStyle {

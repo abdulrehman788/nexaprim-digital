@@ -12,7 +12,7 @@ export function HeroSection() {
       aria-labelledby="hero-heading"
       className="relative overflow-x-hidden bg-black pb-12 pt-24 lg:pb-16 lg:pt-28"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_35%,rgba(197,163,88,0.09),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_35%,rgba(139,92,246,0.09),transparent_50%)]" />
 
       <Container className="relative overflow-visible">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.22fr)] lg:gap-x-10 xl:gap-x-14">

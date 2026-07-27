@@ -8,7 +8,7 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "Case Studies",
   description:
-    "See how NexaPrime Digital helped hospitality, healthcare, restaurant, real estate, education, and ecommerce brands grow revenue with connected digital systems.",
+    "See how Expandova helped hospitality, healthcare, restaurant, real estate, education, and ecommerce brands grow revenue with connected digital systems.",
   path: "/case-studies",
 });
 

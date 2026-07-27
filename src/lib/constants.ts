@@ -1,13 +1,13 @@
 import type { FooterColumn, NavLink, SiteConfig, SocialLink } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "NexaPrime Digital",
-  legalName: "NexaPrime Digital LLC",
+  name: "Expandova",
+  legalName: "Expandova LLC",
   description:
-    "Premium digital marketing agency helping mid-market organizations grow with strategy, design, automation, and data-driven marketing that delivers measurable results.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexaprime.digital",
+    "Expandova is a digital growth company that blends strategy, branding, technology, AI, marketing, and automation to help businesses expand.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://expandova.com",
   locale: "en_US",
-  email: "hello@nexaprime.digital",
+  email: "hello@expandova.com",
   phone: "+1 (555) 123-4567",
   address: {
     street: "1200 Innovation Drive, Suite 400",
@@ -22,6 +22,7 @@ export const primaryNavLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -35,11 +36,12 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const footerTagline =
-  "NexaPrime Digital turns complex digital strategies into measurable wins. We cut the noise and amplify your growth.";
+  "Expandova turns complex digital strategies into measurable wins. We cut the noise and amplify your growth.";
 
 export const footerQuickLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },

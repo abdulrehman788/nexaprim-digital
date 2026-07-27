@@ -28,13 +28,13 @@ export function Footer() {
       <Container>
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 xl:gap-14">
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label="NexaPrime Digital — Home">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Expandova — Home">
               <span className="bg-gold-gradient flex h-12 w-12 items-center justify-center rounded-lg font-display text-xl font-extrabold text-black shadow-glow">
                 N
               </span>
               <span className="flex flex-col leading-tight">
                 <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-white">
-                  NexaPrime
+                  Expandova
                 </span>
                 <span className="text-gold-gradient font-display text-sm font-bold uppercase tracking-[0.2em]">
                   Digital

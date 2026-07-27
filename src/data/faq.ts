@@ -3,13 +3,13 @@ import type { FaqItem } from "@/types";
 export const faqSection = {
   title: "Frequently Asked Questions",
   description:
-    "Clear answers about how we work, what to expect, and how NexaPrime Digital helps brands grow with confidence.",
+    "Clear answers about how we work, what to expect, and how Expandova helps brands grow with confidence.",
 } as const;
 
 export const faqItems: FaqItem[] = [
   {
     id: "services",
-    question: "What digital marketing services does NexaPrime Digital offer?",
+    question: "What digital marketing services does Expandova offer?",
     answer:
       "We provide end-to-end digital growth services including strategy, brand and creative, performance marketing, web development, SEO, marketing automation, and analytics. Packages can be tailored to your goals — from focused campaigns to full-funnel partnerships.",
   },

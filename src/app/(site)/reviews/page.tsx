@@ -21,7 +21,7 @@ const ReviewsSection = dynamic(
 export const metadata: Metadata = generatePageMetadata({
   title: "Client Reviews",
   description:
-    "Read what marketing leaders at Grand Vista Hotel Group, Meridian Health, Urban Table, and other NexaPrime clients say about working with our team.",
+    "Read what marketing leaders at Grand Vista Hotel Group, Meridian Health, Urban Table, and other Expandova clients say about working with our team.",
   path: "/reviews",
 });
 

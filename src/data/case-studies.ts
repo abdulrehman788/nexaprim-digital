@@ -35,7 +35,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     outcome:
       "Direct bookings rose 220% in two quarters. OTA dependency dropped from 71% to 48% of room nights. The group reinvested saved commission into property upgrades instead of ad spend.",
-    quote: "We stopped arguing about whose fault flat bookings were. NexaPrime showed us exactly where guests were leaving — and fixed it.",
+    quote: "We stopped arguing about whose fault flat bookings were. Expandova showed us exactly where guests were leaving — and fixed it.",
     quoteAuthor: "Director of Revenue, Grand Vista Hotel Group",
   },
   {

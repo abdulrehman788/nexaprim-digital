@@ -10,7 +10,7 @@ export function BlogHero() {
           <span className="text-gold-gradient">insights</span>
         </h1>
         <p className="mt-4 max-w-2xl text-base text-content-secondary sm:text-lg">
-          Strategy, SEO, paid media, and web — practical thinking from the NexaPrime team.
+          Strategy, SEO, paid media, and web — practical thinking from the Expandova team.
         </p>
       </Container>
     </section>

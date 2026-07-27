@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
-import { ServicesGrid } from "@/components/sections/services/ServicesGrid";
+import { ServicesCatalog } from "@/components/sections/services/ServicesCatalog";
 import { ServicesHero } from "@/components/sections/services/ServicesHero";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Services",
   description:
-    "Digital strategy, SEO, paid media, social, brand creative, graphics design, web development, Shopify, WordPress, software development, hosting, and marketing automation — full-stack services from one accountable team.",
+    "An interactive catalog across Build, Brand, Market, Automate, and Scale — from websites, apps, and branding to SEO, ads, AI automation, and growth consulting. Add services and build a proposal with a live total.",
   path: "/services",
 });
 
@@ -15,7 +15,7 @@ export default function ServicesPage() {
   return (
     <main className="bg-white">
       <ServicesHero />
-      <ServicesGrid />
+      <ServicesCatalog />
     </main>
   );
 }

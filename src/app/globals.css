@@ -13,9 +13,9 @@
     --color-content-muted: #94a3b8;
     --color-content-inverse: #05080f;
 
-    --color-accent: #c5a358;
-    --color-accent-hover: #d4a853;
-    --color-accent-muted: rgba(197, 163, 88, 0.15);
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #a78bfa;
+    --color-accent-muted: rgba(139, 92, 246, 0.15);
 
     --color-border: rgba(245, 243, 239, 0.12);
     --color-border-subtle: rgba(245, 243, 239, 0.06);
@@ -77,12 +77,46 @@
     animation-delay: 300ms;
   }
 
+  @keyframes review-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(3rem) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes review-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-3rem) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  .animate-review-in-right {
+    animation: review-in-right 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-review-in-left {
+    animation: review-in-left 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
 
-    .animate-fade-in-up {
+    .animate-fade-in-up,
+    .animate-review-in-right,
+    .animate-review-in-left {
       animation: none;
     }
   }

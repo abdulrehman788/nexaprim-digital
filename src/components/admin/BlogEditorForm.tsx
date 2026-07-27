@@ -43,7 +43,7 @@ export function BlogEditorForm({ initial }: BlogEditorFormProps) {
   const [content, setContent] = useState(initial?.content ?? "");
   const [coverImage, setCoverImage] = useState(initial?.coverImage ?? "");
   const [coverImageAlt, setCoverImageAlt] = useState(initial?.coverImageAlt ?? "");
-  const [author, setAuthor] = useState(initial?.author ?? "NexaPrime Digital");
+  const [author, setAuthor] = useState(initial?.author ?? "Expandova");
   const [tags, setTags] = useState((initial?.tags ?? []).join(", "));
   const [status, setStatus] = useState<BlogPostInput["status"]>(initial?.status ?? "DRAFT");
   const [publishAt, setPublishAt] = useState(toDatetimeLocal(initial?.publishAt ?? undefined));

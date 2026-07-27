@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
             ))}
           </ul>
         </div>
-        <p className="relative text-xs text-white/60">© NexaPrime Digital</p>
+        <p className="relative text-xs text-white/60">© Expandova</p>
       </div>
 
       <div className="flex flex-1 flex-col justify-center px-6 py-12 sm:px-12">

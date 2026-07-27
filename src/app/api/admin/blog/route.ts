@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         content: data.content,
         coverImage: data.coverImage || null,
         coverImageAlt: data.coverImageAlt || null,
-        author: data.author ?? "NexaPrime Digital",
+        author: data.author ?? "Expandova",
         tags: JSON.stringify(data.tags ?? []),
         status: data.status,
         publishAt,

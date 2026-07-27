@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,12 +10,25 @@ import {
   Play,
   Star,
 } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import type { ClientReview } from "@/types";
 import { cn } from "@/lib/utils";
 
 const AUTOPLAY_MS = 7500;
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  return reduced;
+}
 
 const industryThemes: Record<string, { glow: string; accent: string }> = {
   Hospitality: {
@@ -230,12 +243,13 @@ interface ReviewsCarouselProps {
 
 export function ReviewsCarousel({ reviews, theme = "dark" }: ReviewsCarouselProps) {
   const light = theme === "light";
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [activeIndustry, setActiveIndustry] = useState("All");
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const pointerStartX = useRef<number | null>(null);
 
   const industries = useMemo(
     () => ["All", ...Array.from(new Set(reviews.map((review) => review.industry)))],
@@ -269,6 +283,18 @@ export function ReviewsCarousel({ reviews, theme = "dark" }: ReviewsCarouselProp
 
   const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    pointerStartX.current = event.clientX;
+  };
+
+  const handlePointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (pointerStartX.current === null) return;
+    const deltaX = event.clientX - pointerStartX.current;
+    pointerStartX.current = null;
+    if (deltaX < -90) goNext();
+    else if (deltaX > 90) goPrev();
+  };
 
   const handleIndustryChange = (industry: string) => {
     setActiveIndustry(industry);
@@ -394,50 +420,32 @@ export function ReviewsCarousel({ reviews, theme = "dark" }: ReviewsCarouselProp
           ) : null}
 
           <div className="relative px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={activeReview.id}
-                custom={direction}
-                drag={prefersReducedMotion ? false : "x"}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.12}
-                onDragEnd={(_, info) => {
-                  if (info.offset.x < -90) goNext();
-                  else if (info.offset.x > 90) goPrev();
-                }}
-                initial={{
-                  opacity: 0,
-                  x: direction >= 0 ? 64 : -64,
-                  scale: 0.98,
-                  filter: "blur(4px)",
-                }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  scale: 1,
-                  filter: "blur(0px)",
-                }}
-                exit={{
-                  opacity: 0,
-                  x: direction >= 0 ? -64 : 64,
-                  scale: 0.98,
-                  filter: "blur(4px)",
-                }}
-                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                aria-live="polite"
-                className="touch-pan-y"
-              >
-                <ReviewSlide review={activeReview} theme={theme} />
-              </motion.div>
-            </AnimatePresence>
+            <div
+              key={activeReview.id}
+              aria-live="polite"
+              onPointerDown={handlePointerDown}
+              onPointerUp={handlePointerEnd}
+              onPointerCancel={() => {
+                pointerStartX.current = null;
+              }}
+              className={cn(
+                "touch-pan-y",
+                prefersReducedMotion
+                  ? undefined
+                  : direction >= 0
+                    ? "animate-review-in-right"
+                    : "animate-review-in-left",
+              )}
+            >
+              <ReviewSlide review={activeReview} theme={theme} />
+            </div>
           </div>
 
           <div className={cn("relative border-t px-5 py-4 sm:px-8", light ? "border-slate-200" : "border-white/[0.06]")}>
             <div className={cn("mb-4 h-0.5 overflow-hidden rounded-full", light ? "bg-slate-200" : "bg-white/10")}>
-              <motion.div
+              <div
                 className="h-full origin-left rounded-full bg-gold-gradient"
                 style={{ width: `${progress}%` }}
-                transition={{ duration: 0.1, ease: "linear" }}
               />
             </div>
 

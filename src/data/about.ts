@@ -5,7 +5,7 @@ export const aboutHero = {
   titleLine1: "Built for brands that need",
   titleAccent: "marketing that connects.",
   description:
-    "NexaPrime Digital is an Austin-based studio helping mid-market brands grow with strategy, creative, and media under one accountable team.",
+    "Expandova is an Austin-based studio helping mid-market brands grow with strategy, creative, and media under one accountable team.",
   ctaLabel: "Book a Free Consultation",
 } as const;
 
@@ -16,7 +16,7 @@ export const aboutStory = {
   pullQuote: "Your success is our success.",
   pullQuoteAttribution: "The standard we hold every engagement to",
   paragraphs: [
-    "The first NexaPrime client was a boutique hotel group spending $18,000 a month on paid search. Bookings were flat. The problem was not the budget — their booking engine sent people to a landing page built three years earlier for a different property. We rebuilt the funnel in six weeks. Direct bookings rose 34% that quarter.",
+    "The first Expandova client was a boutique hotel group spending $18,000 a month on paid search. Bookings were flat. The problem was not the budget — their booking engine sent people to a landing page built three years earlier for a different property. We rebuilt the funnel in six weeks. Direct bookings rose 34% that quarter.",
     "We stayed intentionally small. No account managers reading scripts, no bait-and-switch handoffs. When you work with us, the strategist on your kickoff call reviews your weekly numbers.",
     "Most clients sit between $2M and $50M in annual revenue — big enough to need real infrastructure, small enough that leadership still reads the reports. We have turned down projects that needed a 200-person agency and projects that wanted a logo swap in 48 hours.",
   ],
@@ -64,8 +64,8 @@ export const aboutPrinciples: AboutPrinciple[] = [
 export const aboutMethodologiesSection = {
   id: "methodologies",
   overline: "How We Work",
-  title: "The NexaPrime Method",
-  titleAccent: "NexaPrime Method",
+  title: "The Expandova Method",
+  titleAccent: "Expandova Method",
   description:
     "Five phases. No mystery. You always know what we are doing this week and what success looks like at the end of it.",
 } as const;

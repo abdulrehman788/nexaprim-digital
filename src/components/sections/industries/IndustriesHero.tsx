@@ -21,7 +21,7 @@ export function IndustriesHero() {
       aria-labelledby="industries-hero-heading"
       className="relative overflow-hidden bg-[#050505] pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pb-20 lg:pt-40"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.09),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.09),transparent_60%)]" />
       <HeroDecorations />
 
       <Container className="relative">

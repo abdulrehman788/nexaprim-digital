@@ -6,7 +6,7 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "Digital Marketing Agency",
   description:
-    "NexaPrime Digital builds integrated digital systems — strategy, creative, performance marketing, and automation — that drive measurable growth for mid-market brands.",
+    "Expandova builds integrated digital systems — strategy, creative, performance marketing, and automation — that drive measurable growth for mid-market brands.",
   path: "/",
 });
 

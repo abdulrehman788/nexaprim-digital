@@ -28,7 +28,7 @@ export function ServiceCenteredHero({ service }: ServiceCenteredHeroProps) {
     >
       <StarryNightBackground />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(197,163,88,0.12),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.12),transparent_55%)]"
         aria-hidden="true"
       />
 

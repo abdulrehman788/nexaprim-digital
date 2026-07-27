@@ -15,12 +15,14 @@ import { StarryNightBackground } from "@/components/sections/services/StarryNigh
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { serviceCategories } from "@/data/services";
 import { featureGridCardClass, featureGridCardLightClass } from "@/lib/service-card-styles";
 import { siteConfig, ctaLinks } from "@/lib/constants";
 import { isLightBand } from "@/lib/section-surfaces";
 import { cn } from "@/lib/utils";
 import type {
+  ServiceCategory,
   ServiceDetail,
   ServiceFeatureIcon,
   ServiceFeatureSection,
@@ -50,6 +52,17 @@ const featureIcons: Record<ServiceFeatureIcon, LucideIcon> = {
   "trending-up": TrendingUp,
   cog: Cog,
   "shopping-bag": ShoppingBag,
+};
+
+// Themed hero panel photography per practice area. The brand gradient is layered
+// on top so every service keeps its signature color while gaining real texture.
+const heroPanelImages: Record<ServiceCategory, string> = {
+  marketing:
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+  design:
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+  development:
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
 };
 
 function SectionCtas({
@@ -88,8 +101,40 @@ function SectionCtas({
   );
 }
 
-function FeatureVisual({ label, icon, light = false }: { label: string; icon: ServiceFeatureIcon; light?: boolean }) {
+function FeatureVisual({
+  label,
+  icon,
+  image,
+  imageFit = "contain",
+  light = false,
+}: {
+  label: string;
+  icon: ServiceFeatureIcon;
+  image?: string;
+  imageFit?: "cover" | "contain";
+  light?: boolean;
+}) {
   const Icon = featureIcons[icon];
+
+  if (image) {
+    const cover = imageFit === "cover";
+    return (
+      <div
+        className={cn(
+          "relative h-full min-h-[240px] overflow-hidden rounded-2xl sm:min-h-[320px]",
+          light ? "border border-slate-200 bg-white" : "border border-white/[0.1] bg-[#111118]",
+        )}
+      >
+        <OptimizedImage
+          src={image}
+          alt={label}
+          fill
+          sizes="(max-width: 1024px) 100vw, 480px"
+          className={cn(cover ? "object-cover" : "object-contain p-5 sm:p-7")}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -101,10 +146,10 @@ function FeatureVisual({ label, icon, light = false }: { label: string; icon: Se
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.14),transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.14),transparent_65%)]"
         aria-hidden="true"
       />
-      <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent ring-1 ring-accent/25 shadow-[0_0_40px_-8px_rgba(197,163,88,0.35)]">
+      <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent ring-1 ring-accent/25 shadow-[0_0_40px_-8px_rgba(139,92,246,0.35)]">
         <Icon className="h-9 w-9" strokeWidth={1.5} aria-hidden="true" />
       </span>
       <p
@@ -131,6 +176,8 @@ function NarrativeBlock({
   light = false,
   cardLabel,
   cardIcon,
+  cardImage,
+  cardImageFit,
   cardPosition,
   withDropCap,
 }: {
@@ -145,12 +192,22 @@ function NarrativeBlock({
   light?: boolean;
   cardLabel?: string;
   cardIcon?: ServiceFeatureIcon;
+  cardImage?: string;
+  cardImageFit?: "cover" | "contain";
   cardPosition?: "left" | "right";
   withDropCap?: boolean;
 }) {
   const cardOnRight = cardPosition === "right";
   const visual =
-    cardLabel && cardIcon ? <FeatureVisual label={cardLabel} icon={cardIcon} light={light} /> : null;
+    cardLabel && cardIcon ? (
+      <FeatureVisual
+        label={cardLabel}
+        icon={cardIcon}
+        image={cardImage}
+        imageFit={cardImageFit}
+        light={light}
+      />
+    ) : null;
 
   const copy = (
     <div className="min-w-0">
@@ -256,6 +313,8 @@ function featureToNarrative(
       light={isLightBand(index + 1)}
       cardLabel={section.cardLabel}
       cardIcon={section.cardIcon}
+      cardImage={section.cardImage}
+      cardImageFit={section.cardImageFit}
       cardPosition={section.cardPosition}
       withDropCap={section.withDropCap}
     />
@@ -278,7 +337,7 @@ function highlightToNarrative(
       paragraphs={section.paragraphs}
       ctaLabel={section.ctaLabel ?? ctaLabel}
       light={light}
-      cardLabel="NexaPrime"
+      cardLabel="Expandova"
       cardIcon="trending-up"
       cardPosition="left"
     />
@@ -293,6 +352,9 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
   const overline = service.heroOverline ?? service.title;
   const categoryLabel =
     serviceCategories.find((c) => c.id === service.category)?.label ?? "Services";
+  const heroPanelArt = service.heroImage;
+  const heroPanelImage =
+    heroPanelArt ?? heroPanelImages[service.category] ?? heroPanelImages.marketing;
   const featureSections = service.featureSections ?? [];
   const capabilityItems = [
     ...(service.capabilitiesSection?.items ?? []),
@@ -328,7 +390,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
       <header className="relative overflow-hidden border-b border-white/[0.06] bg-[#050505] pb-10 pt-28 sm:pb-12 sm:pt-32 lg:pt-36">
         <StarryNightBackground />
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(197,163,88,0.12),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.12),transparent_55%)]"
           aria-hidden="true"
         />
 
@@ -378,24 +440,51 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
                 </div>
               </div>
 
-              <div className="relative min-h-[240px] lg:min-h-[400px]">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(145deg, ${service.gradientFrom} 0%, ${service.gradientVia} 45%, ${service.gradientTo} 100%)`,
-                  }}
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-[#0d0d12]/80 via-transparent to-transparent lg:from-[#0d0d12]/40"
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-28 w-28 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm sm:h-32 sm:w-32">
-                    <Icon className="h-14 w-14 text-white sm:h-16 sm:w-16" strokeWidth={1.25} aria-hidden="true" />
+              {heroPanelArt ? (
+                <div className="relative min-h-[240px] bg-[#0d0d12] lg:min-h-[400px]">
+                  <OptimizedImage
+                    src={heroPanelArt}
+                    alt={service.imageAlt}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-contain p-4 sm:p-6"
+                  />
+                  {/* Subtle blend into the card on desktop only */}
+                  <div
+                    className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-[#0d0d12] via-transparent to-transparent lg:block lg:from-[#0d0d12]/60"
+                    aria-hidden="true"
+                  />
+                </div>
+              ) : (
+                <div className="relative min-h-[240px] lg:min-h-[400px]">
+                  <OptimizedImage
+                    src={heroPanelImage}
+                    alt={service.imageAlt}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover"
+                  />
+                  {/* Brand gradient tint keeps every service on-brand while the photo shows through */}
+                  <div
+                    className="absolute inset-0 opacity-55 mix-blend-multiply"
+                    style={{
+                      background: `linear-gradient(145deg, ${service.gradientFrom} 0%, ${service.gradientVia} 45%, ${service.gradientTo} 100%)`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-r from-[#0d0d12] via-transparent to-transparent lg:from-[#0d0d12]/70"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex h-28 w-28 items-center justify-center rounded-2xl border border-white/25 bg-white/10 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.55)] backdrop-blur-md sm:h-32 sm:w-32">
+                      <Icon className="h-14 w-14 text-white sm:h-16 sm:w-16" strokeWidth={1.25} aria-hidden="true" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <ul className="grid divide-y divide-white/[0.08] border-t border-white/[0.08] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -431,7 +520,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
         >
           {!capabilitiesLight ? (
             <div
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(197,163,88,0.08),transparent_55%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.08),transparent_55%)]"
               aria-hidden="true"
             />
           ) : null}

@@ -25,7 +25,7 @@ export function LaptopMockup() {
           <div className="absolute left-4 top-3 z-10 flex items-center gap-1.5">
             <span className="h-0 w-0 border-b-[5px] border-l-[4px] border-r-[4px] border-b-[#D4AF37] border-l-transparent border-r-transparent" />
             <span className="font-serif text-[10px] font-semibold tracking-wide text-white/90">
-              NexaPrime
+              Expandova
             </span>
           </div>
 

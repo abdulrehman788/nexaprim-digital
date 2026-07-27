@@ -136,7 +136,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
       >
         <StarryNightBackground />
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(197,163,88,0.14),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.14),transparent_55%)]"
           aria-hidden="true"
         />
 
@@ -527,7 +527,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
       >
         {!isLightBand(3) ? (
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(197,163,88,0.08),transparent_60%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(139,92,246,0.08),transparent_60%)]"
             aria-hidden="true"
           />
         ) : null}
@@ -573,8 +573,8 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
                           ? "border-gold-300/60 bg-white shadow-sm hover:border-gold-400 hover:shadow-md"
                           : "border-slate-200 bg-white shadow-sm hover:border-gold-300/60 hover:shadow-md"
                         : related.featured
-                          ? "border-accent/25 bg-gradient-to-b from-[#18181f] to-[#101016] shadow-[0_0_0_1px_rgba(197,163,88,0.12)] hover:border-accent/40 hover:shadow-[0_24px_48px_-20px_rgba(197,163,88,0.3)]"
-                          : "border-white/[0.08] bg-gradient-to-b from-[#18181f] to-[#101016] hover:border-accent/25 hover:shadow-[0_24px_48px_-20px_rgba(197,163,88,0.18)]",
+                          ? "border-accent/25 bg-gradient-to-b from-[#18181f] to-[#101016] shadow-[0_0_0_1px_rgba(139,92,246,0.12)] hover:border-accent/40 hover:shadow-[0_24px_48px_-20px_rgba(139,92,246,0.3)]"
+                          : "border-white/[0.08] bg-gradient-to-b from-[#18181f] to-[#101016] hover:border-accent/25 hover:shadow-[0_24px_48px_-20px_rgba(139,92,246,0.18)]",
                     )}
                   >
                     <div

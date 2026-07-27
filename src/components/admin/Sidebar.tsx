@@ -71,7 +71,7 @@ export function Sidebar({
         </div>
         <div className="min-w-0">
           <p className="truncate text-sm font-bold text-white">Content Studio</p>
-          <p className="truncate text-[11px] text-slate-400">NexaPrime Digital</p>
+          <p className="truncate text-[11px] text-slate-400">Expandova</p>
         </div>
       </div>
 

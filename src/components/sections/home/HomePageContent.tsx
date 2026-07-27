@@ -8,6 +8,14 @@ const ClientLogos = dynamic(
   { loading: () => <SectionPlaceholder short /> },
 );
 
+const GrowthProcessSection = dynamic(
+  () =>
+    import("@/components/sections/GrowthProcessSection").then((mod) => ({
+      default: mod.GrowthProcessSection,
+    })),
+  { loading: () => <SectionPlaceholder /> },
+);
+
 const WhyUsSection = dynamic(
   () =>
     import("@/components/sections/WhyUsSection").then((mod) => ({ default: mod.WhyUsSection })),
@@ -83,6 +91,7 @@ export function HomePageContent() {
       <HeroSection />
       <ClientLogos />
       <ServicesSection variant="dark" />
+      <GrowthProcessSection />
       <IndustriesSection />
       <PackagesSection />
       <WhyUsSection />

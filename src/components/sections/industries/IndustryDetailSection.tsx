@@ -39,7 +39,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
         className="relative overflow-hidden bg-[#050505] pb-10 pt-32 sm:pb-12 sm:pt-36 lg:pt-40"
       >
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(197,163,88,0.12),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.12),transparent_55%)]"
           aria-hidden="true"
         />
 

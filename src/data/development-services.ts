@@ -23,6 +23,7 @@ type DevServiceSeed = {
   heroTitleAccent: string;
   heroOverline: string;
   heroSecondaryLine?: string;
+  heroImage?: string;
   longDescription: string;
   idealFor: string;
   outcomes: string[];
@@ -55,6 +56,7 @@ function createDevelopmentService(seed: DevServiceSeed): ServiceDetail {
     heroOverline: seed.heroOverline,
     heroSecondaryLine:
       seed.heroSecondaryLine ?? `Built fast. Built to rank. Built to convert.`,
+    heroImage: seed.heroImage,
     heroCtaLabel: "Get Your Free Consultation",
     headline: seed.longDescription,
     longDescription: seed.longDescription,
@@ -76,7 +78,7 @@ function createDevelopmentService(seed: DevServiceSeed): ServiceDetail {
         paragraphs: [
           `Most ${seed.title.toLowerCase()} projects fail quietly — slow loads, weak UX, and integrations that break the week after launch. You pay for visuals that look fine in a mockup but never connect to pipeline, revenue, or search.`,
           `We scope around business outcomes: the pages, flows, and systems that move your numbers. Clean architecture, fast delivery, and handoff your team can actually run — not bloated builds that sit untouched after go-live.`,
-          `From discovery through launch, NexaPrime Digital delivers ${seed.title.toLowerCase()} your marketing and sales teams can measure — not a brochure that sits idle.`,
+          `From discovery through launch, Expandova delivers ${seed.title.toLowerCase()} your marketing and sales teams can measure — not a brochure that sits idle.`,
         ],
       },
       {
@@ -89,7 +91,7 @@ function createDevelopmentService(seed: DevServiceSeed): ServiceDetail {
         paragraphs: [
           "Launch is when real data starts. We build modular foundations — reusable components, analytics wiring, and performance guardrails — so you can test offers, add pages, and expand without rebuilding from scratch.",
           "Whether you're scaling traffic, adding products, or entering new markets, your build adapts with SEO, speed, and conversion paths intact.",
-          "Partner with NexaPrime Digital for development that supports every channel you run — paid, organic, email, and sales — from day one.",
+          "Partner with Expandova for development that supports every channel you run — paid, organic, email, and sales — from day one.",
         ],
       },
     ],
@@ -106,7 +108,7 @@ function createDevelopmentService(seed: DevServiceSeed): ServiceDetail {
       titleWhite: "Development That Drives",
       titleAccent: "Measurable Growth",
       paragraphs: [
-        `${seed.title} should be a revenue asset — not a brochure that sits idle. NexaPrime Digital builds with performance, SEO, and conversion wired in from day one.`,
+        `${seed.title} should be a revenue asset — not a brochure that sits idle. Expandova builds with performance, SEO, and conversion wired in from day one.`,
         "From discovery through launch and post-live support, you get one accountable team that speaks marketing and engineering — so your site or app supports every channel you run.",
       ],
       ctaLabel: "Get Your Free Consultation",
@@ -361,6 +363,7 @@ export const developmentServices: ServiceDetail[] = [
     heroTitleBefore: "Shopify Stores That",
     heroTitleAccent: "Sell",
     heroOverline: "Shopify Web Design",
+    heroImage: "/images/services/shopify-web-design.webp",
     longDescription:
       "We build secure, intuitive Shopify stores with smart product displays, streamlined checkout, and reliable payments — optimized for conversion, speed, and scale as your catalog grows.",
     idealFor: "Brands launching or replatforming to Shopify who need custom design beyond a basic theme.",

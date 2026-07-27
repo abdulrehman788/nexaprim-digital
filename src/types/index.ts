@@ -77,6 +77,10 @@ export interface ServiceFeatureSection {
   id: string;
   cardLabel: string;
   cardIcon: ServiceFeatureIcon;
+  /** Optional artwork shown in the feature card instead of the icon badge. */
+  cardImage?: string;
+  /** How the card artwork fills the card. Defaults to "contain". */
+  cardImageFit?: "cover" | "contain";
   cardPosition?: "left" | "right";
   titleWhite: string;
   titleAccent: string;
@@ -136,6 +140,8 @@ export interface ServiceDetail extends Service {
   heroOverline?: string;
   heroSecondaryLine?: string;
   heroCtaLabel?: string;
+  /** Optional custom hero-panel artwork. When set it replaces the generic themed photo. */
+  heroImage?: string;
   featureSections?: ServiceFeatureSection[];
   closingFeatureSection?: ServiceFeatureSection;
   capabilitiesSection?: ServiceCapabilitiesSection;
