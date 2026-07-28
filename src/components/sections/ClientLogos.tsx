@@ -13,12 +13,12 @@ export function ClientLogos() {
           {clientLogosHeading}
         </p>
 
-        <ul className="mx-auto grid max-w-6xl grid-cols-2 items-center gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:gap-y-0">
+        <ul className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 sm:grid-cols-3 sm:gap-6 lg:gap-8">
           {clients.map((client, index) => (
             <li
               key={client.id}
-              className={`flex justify-center ${
-                index > 0 ? "lg:border-l lg:border-slate-200" : ""
+              className={`flex items-center justify-center ${
+                index > 0 ? "sm:border-l sm:border-slate-200" : ""
               }`}
             >
               <ClientLogoItem

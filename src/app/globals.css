@@ -16,6 +16,8 @@
     --color-accent: #8b5cf6;
     --color-accent-hover: #a78bfa;
     --color-accent-muted: rgba(139, 92, 246, 0.15);
+    --color-accent-warm: #f97316;
+    --gradient-brand: linear-gradient(90deg, #7c3aed 0%, #a855f7 48%, #f97316 100%);
 
     --color-border: rgba(245, 243, 239, 0.12);
     --color-border-subtle: rgba(245, 243, 239, 0.06);
@@ -122,11 +124,20 @@
   }
 
   .text-gold-gradient {
-    @apply bg-gradient-to-r from-gold-200 via-gold-400 to-gold-500 bg-clip-text text-transparent;
+    background-image: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .bg-gold-gradient {
-    @apply bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500;
+    background-image: var(--gradient-brand);
+  }
+
+  .shadow-brand-glow {
+    box-shadow:
+      0 0 40px -8px rgba(124, 58, 237, 0.45),
+      0 0 56px -12px rgba(249, 115, 22, 0.35);
   }
 
   .glass-card {

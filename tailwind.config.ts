@@ -82,8 +82,13 @@ const config: Config = {
       },
       boxShadow: {
         soft: "0 4px 24px -4px rgba(5, 8, 15, 0.4)",
-        glow: "0 0 40px -8px rgba(139, 92, 246, 0.4)",
+        glow:
+          "0 0 40px -8px rgba(124, 58, 237, 0.45), 0 0 56px -12px rgba(249, 115, 22, 0.3)",
         card: "0 8px 32px -8px rgba(5, 8, 15, 0.55)",
+      },
+      backgroundImage: {
+        "brand-gradient":
+          "linear-gradient(90deg, #7c3aed 0%, #a855f7 48%, #f97316 100%)",
       },
       maxWidth: {
         content: "72rem",

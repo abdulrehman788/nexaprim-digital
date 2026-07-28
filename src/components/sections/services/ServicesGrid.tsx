@@ -58,7 +58,7 @@ export function ServicesGrid() {
           </p>
           <Link
             href="/packages"
-            className="bg-gold-gradient mt-10 inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-lg px-10 py-3.5 text-sm font-semibold text-black shadow-glow transition-opacity hover:opacity-90 sm:text-base"
+            className="bg-gold-gradient mt-10 inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-lg px-10 py-3.5 text-sm font-semibold text-white shadow-glow transition-opacity hover:opacity-90 sm:text-base"
           >
             {servicesPage.allInOneLabel}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

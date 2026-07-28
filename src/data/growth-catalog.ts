@@ -111,7 +111,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "launch",
     name: "Launch",
-    idealFor: "Startups",
+    idealFor: "STARTUPS",
     price: 999,
     priceLabel: "$999",
     description: "Everything you need to get to market with a credible, converting presence.",
@@ -125,7 +125,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "growth",
     name: "Growth",
-    idealFor: "Growing businesses",
+    idealFor: "GROWING BUSINESSES",
     price: 2999,
     priceLabel: "$2,999",
     description: "A compounding growth engine across build, brand, and marketing.",
@@ -140,7 +140,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "scale",
     name: "Scale",
-    idealFor: "Established companies",
+    idealFor: "ESTABLISHED COMPANIES",
     price: 5999,
     priceLabel: "$5,999",
     description: "Full-funnel growth with automation and senior strategic guidance.",
@@ -154,7 +154,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "enterprise",
     name: "Enterprise",
-    idealFor: "Custom organizations",
+    idealFor: "CUSTOM ORGANIZATIONS",
     price: null,
     priceLabel: "Request a Quote",
     description: "Tailored programs for complex, multi-team, multi-market organizations.",

@@ -1,25 +1,12 @@
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/sections/HeroSection";
+import { GrowthProcessSection } from "@/components/sections/GrowthProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 
 const ClientLogos = dynamic(
   () => import("@/components/sections/ClientLogos").then((mod) => ({ default: mod.ClientLogos })),
   { loading: () => <SectionPlaceholder short /> },
-);
-
-const GrowthProcessSection = dynamic(
-  () =>
-    import("@/components/sections/GrowthProcessSection").then((mod) => ({
-      default: mod.GrowthProcessSection,
-    })),
-  { loading: () => <SectionPlaceholder /> },
-);
-
-const WhyUsSection = dynamic(
-  () =>
-    import("@/components/sections/WhyUsSection").then((mod) => ({ default: mod.WhyUsSection })),
-  { loading: () => <SectionPlaceholder /> },
 );
 
 const IndustriesSection = dynamic(
@@ -30,10 +17,10 @@ const IndustriesSection = dynamic(
   { loading: () => <SectionPlaceholder /> },
 );
 
-const PackagesSection = dynamic(
+const HomePricingSection = dynamic(
   () =>
-    import("@/components/sections/PackagesSection").then((mod) => ({
-      default: mod.PackagesSection,
+    import("@/components/sections/home/HomePricingSection").then((mod) => ({
+      default: mod.HomePricingSection,
     })),
   { loading: () => <SectionPlaceholder /> },
 );
@@ -46,28 +33,20 @@ const TestimonialsSection = dynamic(
   { loading: () => <SectionPlaceholder /> },
 );
 
-const FaqSection = dynamic(
+const HomeClientReviewsSection = dynamic(
   () =>
-    import("@/components/sections/FaqSection").then((mod) => ({
-      default: mod.FaqSection,
+    import("@/components/sections/home/HomeClientReviewsSection").then((mod) => ({
+      default: mod.HomeClientReviewsSection,
     })),
   { loading: () => <SectionPlaceholder /> },
 );
 
-const ContactSection = dynamic(
+const HomeConnectCta = dynamic(
   () =>
-    import("@/components/sections/ContactSection").then((mod) => ({
-      default: mod.ContactSection,
+    import("@/components/sections/home/HomeConnectCta").then((mod) => ({
+      default: mod.HomeConnectCta,
     })),
-  { loading: () => <SectionPlaceholder tall /> },
-);
-
-const CTASection = dynamic(
-  () =>
-    import("@/components/sections/CTASection").then((mod) => ({
-      default: mod.CTASection,
-    })),
-  { loading: () => <SectionPlaceholder /> },
+  { loading: () => <SectionPlaceholder short /> },
 );
 
 function SectionPlaceholder({ tall = false, short = false }: { tall?: boolean; short?: boolean }) {
@@ -90,15 +69,13 @@ export function HomePageContent() {
     <>
       <HeroSection />
       <ClientLogos />
-      <ServicesSection variant="dark" />
+      <ServicesSection />
       <GrowthProcessSection />
       <IndustriesSection />
-      <PackagesSection />
-      <WhyUsSection />
+      <HomePricingSection />
       <TestimonialsSection />
-      <FaqSection />
-      <ContactSection variant="dark" />
-      <CTASection />
+      <HomeClientReviewsSection />
+      <HomeConnectCta />
     </>
   );
 }

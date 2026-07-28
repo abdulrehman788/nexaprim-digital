@@ -1,75 +1,57 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
+import { HomeServiceCard } from "@/components/sections/home/HomeServiceCard";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { ServiceCard } from "@/components/ui/ServiceCard";
 import { homepageServices, servicesSection } from "@/data/services";
-import { cn } from "@/lib/utils";
 
-interface ServicesSectionProps {
-  variant?: "light" | "dark";
-}
-
-export function ServicesSection({ variant = "light" }: ServicesSectionProps) {
-  const isDark = variant === "dark";
-
+export function ServicesSection() {
   return (
-    <Section variant={variant} aria-labelledby="services-heading">
+    <Section variant="light" aria-labelledby="services-heading">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-violet-600">
+              <span className="h-1.5 w-1.5 rounded-full bg-violet-500" aria-hidden="true" />
+              Our services
+            </p>
             <h2
               id="services-heading"
-              className={cn(
-                "font-display text-display-sm sm:text-display-md",
-                isDark ? "text-content-primary" : "text-slate-900",
-              )}
+              className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
             >
-              {servicesSection.title}
+              Every Niche. One{" "}
+              <span className="text-gold-gradient">Accountable Team.</span>
             </h2>
-            <p
-              className={cn(
-                "mt-4 text-base leading-relaxed sm:text-lg",
-                isDark ? "text-content-secondary" : "text-slate-600",
-              )}
-            >
+            <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               {servicesSection.description}
             </p>
           </div>
-          <Button
+          <Link
             href={servicesSection.ctaHref}
-            variant="outline"
-            className={cn(
-              "shrink-0",
-              isDark
-                ? "border-white/40 text-white hover:border-white hover:bg-white/5 hover:text-white"
-                : "border-slate-200 text-slate-900 hover:border-accent hover:text-accent",
-            )}
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-slate-800 sm:h-12 sm:px-7"
           >
             {servicesSection.ctaLabel}
-          </Button>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
 
-        <ul className="mt-12 grid list-none gap-6 p-0 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <ul className="mt-10 grid list-none gap-5 p-0 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {homepageServices.map((service) => (
             <li key={service.id}>
-              <ServiceCard service={service} />
+              <HomeServiceCard service={service} />
             </li>
           ))}
         </ul>
 
-        <p
-          className={cn(
-            "mt-10 text-center text-sm",
-            isDark ? "text-content-muted" : "text-slate-500",
-          )}
-        >
+        <p className="mt-10 text-center text-sm text-slate-500">
+          <span className="text-violet-500" aria-hidden="true">
+            ✦
+          </span>{" "}
           Need a custom combination?{" "}
           <Link
             href="/contact"
-            className="font-semibold text-accent transition-colors hover:text-accent-hover"
+            className="font-semibold text-violet-600 transition-colors hover:text-violet-500"
           >
             Talk to our strategists
             <ArrowRight className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />

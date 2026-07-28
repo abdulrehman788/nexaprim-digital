@@ -263,7 +263,7 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
         className={cn(
           "mt-6 w-full sm:w-auto",
           theme === "dark"
-            ? "bg-gold-gradient border-transparent text-black shadow-glow hover:opacity-90"
+            ? "bg-gold-gradient border-transparent text-white shadow-glow hover:opacity-90"
             : undefined,
         )}
         pill={theme === "light"}

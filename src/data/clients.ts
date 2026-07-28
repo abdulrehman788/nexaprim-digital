@@ -2,36 +2,23 @@ import type { Client } from "@/types";
 
 export const clients: Client[] = [
   {
-    id: "nexus",
-    name: "NEXUS",
-    tagline: "Public Policy Institute",
-    logo: "/images/clients/nexus.svg",
-    logoAlt: "Nexus Public Policy Institute",
-  },
-  {
     id: "wlpi",
-    name: "WLP.I",
+    name: "World Leadership and Policy Institute",
     tagline: "World Leadership & Policy Institute",
-    logo: "/images/clients/wlpi.svg",
+    logo: "/images/clients/wlpi-hd.png?v=6",
     logoAlt: "World Leadership and Policy Institute",
   },
   {
-    id: "opportunity",
+    id: "unity-circle",
+    name: "Global Partners",
+    logo: "/images/clients/unity-circle.png",
+    logoAlt: "Partner organization united community logo",
+  },
+  {
+    id: "opportunity-station",
     name: "Opportunity Station",
-    logo: "/images/clients/opportunity.svg",
+    logo: "/images/clients/opportunity-station.png?v=3",
     logoAlt: "Opportunity Station",
-  },
-  {
-    id: "mindful-muslim",
-    name: "The Mindful Muslim",
-    logo: "/images/clients/mindful-muslim.svg",
-    logoAlt: "The Mindful Muslim",
-  },
-  {
-    id: "future",
-    name: "Future Leaders Club",
-    logo: "/images/clients/future.svg",
-    logoAlt: "Future Leaders Club",
   },
 ];
 

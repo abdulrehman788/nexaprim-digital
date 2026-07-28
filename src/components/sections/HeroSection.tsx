@@ -3,86 +3,115 @@ import { ArrowRight, Play } from "lucide-react";
 
 import { HeroVisual } from "@/components/sections/hero/HeroVisual";
 import { Container } from "@/components/ui/Container";
-import { heroContent, heroTrustStats } from "@/data/hero";
+import { heroContent } from "@/data/hero";
 import { ctaLinks } from "@/lib/constants";
+
+const heroFeatures = [
+  "Strategy",
+  "Technology",
+  "Marketing",
+  "AI Automation",
+] as const;
 
 export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative overflow-x-hidden bg-black pb-12 pt-24 lg:pb-16 lg:pt-28"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[#050505]"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_35%,rgba(139,92,246,0.09),transparent_50%)]" />
+      {/* Earth + city hero background — HD asset served at full quality */}
+      <div className="absolute inset-0 -z-10">
+        {/* eslint-disable-next-line @next/next/no-img-element -- pre-optimized HD local asset; avoid re-encode blur */}
+        <img
+          src={heroContent.skylineImage}
+          alt={heroContent.skylineAlt}
+          width={2400}
+          height={1600}
+          decoding="async"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[75%_center] sm:object-[70%_center]"
+        />
+        <div
+          className="absolute inset-0 bg-[linear-gradient(100deg,rgba(5,5,8,0.78)_0%,rgba(5,5,8,0.4)_38%,rgba(5,5,8,0.12)_68%,transparent_100%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_45%,rgba(168,85,247,0.16),transparent_52%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505]/85 to-transparent sm:h-32"
+          aria-hidden="true"
+        />
+      </div>
 
-      <Container className="relative overflow-visible">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.22fr)] lg:gap-x-10 xl:gap-x-14">
-          <div className="animate-fade-in-up relative z-10 flex min-w-0 max-w-full flex-col justify-center">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-accent sm:text-sm">
+      <Container className="relative flex flex-1 flex-col justify-center pb-12 pt-24 sm:pb-16 sm:pt-28 lg:pb-20 lg:pt-32">
+        <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-x-8 xl:gap-x-12">
+          <div className="animate-fade-in-up relative z-10 flex min-w-0 flex-col">
+            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-violet-400/40 bg-violet-500/10 px-3.5 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-violet-200 backdrop-blur sm:mb-6 sm:px-4 sm:text-xs">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.9)]"
+                aria-hidden="true"
+              />
               {heroContent.overline}
-            </p>
+            </span>
 
             <h1
               id="hero-heading"
-              className="font-display text-[2rem] font-bold leading-[1.1] sm:text-display-md lg:text-[3.5rem] lg:leading-[1.08]"
+              className="font-display text-[clamp(1.5rem,3.5vw+0.4rem,2.75rem)] font-bold leading-[1.12] text-white"
             >
-              <span className="block text-white">
-                We Build Digital{" "}
-                <span className="font-serif font-bold text-gold-gradient">Systems.</span>
-              </span>
-              <span className="mt-2 block text-white">
-                You Get{" "}
-                <span className="font-serif font-bold text-gold-gradient">Results.</span>
-              </span>
+              We help businesses{" "}
+              <span className="text-gold-gradient">expand</span> beyond limits.
             </h1>
 
-            <p className="mt-6 max-w-prose font-sans text-base leading-relaxed text-content-secondary sm:text-lg">
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-300 sm:mt-6 sm:text-base lg:text-lg">
               {heroContent.description}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
               <Link
                 href={ctaLinks.strategyCall}
-                className="bg-gold-gradient inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-sm font-semibold text-black transition-opacity hover:opacity-90 sm:text-base"
+                className="bg-gold-gradient inline-flex h-11 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-6 text-sm font-semibold text-white shadow-glow transition-opacity hover:opacity-90 sm:h-12 sm:px-7 sm:text-base"
               >
                 {heroContent.primaryCta}
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
               <Link
-                href={ctaLinks.showreel}
-                className="inline-flex h-12 items-center justify-center gap-3 whitespace-nowrap rounded-full border border-white/50 px-7 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/5 sm:text-base"
+                href="/services"
+                className="inline-flex h-11 items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-white/35 bg-white/[0.04] px-6 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10 sm:h-12 sm:px-7 sm:text-base"
               >
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/60"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/50"
                   aria-hidden="true"
                 >
-                  <Play className="h-3.5 w-3.5 fill-white text-white" />
+                  <Play className="h-3 w-3 fill-white text-white" />
                 </span>
                 {heroContent.secondaryCta}
               </Link>
             </div>
+
+            <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 sm:mt-8 sm:gap-x-5">
+              {heroFeatures.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-2 text-xs text-slate-300 sm:text-sm"
+                >
+                  <span
+                    className="flex h-4 w-4 items-center justify-center rounded-full bg-violet-500/20 text-[0.65rem] font-bold text-violet-300"
+                    aria-hidden="true"
+                  >
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="animate-fade-in-up animation-delay-150 relative flex w-full items-center justify-center overflow-visible lg:justify-end">
+          <div className="animate-fade-in-up animation-delay-150 relative z-10 w-full min-w-0">
             <HeroVisual />
           </div>
         </div>
-
-        <ul className="animate-fade-in-up animation-delay-300 mt-10 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-white/10 pt-6 sm:grid-cols-4 sm:gap-x-6 lg:mt-12">
-          {heroTrustStats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-              <li key={stat.id} className="flex flex-col gap-1.5">
-                <Icon className="h-4 w-4 text-accent" aria-hidden="true" />
-                <span className="font-display text-xl font-bold text-white sm:text-2xl">
-                  {stat.value}
-                </span>
-                <span className="text-xs leading-snug text-content-muted sm:text-sm">
-                  {stat.label}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
       </Container>
     </section>
   );

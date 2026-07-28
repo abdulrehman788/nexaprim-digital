@@ -31,7 +31,7 @@ export function AboutCtaSection() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href={aboutCta.primaryCtaHref}
-              className="bg-gold-gradient inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-lg px-8 text-sm font-semibold text-black shadow-glow transition-opacity hover:opacity-90 sm:w-auto sm:text-base"
+              className="bg-gold-gradient inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-lg px-8 text-sm font-semibold text-white shadow-glow transition-opacity hover:opacity-90 sm:w-auto sm:text-base"
             >
               {aboutCta.primaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

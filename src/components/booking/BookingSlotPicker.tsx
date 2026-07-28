@@ -335,7 +335,7 @@ export function BookingSlotPicker() {
           <Button
             type="submit"
             size="lg"
-            className="bg-gold-gradient mt-8 w-full border-transparent text-black shadow-glow hover:opacity-90 sm:w-auto"
+            className="bg-gold-gradient mt-8 w-full border-transparent text-white shadow-glow hover:opacity-90 sm:w-auto"
             disabled={submitState === "loading"}
           >
             {submitState === "loading" ? (

@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 xl:gap-14">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3" aria-label="Expandova — Home">
-              <span className="bg-gold-gradient flex h-12 w-12 items-center justify-center rounded-lg font-display text-xl font-extrabold text-black shadow-glow">
+              <span className="bg-gold-gradient flex h-12 w-12 items-center justify-center rounded-lg font-display text-xl font-extrabold text-white shadow-glow">
                 N
               </span>
               <span className="flex flex-col leading-tight">

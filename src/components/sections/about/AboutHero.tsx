@@ -37,7 +37,7 @@ export function AboutHero() {
 
           <Link
             href={ctaLinks.strategyCall}
-            className="bg-gold-gradient mt-10 inline-flex min-h-[3.25rem] items-center justify-center rounded-lg px-10 py-3.5 text-sm font-semibold text-black shadow-glow transition-opacity hover:opacity-90 sm:mt-12 sm:text-base"
+            className="bg-gold-gradient mt-10 inline-flex min-h-[3.25rem] items-center justify-center rounded-lg px-10 py-3.5 text-sm font-semibold text-white shadow-glow transition-opacity hover:opacity-90 sm:mt-12 sm:text-base"
           >
             {aboutHero.ctaLabel}
           </Link>

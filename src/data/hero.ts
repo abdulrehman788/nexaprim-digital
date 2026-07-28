@@ -8,13 +8,17 @@ import {
 import type { TrustStat } from "@/types";
 
 export const heroContent = {
-  overline: "Complete Digital Ecosystems",
-  headlineLine1: "We Build Digital Systems.",
-  headlineLine2: "You Get Results.",
+  overline: "Digital Growth Partner",
+  headlineLine1: "We help businesses",
+  headlineLine2: "expand beyond limits.",
   description:
-    "We help businesses and organizations grow with powerful websites, marketing, design, automation and strategies that drive real impact.",
+    "Strategy. Technology. Marketing. AI. Everything you need to grow, in one place.",
   primaryCta: "Book a Free Strategy Call",
-  secondaryCta: "Watch Our Showreel",
+  secondaryCta: "Explore Our Services",
+  trustedLabel: "Trusted by innovators & leaders worldwide",
+  skylineImage: "/images/hero/hero-bg-hd.jpg",
+  skylineAlt:
+    "Earth from space with glowing city lights and a futuristic skyline",
   heroImage: "/images/hero/hero-devices-hd.png",
   heroImageAlt:
     "Laptop and smartphone on a dark surface with golden light trails and mountain landscape on screen",
@@ -25,6 +29,16 @@ export const heroContent = {
     value: "5+",
     label: "Years of Excellence",
   },
+} as const;
+
+export const heroStatCards = {
+  totalGrowth: { label: "Total Growth", value: "+148%" },
+  revenue: {
+    label: "Revenue Generated",
+    value: "$12.6M",
+    delta: "+99% vs last year",
+  },
+  activeProjects: { label: "Active Projects", value: "125", note: "Live" },
 } as const;
 
 export const heroTrustStats: TrustStat[] = [

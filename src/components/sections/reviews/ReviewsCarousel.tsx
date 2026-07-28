@@ -209,7 +209,7 @@ function ReviewSlide({ review, theme = "dark" }: ReviewSlideProps) {
         )}
       >
         <div className="flex items-center gap-4">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-sm font-bold text-black">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-sm font-bold text-white">
             {getInitials(review.author)}
           </span>
           <div>
@@ -559,7 +559,7 @@ export function ReviewsCarousel({ reviews, theme = "dark" }: ReviewsCarouselProp
                 <span
                   className={cn(
                     "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[11px] font-bold",
-                    isActive ? "bg-gold-gradient text-black" : light ? "bg-slate-100 text-slate-700" : "bg-white/10 text-white",
+                    isActive ? "bg-gold-gradient text-white" : light ? "bg-slate-100 text-slate-700" : "bg-white/10 text-white",
                   )}
                 >
                   {getInitials(review.author)}
