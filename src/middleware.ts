@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { ADMIN_SESSION_COOKIE, verifyAdminSessionTokenEdge } from "@/lib/admin-auth";
+import { getSafeAdminRedirect } from "@/lib/security/admin-redirect";
+import { isAllowedRequestOrigin } from "@/lib/security/origin";
 
 function forwardWithPathname(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
@@ -22,6 +24,18 @@ export async function middleware(request: NextRequest) {
     return forwardWithPathname(request);
   }
 
+  // CSRF defense for cookie-authenticated admin mutations (and logout).
+  const method = request.method.toUpperCase();
+  if (
+    isAdminApi &&
+    method !== "GET" &&
+    method !== "HEAD" &&
+    method !== "OPTIONS" &&
+    !isAllowedRequestOrigin(request)
+  ) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
   const authenticated = await verifyAdminSessionTokenEdge(token);
 
@@ -34,7 +48,10 @@ export async function middleware(request: NextRequest) {
   }
 
   const loginUrl = new URL("/admin/login", request.url);
-  loginUrl.searchParams.set("next", pathname);
+  const safeNext = getSafeAdminRedirect(pathname);
+  if (safeNext !== "/admin") {
+    loginUrl.searchParams.set("next", safeNext);
+  }
   return NextResponse.redirect(loginUrl);
 }
 

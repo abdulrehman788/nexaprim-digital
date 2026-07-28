@@ -1,12 +1,26 @@
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/sections/HeroSection";
-import { GrowthProcessSection } from "@/components/sections/GrowthProcessSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
 
 const ClientLogos = dynamic(
   () => import("@/components/sections/ClientLogos").then((mod) => ({ default: mod.ClientLogos })),
   { loading: () => <SectionPlaceholder short /> },
+);
+
+const ServicesSection = dynamic(
+  () =>
+    import("@/components/sections/ServicesSection").then((mod) => ({
+      default: mod.ServicesSection,
+    })),
+  { loading: () => <SectionPlaceholder /> },
+);
+
+const GrowthProcessSection = dynamic(
+  () =>
+    import("@/components/sections/GrowthProcessSection").then((mod) => ({
+      default: mod.GrowthProcessSection,
+    })),
+  { loading: () => <SectionPlaceholder /> },
 );
 
 const IndustriesSection = dynamic(

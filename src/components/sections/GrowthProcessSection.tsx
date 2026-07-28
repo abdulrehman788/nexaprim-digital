@@ -62,7 +62,7 @@ const steps: ProcessStep[] = [
 
 export function GrowthProcessSection() {
   return (
-    <Section variant="primary" aria-labelledby="growth-process-heading">
+    <Section variant="primary" aria-labelledby="growth-process-heading" className="content-auto">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-400 sm:text-sm">

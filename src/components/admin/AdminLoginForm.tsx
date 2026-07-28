@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { AdminButton, AdminFieldHint, AdminInput, AdminLabel } from "@/components/admin/ui/AdminFields";
+import { AdminButton, AdminInput, AdminLabel } from "@/components/admin/ui/AdminFields";
+import { getSafeAdminRedirect } from "@/lib/security/admin-redirect";
 
 export function AdminLoginForm() {
   const router = useRouter();
@@ -26,11 +27,15 @@ export function AdminLoginForm() {
     setLoading(false);
 
     if (!response.ok) {
-      setError("Invalid password. Please try again.");
+      if (response.status === 429) {
+        setError("Too many login attempts. Please try again later.");
+      } else {
+        setError("Invalid password. Please try again.");
+      }
       return;
     }
 
-    const next = searchParams.get("next") || "/admin";
+    const next = getSafeAdminRedirect(searchParams.get("next"));
     router.push(next);
     router.refresh();
   }
@@ -49,7 +54,6 @@ export function AdminLoginForm() {
           placeholder="Enter admin password"
           required
         />
-        <AdminFieldHint>Demo: change-me-in-production</AdminFieldHint>
       </div>
       {error ? (
         <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">

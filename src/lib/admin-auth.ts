@@ -4,7 +4,10 @@ import { ADMIN_SESSION_COOKIE } from "@/lib/admin-constants";
 
 export { ADMIN_SESSION_COOKIE };
 
-const SESSION_PAYLOAD = "nexaprime-admin-v1";
+/** Session lifetime — keep in sync with cookie maxAge in admin-session.ts */
+export const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
+
+const SESSION_VERSION = "v2";
 
 function getSessionSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
@@ -38,15 +41,53 @@ async function hmacSha256Hex(secret: string, message: string): Promise<string> {
     .join("");
 }
 
-export async function createAdminSessionToken(): Promise<string> {
-  return hmacSha256Hex(getSessionSecret(), SESSION_PAYLOAD);
+function randomNonceHex(bytes = 16): string {
+  const buffer = new Uint8Array(bytes);
+  crypto.getRandomValues(buffer);
+  return Array.from(buffer)
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 
-export async function verifyAdminSessionToken(token: string | undefined | null): Promise<boolean> {
+/**
+ * Signed, expiring session token.
+ * Format: v2.<expiresAtMs>.<nonce>.<hmac>
+ * Each login issues a unique token; stolen cookies expire with the TTL.
+ */
+export async function createAdminSessionToken(): Promise<string> {
+  const expiresAt = Date.now() + ADMIN_SESSION_TTL_SECONDS * 1000;
+  const nonce = randomNonceHex();
+  const payload = `${SESSION_VERSION}.${expiresAt}.${nonce}`;
+  const signature = await hmacSha256Hex(getSessionSecret(), payload);
+  return `${payload}.${signature}`;
+}
+
+export async function verifyAdminSessionToken(
+  token: string | undefined | null,
+): Promise<boolean> {
   if (!token) return false;
+
   try {
-    const expected = await createAdminSessionToken();
-    return timingSafeEqualStrings(token, expected);
+    const parts = token.split(".");
+    if (parts.length !== 4) return false;
+
+    const [version, expiresAtRaw, nonce, signature] = parts;
+    if (version !== SESSION_VERSION || !expiresAtRaw || !nonce || !signature) {
+      return false;
+    }
+
+    if (!/^\d+$/.test(expiresAtRaw) || !/^[a-f0-9]+$/i.test(nonce)) {
+      return false;
+    }
+
+    const expiresAt = Number(expiresAtRaw);
+    if (!Number.isFinite(expiresAt) || Date.now() > expiresAt) {
+      return false;
+    }
+
+    const payload = `${version}.${expiresAtRaw}.${nonce}`;
+    const expected = await hmacSha256Hex(getSessionSecret(), payload);
+    return timingSafeEqualStrings(signature, expected);
   } catch {
     return false;
   }
@@ -55,8 +96,21 @@ export async function verifyAdminSessionToken(token: string | undefined | null):
 /** Edge-compatible alias used by middleware. */
 export const verifyAdminSessionTokenEdge = verifyAdminSessionToken;
 
-export function verifyAdminPassword(password: string): boolean {
+/**
+ * Compare password digests so differing lengths do not short-circuit timing.
+ */
+export async function verifyAdminPassword(password: string): Promise<boolean> {
   const expected = process.env.ADMIN_PASSWORD;
   if (!expected) return false;
-  return timingSafeEqualStrings(password, expected);
+
+  try {
+    const secret = getSessionSecret();
+    const [providedDigest, expectedDigest] = await Promise.all([
+      hmacSha256Hex(secret, `admin-password:${password}`),
+      hmacSha256Hex(secret, `admin-password:${expected}`),
+    ]);
+    return timingSafeEqualStrings(providedDigest, expectedDigest);
+  } catch {
+    return false;
+  }
 }

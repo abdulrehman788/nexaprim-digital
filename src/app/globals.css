@@ -79,6 +79,19 @@
     animation-delay: 300ms;
   }
 
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @keyframes review-in-right {
     from {
       opacity: 0;

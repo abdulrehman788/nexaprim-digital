@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 
 import { HomePageContent } from "@/components/sections/home/HomePageContent";
+import { heroContent } from "@/data/hero";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -11,6 +13,8 @@ export const metadata: Metadata = generatePageMetadata({
 });
 
 export default function HomePage() {
+  preload(heroContent.skylineImage, { as: "image", fetchPriority: "high" });
+
   return (
     <main>
       <HomePageContent />

@@ -4,19 +4,16 @@ interface ClientLogoItemProps {
   logoAlt: string;
 }
 
-export function ClientLogoItem({
-  name,
-  logo,
-  logoAlt,
-}: ClientLogoItemProps) {
+/** Uniform logo box — every partner logo scales to the same max height & width. */
+export function ClientLogoItem({ name, logo, logoAlt }: ClientLogoItemProps) {
   return (
-    <div className="flex h-20 w-full items-center justify-center px-3 sm:h-24 sm:px-4 lg:h-28">
+    <div className="flex h-[4.75rem] w-full items-center justify-center px-2 sm:h-[5.25rem] sm:px-4">
       {/* eslint-disable-next-line @next/next/no-img-element -- avoids optimizer cache; mixed logo backgrounds */}
       <img
         src={logo}
         alt={logoAlt}
-        width={320}
-        height={112}
+        width={360}
+        height={120}
         loading="lazy"
         className="max-h-full max-w-full object-contain object-center"
       />

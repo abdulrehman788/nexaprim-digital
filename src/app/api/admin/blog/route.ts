@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 import { blogPostSchema } from "@/lib/schemas/admin";
+import { adminApiErrorResponse } from "@/lib/security/api-error";
 
 export async function GET() {
   const posts = await prisma.blogPost.findMany({
@@ -38,7 +39,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(post, { status: 201 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Invalid request";
-    return NextResponse.json({ error: message }, { status: 400 });
+    return adminApiErrorResponse(error);
   }
 }
