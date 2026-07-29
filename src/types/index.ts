@@ -242,6 +242,8 @@ export interface Client {
   tagline?: string;
   logo: string;
   logoAlt: string;
+  /** Optional display size on the partners strip */
+  logoSize?: "md" | "lg";
 }
 
 export interface CTABenefit {

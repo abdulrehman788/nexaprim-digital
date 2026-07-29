@@ -1,24 +1,23 @@
-﻿/** Homepage-only imagery and copy â€” Unsplash photos matching the design mockup. */
-
+﻿/** Homepage service card imagery — unique, topic-matched photos (no duplicates). */
 export const homeServiceCardImages: Record<string, string> = {
   "digital-strategy":
-    "https://images.unsplash.com/photo-1586165368502-1bad197a6461?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1000&q=80",
   "seo-content":
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
   "paid-media":
-    "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80",
   "social-media":
-    "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1000&q=80",
   "brand-creative":
-    "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1586717799252-bd134ad00e26?auto=format&fit=crop&w=1000&q=80",
   "graphics-design":
-    "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=80",
   "web-development":
-    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
   "shopify-development":
-    "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1000&q=80",
   "custom-website-design":
-    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1000&q=80",
 };
 
 export const growthProcessImages = {
@@ -37,7 +36,7 @@ export const homePricingSection = {
   titleLine1: "Start with the right plan.",
   titleAccent: "Scale with confidence.",
   description:
-    "Whether you're launching, growing, or scaling globally â€” choose the plan that fits your stage and goals.",
+    "Whether you're launching, growing, or scaling globally — choose the plan that fits your stage and goals.",
 } as const;
 
 export const homePricingTrust = [
