@@ -82,10 +82,10 @@ export function HomePageContent() {
   return (
     <>
       <HeroSection />
-      <ClientLogos />
       <ServicesSection />
       <GrowthProcessSection />
       <IndustriesSection />
+      <ClientLogos />
       <HomePricingSection />
       <TestimonialsSection />
       <HomeClientReviewsSection />
