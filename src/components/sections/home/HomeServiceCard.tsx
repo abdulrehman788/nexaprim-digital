@@ -17,30 +17,30 @@ export function HomeServiceCard({ service }: HomeServiceCardProps) {
   return (
     <Link
       href={service.href}
-      className="group relative flex min-h-[12.5rem] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-violet-300 hover:shadow-[0_18px_44px_-14px_rgba(124,58,237,0.3)]"
+      className="group relative flex min-h-[14.5rem] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-violet-300 hover:shadow-[0_18px_44px_-14px_rgba(124,58,237,0.3)] sm:min-h-[15.5rem]"
       aria-label={service.imageAlt}
     >
-      <div className="relative z-10 flex flex-1 flex-col p-5 sm:max-w-[46%] sm:p-6">
+      <div className="relative z-10 flex min-w-0 flex-[1.15] flex-col p-5 sm:p-6 lg:pr-4">
         <div
-          className={`flex h-11 w-11 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${iconStyle.bgClass}`}
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${iconStyle.bgClass}`}
         >
           <Icon className={`h-5 w-5 ${iconStyle.iconClass}`} strokeWidth={1.75} aria-hidden="true" />
         </div>
         <h3 className="mt-4 font-display text-base font-bold leading-snug text-slate-900 transition-colors group-hover:text-violet-700 sm:text-lg">
           {service.title}
         </h3>
-        <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
           {service.description}
         </p>
       </div>
 
       {cardImage ? (
-        <div className="relative hidden w-[54%] shrink-0 sm:block">
+        <div className="relative hidden w-[42%] max-w-[11.5rem] shrink-0 sm:block lg:max-w-none xl:w-[40%]">
           <OptimizedImage
             src={cardImage}
             alt=""
             fill
-            sizes="320px"
+            sizes="280px"
             className="object-cover object-center transition-all duration-500 group-hover:scale-[1.08] group-hover:brightness-110"
           />
           {/* Soft left fade only — photos stay highly visible */}
