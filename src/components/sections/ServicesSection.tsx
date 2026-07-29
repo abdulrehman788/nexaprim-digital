@@ -35,7 +35,7 @@ export function ServicesSection() {
           </Link>
         </div>
 
-        <ul className="mt-10 grid list-none gap-5 p-0 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6">
+        <ul className="mt-10 grid list-none auto-rows-fr gap-5 p-0 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6">
           {homepageServices.map((service) => (
             <li key={service.id} className="min-w-0">
               <HomeServiceCard service={service} />
