@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
+import { siteConfig } from "@/lib/constants";
 import type { ContactIntentOption } from "@/types";
 
 export const contactSection = {
@@ -33,8 +34,8 @@ export const contactDetails = [
   {
     id: "email",
     label: "Email",
-    value: "hello@nexaprime.digital",
-    href: "mailto:hello@nexaprime.digital",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
     icon: Mail,
   },
   {

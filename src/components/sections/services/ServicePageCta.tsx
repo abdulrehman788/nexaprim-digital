@@ -22,7 +22,7 @@ export function ServicePageCta({ service }: ServicePageCtaProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Next step</p>
               <h2
                 id="service-page-cta"
-                className="mt-3 font-serif text-2xl font-bold leading-tight text-white sm:text-3xl"
+                className="mt-3 font-display text-2xl font-bold leading-tight text-white sm:text-3xl"
               >
                 Ready to move forward with {service.title}?
               </h2>

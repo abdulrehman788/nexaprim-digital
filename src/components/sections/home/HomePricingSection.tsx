@@ -36,10 +36,11 @@ export function HomePricingSection() {
           </p>
           <h2
             id="home-pricing-heading"
-            className="mt-3 font-serif text-display-sm font-bold text-slate-900 sm:text-display-md"
+            className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
           >
             {homePricingSection.titleLine1}{" "}
-            <span className="text-gold-gradient">{homePricingSection.titleAccent}</span>
+            <span className="text-brand-purple">Scale</span>{" "}
+            <span className="text-brand-orange">with confidence.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
             {homePricingSection.description}

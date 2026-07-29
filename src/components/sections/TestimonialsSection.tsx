@@ -13,9 +13,12 @@ export function TestimonialsSection() {
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-400">
+              Success stories
+            </p>
             <h2
               id="testimonials-heading"
-              className="font-display text-display-sm text-content-primary sm:text-display-md"
+              className="mt-3 font-display text-display-sm font-bold text-content-primary sm:text-display-md"
             >
               {testimonialsSection.title}
             </h2>

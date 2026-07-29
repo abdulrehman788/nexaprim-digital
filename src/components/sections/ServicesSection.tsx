@@ -4,7 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { HomeServiceCard } from "@/components/sections/home/HomeServiceCard";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { homepageServices, servicesSection } from "@/data/services";
+import { homepageServices } from "@/data/homepage-services";
+import { servicesSection } from "@/data/services";
 
 export function ServicesSection() {
   return (
@@ -12,16 +13,14 @@ export function ServicesSection() {
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-violet-600">
-              <span className="h-1.5 w-1.5 rounded-full bg-violet-500" aria-hidden="true" />
-              Our services
-            </p>
+            <p className="section-overline">Our services</p>
             <h2
               id="services-heading"
-              className="mt-3 font-serif text-display-sm font-bold text-slate-900 sm:text-display-md"
+              className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
             >
               Every Niche. One{" "}
-              <span className="text-gold-gradient">Accountable Team.</span>
+              <span className="text-brand-purple">Accountable</span>{" "}
+              <span className="text-brand-orange">Team.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               {servicesSection.description}

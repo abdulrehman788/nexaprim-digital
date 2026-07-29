@@ -11,6 +11,7 @@ import {
   contactIntentOptions,
   contactSection,
 } from "@/data/contact";
+import { siteConfig } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type ContactFormTheme = "dark" | "light";
@@ -276,6 +277,24 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
       >
         {submitState === "loading" ? "Sending..." : contactSection.submitLabel}
       </Button>
+
+      <p
+        className={cn(
+          "mt-4 text-sm",
+          theme === "dark" ? "text-content-muted" : "text-slate-500",
+        )}
+      >
+        Messages go to{" "}
+        <a
+          href={`mailto:${siteConfig.email}`}
+          className={cn(
+            "font-semibold underline-offset-2 hover:underline",
+            theme === "dark" ? "text-accent" : "text-gold-600",
+          )}
+        >
+          {siteConfig.email}
+        </a>
+      </p>
     </form>
   );
 }

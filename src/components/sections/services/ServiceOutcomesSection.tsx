@@ -23,7 +23,7 @@ export function ServiceOutcomesSection({ service }: ServiceOutcomesSectionProps)
               </p>
               <h2
                 id="service-outcomes-heading"
-                className="mt-2 font-serif text-2xl font-bold text-white sm:text-3xl"
+                className="mt-2 font-display text-2xl font-bold text-white sm:text-3xl"
               >
                 What you get
               </h2>

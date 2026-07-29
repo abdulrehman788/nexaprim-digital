@@ -179,7 +179,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
 
                 <h1
                   id="package-heading"
-                  className="mt-5 font-serif text-[2rem] font-bold leading-[1.08] text-white sm:text-[2.5rem] lg:text-[2.75rem]"
+                  className="mt-5 font-display text-[2rem] font-bold leading-[1.08] text-white sm:text-[2.5rem] lg:text-[2.75rem]"
                 >
                   {headlineLead}
                   {headlineAccent ? (
@@ -326,7 +326,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
                 <h2
                   id="package-includes-heading"
                   className={cn(
-                    "mt-2 font-serif text-2xl font-bold sm:text-3xl",
+                    "mt-2 font-display text-2xl font-bold sm:text-3xl",
                     isLightBand(1) ? lightHeading : "text-white",
                   )}
                 >
@@ -463,7 +463,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
                 <h2
                   id="package-process-heading"
                   className={cn(
-                    "mt-2 font-serif text-xl font-bold sm:text-2xl",
+                    "mt-2 font-display text-xl font-bold sm:text-2xl",
                     isLightBand(2) ? lightHeading : "text-white",
                   )}
                 >
@@ -538,7 +538,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
               <h2
                 id="package-related-heading"
                 className={cn(
-                  "mt-2 font-serif text-2xl font-bold sm:text-3xl",
+                  "mt-2 font-display text-2xl font-bold sm:text-3xl",
                   isLightBand(3) ? lightHeading : "text-white",
                 )}
               >
@@ -637,7 +637,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Next step</p>
                 <h3
                   className={cn(
-                    "mt-3 font-serif text-2xl font-bold leading-tight sm:text-3xl",
+                    "mt-3 font-display text-2xl font-bold leading-tight sm:text-3xl",
                     isLightBand(3) ? lightHeading : "text-white",
                   )}
                 >

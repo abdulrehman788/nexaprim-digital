@@ -13,7 +13,7 @@ export const metadata: Metadata = generatePageMetadata({
 });
 
 export default function HomePage() {
-  preload(heroContent.skylineImage, { as: "image", fetchPriority: "high" });
+  preload(heroContent.skylineImagePreload, { as: "image", fetchPriority: "high" });
 
   return (
     <main>

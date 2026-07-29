@@ -1136,11 +1136,12 @@ export function getAllServiceSlugs(): string[] {
   return services.map((service) => service.id);
 }
 
-export const homepageServices: ServiceDetail[] = homepageServiceIds.flatMap((id) => {
-  const service = services.find((item) => item.id === id);
-  return service ? [service] : [];
-});
-
 export function getHomepageServices(): ServiceDetail[] {
-  return homepageServices;
+  return homepageServiceIds.flatMap((id) => {
+    const service = services.find((item) => item.id === id);
+    return service ? [service] : [];
+  });
 }
+
+/** @deprecated Prefer `@/data/homepage-services` on the homepage to avoid heavy imports. */
+export const homepageServices: ServiceDetail[] = getHomepageServices();

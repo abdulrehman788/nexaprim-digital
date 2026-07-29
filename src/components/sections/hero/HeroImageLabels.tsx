@@ -92,7 +92,7 @@ export function HeroImageLabels() {
         {heroContent.laptopScreenLines.map((line, index) => (
           <p
             key={line}
-            className="font-serif font-bold leading-[1.1] text-white [font-size:2.85cqw]"
+            className="font-display font-bold leading-[1.1] text-white [font-size:2.85cqw]"
             style={{ marginTop: index === 0 ? 0 : "0.55cqw" }}
           >
             {line}

@@ -5,8 +5,14 @@ import {
   CONTACT_MAX_BODY_BYTES,
   contactPayloadSchema,
 } from "@/lib/contact-schema";
+import { siteConfig } from "@/lib/constants";
 import { isAllowedRequestOrigin } from "@/lib/security/origin";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
+
+/** Inbox that receives contact-form submissions */
+function getContactInbox(): string {
+  return process.env.CONTACT_TO_EMAIL?.trim() || siteConfig.email;
+}
 
 const RATE_LIMIT = 5;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
@@ -50,26 +56,36 @@ export async function POST(request: Request) {
     if (honeypot) {
       return NextResponse.json({ success: true });
     }
-    const endpoint = process.env.CONTACT_FORM_ENDPOINT;
 
-    if (endpoint) {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(process.env.CONTACT_FORM_API_KEY
-            ? { Authorization: `Bearer ${process.env.CONTACT_FORM_API_KEY}` }
-            : {}),
-        },
-        body: JSON.stringify(submission),
-      });
+    const inbox = getContactInbox();
+    const customEndpoint = process.env.CONTACT_FORM_ENDPOINT?.trim();
+    // Default: FormSubmit delivers to the business inbox (confirm once via email).
+    const endpoint =
+      customEndpoint || `https://formsubmit.co/ajax/${encodeURIComponent(inbox)}`;
 
-      if (!response.ok) {
-        return NextResponse.json(
-          { error: "Unable to send your message right now. Please try again later." },
-          { status: 502 },
-        );
-      }
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(process.env.CONTACT_FORM_API_KEY
+          ? { Authorization: `Bearer ${process.env.CONTACT_FORM_API_KEY}` }
+          : {}),
+      },
+      body: JSON.stringify({
+        ...submission,
+        to: inbox,
+        _to: inbox,
+        _replyto: submission.email,
+        _subject: `Expandova contact — ${submission.intent}`,
+      }),
+    });
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Unable to send your message right now. Please try again later." },
+        { status: 502 },
+      );
     }
 
     return NextResponse.json({ success: true });

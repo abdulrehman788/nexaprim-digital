@@ -27,7 +27,7 @@ export function ServiceHighlightSection({ content }: ServiceHighlightSectionProp
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Why Expandova</p>
             <h2
               id={`service-highlight-${content.id}`}
-              className="mt-3 font-serif text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl"
+              className="mt-3 font-display text-xl font-bold leading-snug text-white sm:text-2xl lg:text-3xl"
             >
               {content.titleWhite}{" "}
               <span className="text-gold-gradient">{content.titleAccent}</span>
@@ -46,7 +46,7 @@ export function ServiceHighlightSection({ content }: ServiceHighlightSectionProp
 
             <Link
               href={ctaLinks.strategyCall}
-              className="mt-6 inline-flex min-h-[3rem] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-black transition-opacity hover:opacity-90"
+              className="mt-6 inline-flex min-h-[3rem] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               {content.ctaLabel}
             </Link>

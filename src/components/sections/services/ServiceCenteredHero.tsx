@@ -48,7 +48,7 @@ export function ServiceCenteredHero({ service }: ServiceCenteredHeroProps) {
               <p className="mt-2 text-xs font-medium text-content-muted">{categoryLabel}</p>
               <h1
                 id="service-heading"
-                className="mt-4 font-serif text-[1.65rem] font-bold leading-[1.12] text-white sm:text-3xl lg:text-[2.35rem]"
+                className="mt-4 font-display text-[1.65rem] font-bold leading-[1.12] text-white sm:text-3xl lg:text-[2.35rem]"
               >
                 {titleBefore}
                 {titleAccent ? (

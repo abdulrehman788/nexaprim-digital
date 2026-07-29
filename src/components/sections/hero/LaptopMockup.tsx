@@ -24,7 +24,7 @@ export function LaptopMockup() {
 
           <div className="absolute left-4 top-3 z-10 flex items-center gap-1.5">
             <span className="h-0 w-0 border-b-[5px] border-l-[4px] border-r-[4px] border-b-[#D4AF37] border-l-transparent border-r-transparent" />
-            <span className="font-serif text-[10px] font-semibold tracking-wide text-white/90">
+            <span className="font-display text-[10px] font-semibold tracking-wide text-white/90">
               Expandova
             </span>
           </div>
@@ -33,7 +33,7 @@ export function LaptopMockup() {
             {heroContent.laptopScreenLines.map((line) => (
               <p
                 key={line}
-                className="font-serif text-lg font-bold leading-[1.15] text-white drop-shadow-lg sm:text-xl lg:text-2xl"
+                className="font-display text-lg font-bold leading-[1.15] text-white drop-shadow-lg sm:text-xl lg:text-2xl"
               >
                 {line}
               </p>

@@ -64,7 +64,7 @@ function IndustryShowcaseCopy({
         </div>
       </div>
 
-      <h3 className="mt-5 font-serif text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
+      <h3 className="mt-5 font-display text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
         {industry.headline}
       </h3>
       <p className="mt-4 text-base leading-relaxed text-slate-600">{industry.description}</p>
@@ -99,7 +99,7 @@ export function IndustriesPageContent() {
           </p>
           <h1
             id="industries-hero-heading"
-            className="mt-4 max-w-3xl font-serif text-[1.75rem] font-bold leading-[1.12] text-white sm:text-4xl lg:text-[2.75rem]"
+            className="mt-4 max-w-3xl font-display text-[1.75rem] font-bold leading-[1.12] text-white sm:text-4xl lg:text-[2.75rem]"
           >
             {industriesPage.titleLine1}{" "}
             <span className="text-gold-gradient">{industriesPage.titleAccent}</span>
@@ -174,7 +174,7 @@ export function IndustriesPageContent() {
             <div>
               <h2
                 id="industries-cta-heading"
-                className="font-serif text-xl font-bold text-white sm:text-2xl"
+                className="font-display text-xl font-bold text-white sm:text-2xl"
               >
                 Not sure which system fits your market?
               </h2>

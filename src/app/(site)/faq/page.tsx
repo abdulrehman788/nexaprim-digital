@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FaqPageJsonLd } from "@/components/seo/JsonLd";
 import { Accordion } from "@/components/ui/Accordion";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function FaqPage() {
   return (
     <main>
+      <FaqPageJsonLd />
       {/* Hero */}
       <section className="relative overflow-hidden bg-black pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div

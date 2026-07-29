@@ -33,7 +33,7 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
           </p>
           <h1
             id="case-study-heading"
-            className="mt-4 max-w-3xl font-serif text-[2rem] font-bold leading-[1.12] text-white sm:text-display-md"
+            className="mt-4 max-w-3xl font-display text-[2rem] font-bold leading-[1.12] text-white sm:text-display-md"
           >
             {study.headline}
           </h1>
@@ -82,7 +82,7 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
             <p className="mt-4 text-base leading-relaxed text-slate-600">{study.outcome}</p>
             {study.quote ? (
               <blockquote className="mt-8 border-l-2 border-accent pl-5">
-                <p className="font-serif text-lg italic leading-relaxed text-slate-800">
+                <p className="font-display text-lg italic leading-relaxed text-slate-800">
                   &ldquo;{study.quote}&rdquo;
                 </p>
                 {study.quoteAuthor ? (

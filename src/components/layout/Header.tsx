@@ -19,7 +19,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-3">
           <a
             href={ctaLinks.consultation}
-            className="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-accent-hover lg:inline-flex"
+            className="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-hover lg:inline-flex"
           >
             Book a Free Call
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

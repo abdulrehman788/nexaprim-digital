@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
     "Expandova is a digital growth company that blends strategy, branding, technology, AI, marketing, and automation to help businesses expand.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://expandova.com",
   locale: "en_US",
-  email: "hello@expandova.com",
+  email: "info@expandova.com",
   phone: "+1 (555) 123-4567",
   address: {
     street: "1200 Innovation Drive, Suite 400",
@@ -23,7 +23,6 @@ export const primaryNavLinks: NavLink[] = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
 ];

@@ -9,7 +9,7 @@ import { generatePageMetadata } from "@/lib/seo";
 export const metadata: Metadata = generatePageMetadata({
   title: "Contact Us",
   description:
-    "Reach Expandova in Austin. Send a message, book a strategy call, or email hello@nexaprime.digital — we reply within one business day.",
+    "Reach Expandova in Austin. Send a message, book a strategy call, or email info@expandova.com — we reply within one business day.",
   path: "/contact",
 });
 

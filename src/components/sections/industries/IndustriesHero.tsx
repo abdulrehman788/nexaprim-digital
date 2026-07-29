@@ -33,7 +33,7 @@ export function IndustriesHero() {
           className="max-w-3xl font-display text-[2rem] font-bold leading-[1.1] text-white sm:text-display-md lg:text-[3.25rem]"
         >
           {industriesPage.titleLine1}{" "}
-          <span className="font-serif text-gold-gradient">{industriesPage.titleAccent}</span>
+          <span className="font-display text-gold-gradient">{industriesPage.titleAccent}</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-content-secondary sm:text-lg">
           Funnels, content, and media tailored to your sector — not recycled agency playbooks.

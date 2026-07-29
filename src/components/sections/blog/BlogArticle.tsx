@@ -38,7 +38,7 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
                 ))}
               </ul>
             ) : null}
-            <h1 className="mt-4 font-serif text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             <p className="mt-4 text-lg text-content-secondary">{post.excerpt}</p>

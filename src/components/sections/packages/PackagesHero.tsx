@@ -33,7 +33,7 @@ export function PackagesHero() {
           className="max-w-3xl font-display text-[2rem] font-bold leading-[1.1] text-white sm:text-display-md lg:text-[3.25rem]"
         >
           {packagesPage.titleLine1}{" "}
-          <span className="font-serif text-gold-gradient">{packagesPage.titleAccent}</span>
+          <span className="font-display text-gold-gradient">{packagesPage.titleAccent}</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-content-secondary sm:text-lg">
           {packagesPage.description}

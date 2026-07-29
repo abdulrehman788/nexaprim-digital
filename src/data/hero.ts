@@ -1,24 +1,19 @@
-import {
-  Award,
-  Briefcase,
-  Target,
-  Users,
-} from "lucide-react";
-
 import type { TrustStat } from "@/types";
 
 export const heroContent = {
   overline: "Digital Growth Partner",
-  headlineLine1: "We help businesses",
-  headlineLine2: "expand beyond limits.",
+  headlineLine1: "Helping Businesses",
+  headlineAccent: "Expand",
+  headlineLine2: "Beyond Limits.",
   description:
-    "Strategy. Technology. Marketing. AI. Everything you need to grow, in one place.",
+    "Strategy, design, technology and marketing—working together to help your business grow faster, smarter and bigger.",
   primaryCta: "Book a Free Strategy Call",
-  secondaryCta: "Explore Our Services",
+  secondaryCta: "View Our Work",
   trustedLabel: "Trusted by innovators & leaders worldwide",
-  skylineImage: "/images/hero/hero-bg-hd.jpg",
+  skylineImage: "/images/hero/hero-earth-1920.webp",
+  skylineImagePreload: "/images/hero/hero-earth-1280.webp",
   skylineAlt:
-    "Earth from space with glowing city lights and a futuristic skyline",
+    "Earth from space with glowing orbital arcs and a futuristic city skyline",
   heroImage: "/images/hero/hero-devices-hd.png",
   heroImageAlt:
     "Laptop and smartphone on a dark surface with golden light trails and mountain landscape on screen",
@@ -31,14 +26,45 @@ export const heroContent = {
   },
 } as const;
 
+export const heroFeatures = [
+  "Custom Solutions",
+  "Proven Results",
+  "Transparent Process",
+  "Ongoing Support",
+] as const;
+
 export const heroStatCards = {
-  totalGrowth: { label: "Total Growth", value: "+148%" },
-  revenue: {
-    label: "Revenue Generated",
-    value: "$12.6M",
-    delta: "+99% vs last year",
+  revenueGrowth: {
+    label: "Revenue Growth",
+    value: "+$2.45M",
+    delta: "↑ 125% vs last 6 months",
   },
-  activeProjects: { label: "Active Projects", value: "125", note: "Live" },
+  clientSatisfaction: {
+    label: "Client Satisfaction",
+    value: "98%",
+  },
+  activeProjects: {
+    label: "Active Projects",
+    value: "24",
+    note: "On Going",
+    extra: "+6",
+  },
+} as const;
+
+export const heroPerformanceOverview = {
+  title: "Performance Overview",
+  period: "Last 6 Months",
+  metricLabel: "Total Revenue",
+  metricValue: "$2.45M",
+  delta: "↑ 125% vs last 6 months",
+  chartPeak: "$2.45M",
+  months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"] as const,
+  kpis: [
+    { id: "traffic", label: "Website Traffic", value: "215K", delta: "↑ 32%" },
+    { id: "leads", label: "Leads Generated", value: "12.5K", delta: "↑ 154%" },
+    { id: "conversion", label: "Conversion Rate", value: "6.8%", delta: "↑ 52%" },
+    { id: "roi", label: "Avg. ROI", value: "420%", delta: "↑ 88%" },
+  ] as const,
 } as const;
 
 export const heroTrustStats: TrustStat[] = [
@@ -46,25 +72,21 @@ export const heroTrustStats: TrustStat[] = [
     id: "projects",
     value: "250+",
     label: "Projects Delivered",
-    icon: Briefcase,
   },
   {
     id: "industries",
     value: "50+",
     label: "Industries Served",
-    icon: Target,
   },
   {
     id: "satisfaction",
     value: "98%",
     label: "Client Satisfaction",
-    icon: Users,
   },
   {
     id: "experience",
     value: "5+",
     label: "Years of Excellence",
-    icon: Award,
   },
 ];
 

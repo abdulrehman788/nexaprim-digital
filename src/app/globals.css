@@ -9,15 +9,18 @@
     --color-surface-elevated: #111827;
 
     --color-content-primary: #f5f3ef;
-    --color-content-secondary: #d1cdc4;
+    --color-content-secondary: #cbd5e1;
     --color-content-muted: #94a3b8;
-    --color-content-inverse: #05080f;
+    --color-content-inverse: #0f172a;
 
-    --color-accent: #8b5cf6;
-    --color-accent-hover: #a78bfa;
-    --color-accent-muted: rgba(139, 92, 246, 0.15);
+    /* Brand accents from mockup — purple + orange */
+    --color-accent: #7c3aed;
+    --color-accent-hover: #8b5cf6;
+    --color-accent-muted: rgba(124, 58, 237, 0.14);
     --color-accent-warm: #f97316;
-    --gradient-brand: linear-gradient(90deg, #7c3aed 0%, #a855f7 48%, #f97316 100%);
+    --color-heading: #0f172a;
+    --color-body: #475569;
+    --gradient-brand: linear-gradient(90deg, #7c3aed 0%, #a855f7 45%, #f97316 100%);
 
     --color-border: rgba(245, 243, 239, 0.12);
     --color-border-subtle: rgba(245, 243, 239, 0.06);
@@ -136,6 +139,7 @@
     }
   }
 
+  /* Purple → orange brand gradient (CTAs + multi-word accents) */
   .text-gold-gradient {
     background-image: var(--gradient-brand);
     -webkit-background-clip: text;
@@ -147,6 +151,23 @@
     background-image: var(--gradient-brand);
   }
 
+  /* Solid brand accents (mockup: purple label words + orange end words) */
+  .text-brand-purple {
+    color: #7c3aed;
+  }
+
+  .text-brand-orange {
+    color: #f97316;
+  }
+
+  .text-heading {
+    color: var(--color-heading);
+  }
+
+  .text-body {
+    color: var(--color-body);
+  }
+
   .shadow-brand-glow {
     box-shadow:
       0 0 40px -8px rgba(124, 58, 237, 0.45),
@@ -155,5 +176,15 @@
 
   .glass-card {
     @apply rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md;
+  }
+
+  /* Section overline — purple uppercase with dot (mockup pattern) */
+  .section-overline {
+    @apply flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-violet-600;
+  }
+
+  .section-overline::before {
+    content: "";
+    @apply h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500;
   }
 }

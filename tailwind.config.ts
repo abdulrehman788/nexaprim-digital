@@ -29,6 +29,12 @@ const config: Config = {
           800: "#5b21b6",
           900: "#4c1d95",
         },
+        brand: {
+          purple: "#7c3aed",
+          orange: "#f97316",
+          heading: "#0f172a",
+          body: "#475569",
+        },
         surface: {
           primary: "var(--color-surface-primary)",
           secondary: "var(--color-surface-secondary)",
@@ -55,9 +61,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-sans)", "Arial", "Helvetica Neue", "sans-serif"],
+        /** Legacy alias — same Poppins stack as body */
+        serif: ["var(--font-sans)", "Arial", "Helvetica Neue", "sans-serif"],
+        sans: ["var(--font-sans)", "Arial", "Helvetica Neue", "sans-serif"],
       },
       fontSize: {
         "display-xl": ["4.5rem", { lineHeight: "1", letterSpacing: "-0.02em" }],

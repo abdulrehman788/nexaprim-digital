@@ -15,6 +15,7 @@ function JsonLdScript({ data }: JsonLdProps) {
   );
 }
 
+/** Lightweight sitewide schema — FAQ/services graphs live on their own pages. */
 export function JsonLd() {
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -53,34 +54,15 @@ export function JsonLd() {
     },
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteConfig.url,
-      },
-    ],
-  };
+  return (
+    <>
+      <JsonLdScript data={organizationSchema} />
+      <JsonLdScript data={websiteSchema} />
+    </>
+  );
+}
 
-  const serviceSchemas = schemaCatalogItems.map((item) => ({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: item.title,
-    description: item.description,
-    url: new URL(item.href, siteConfig.url).toString(),
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    areaServed: "Worldwide",
-    serviceType: "Digital Marketing",
-  }));
-
+export function FaqPageJsonLd() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -94,14 +76,30 @@ export function JsonLd() {
     })),
   };
 
+  return <JsonLdScript data={faqSchema} />;
+}
+
+export function ServicesCatalogJsonLd() {
   return (
     <>
-      <JsonLdScript data={organizationSchema} />
-      <JsonLdScript data={websiteSchema} />
-      <JsonLdScript data={breadcrumbSchema} />
-      <JsonLdScript data={faqSchema} />
-      {serviceSchemas.map((schema, index) => (
-        <JsonLdScript key={index} data={schema} />
+      {schemaCatalogItems.map((item) => (
+        <JsonLdScript
+          key={item.href}
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: item.title,
+            description: item.description,
+            url: new URL(item.href, siteConfig.url).toString(),
+            provider: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+            },
+            areaServed: "Worldwide",
+            serviceType: "Digital Marketing",
+          }}
+        />
       ))}
     </>
   );

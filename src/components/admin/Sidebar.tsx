@@ -51,7 +51,7 @@ export function Sidebar({
   onNavigate,
   onLogout,
   userName = "Admin",
-  userEmail = "content@nexaprime.digital",
+  userEmail = "info@expandova.com",
 }: SidebarProps) {
   const initials = userName
     .split(" ")

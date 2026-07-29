@@ -217,7 +217,7 @@ function NarrativeBlock({
       <h2
         id={headingId}
         className={cn(
-          "font-serif text-2xl font-bold leading-snug sm:text-3xl lg:text-[2rem]",
+          "font-display text-2xl font-bold leading-snug sm:text-3xl lg:text-[2rem]",
           light ? "text-slate-900" : "text-white",
           step && "mt-3",
         )}
@@ -240,7 +240,7 @@ function NarrativeBlock({
               {isFirstWithDropCap ? (
                 <>
                   <span
-                    className="float-left mr-2 mt-0.5 font-serif text-5xl font-bold leading-none text-accent"
+                    className="float-left mr-2 mt-0.5 font-display text-5xl font-bold leading-none text-accent"
                     aria-hidden="true"
                   >
                     {paragraph.charAt(0)}
@@ -411,7 +411,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
                 <p className="mt-2 text-xs font-medium text-content-muted">{categoryLabel}</p>
                 <h1
                   id="service-page-title"
-                  className="mt-4 font-serif text-[1.65rem] font-bold leading-[1.12] text-white sm:text-3xl lg:text-[2.35rem]"
+                  className="mt-4 font-display text-[1.65rem] font-bold leading-[1.12] text-white sm:text-3xl lg:text-[2.35rem]"
                 >
                   {titleBefore}
                   {titleAccent ? (
@@ -530,7 +530,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
               <h2
                 id="service-capabilities-heading"
                 className={cn(
-                  "mt-3 font-serif text-2xl font-bold leading-snug sm:text-3xl lg:text-[2rem]",
+                  "mt-3 font-display text-2xl font-bold leading-snug sm:text-3xl lg:text-[2rem]",
                   capabilitiesLight ? "text-slate-900" : "text-white",
                 )}
               >
@@ -576,7 +576,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
               <h2
                 id="service-deliverables-heading"
                 className={cn(
-                  "mt-3 font-serif text-2xl font-bold sm:text-3xl",
+                  "mt-3 font-display text-2xl font-bold sm:text-3xl",
                   deliverablesLight ? "text-slate-900" : "text-white",
                 )}
               >
@@ -654,7 +654,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
                 <h2
                   id="service-faq-heading"
                   className={cn(
-                    "mt-3 font-serif text-2xl font-bold sm:text-3xl",
+                    "mt-3 font-display text-2xl font-bold sm:text-3xl",
                     faqLight ? "text-slate-900" : "text-white",
                   )}
                 >

@@ -65,14 +65,16 @@ export function GrowthProcessSection() {
     <Section variant="primary" aria-labelledby="growth-process-heading" className="content-auto">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-400 sm:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-400 sm:text-sm">
             How we work
           </p>
           <h2
             id="growth-process-heading"
             className="mt-3 font-display text-display-sm font-bold text-white sm:text-display-md"
           >
-            The Expansive <span className="text-gold-gradient">Growth Process</span>
+            The Expansive{" "}
+            <span className="text-brand-purple">Growth</span>{" "}
+            <span className="text-brand-orange">Process</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-content-secondary sm:text-lg">
             A repeatable system that moves you from scattered tactics to a compounding growth engine.
@@ -110,7 +112,7 @@ export function GrowthProcessSection() {
                     sizes="(max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/25" aria-hidden="true" />
+                  <div className="absolute inset-0 bg-black/[0.04]" aria-hidden="true" />
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-content-muted">{item.description}</p>
               </li>

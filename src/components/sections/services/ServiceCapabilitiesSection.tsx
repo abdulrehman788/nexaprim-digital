@@ -17,7 +17,7 @@ export function ServiceCapabilitiesSection({ content }: ServiceCapabilitiesSecti
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Capabilities</p>
           <h2
             id={`service-capabilities-${content.id}`}
-            className="mt-2 max-w-2xl font-serif text-2xl font-bold text-white sm:text-3xl"
+            className="mt-2 max-w-2xl font-display text-2xl font-bold text-white sm:text-3xl"
           >
             {content.titleWhite}{" "}
             <span className="text-gold-gradient">{content.titleAccent}</span>

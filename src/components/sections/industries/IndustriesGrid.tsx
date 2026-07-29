@@ -21,7 +21,7 @@ export function IndustriesGrid() {
               <div>
                 <h2
                   id="industries-grid-heading"
-                  className="font-serif text-2xl font-bold text-slate-900 sm:text-3xl"
+                  className="font-display text-2xl font-bold text-slate-900 sm:text-3xl"
                 >
                   Industries we serve
                 </h2>
@@ -57,7 +57,7 @@ export function IndustriesGrid() {
               </p>
               <h2
                 id="industries-cta-heading"
-                className="mt-2 font-serif text-xl font-bold text-white sm:text-2xl"
+                className="mt-2 font-display text-xl font-bold text-white sm:text-2xl"
               >
                 Not sure which industry system fits?
               </h2>

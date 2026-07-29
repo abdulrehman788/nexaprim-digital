@@ -141,7 +141,7 @@ export function BookingSlotPicker() {
                 className={cn(
                   "flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold",
                   isActive
-                    ? "bg-accent text-black"
+                    ? "bg-accent text-white"
                     : isComplete
                       ? "bg-accent/20 text-accent"
                       : "bg-white/5 text-content-muted",

@@ -15,7 +15,7 @@ model BlogPost {
   content       String
   coverImage    String?
   coverImageAlt String?
-  author        String   @default("NexaPrime Digital")
+  author        String   @default("Expandova")
   tags          String   @default("[]")
   status        String   @default("DRAFT")
   publishAt     DateTime?

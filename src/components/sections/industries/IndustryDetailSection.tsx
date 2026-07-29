@@ -61,7 +61,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
                 </p>
                 <h1
                   id="industry-heading"
-                  className="mt-4 font-serif text-[1.75rem] font-bold leading-[1.12] text-white sm:text-display-sm lg:text-[2.5rem]"
+                  className="mt-4 font-display text-[1.75rem] font-bold leading-[1.12] text-white sm:text-display-sm lg:text-[2.5rem]"
                 >
                   {industry.headline}
                 </h1>
@@ -118,7 +118,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
               <h2
                 id="industry-challenges-heading"
                 className={cn(
-                  "mt-2 font-serif text-xl font-bold sm:text-2xl",
+                  "mt-2 font-display text-xl font-bold sm:text-2xl",
                   isLightBand(1) ? lightHeading : "text-white",
                 )}
               >
@@ -154,7 +154,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Results</p>
               <h2
                 className={cn(
-                  "mt-2 font-serif text-xl font-bold sm:text-2xl",
+                  "mt-2 font-display text-xl font-bold sm:text-2xl",
                   isLightBand(1) ? lightHeading : "text-white",
                 )}
               >
@@ -204,7 +204,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
                 <h2
                   id="industry-capabilities-heading"
                   className={cn(
-                    "mt-2 font-serif text-2xl font-bold sm:text-3xl",
+                    "mt-2 font-display text-2xl font-bold sm:text-3xl",
                     isLightBand(2) ? lightHeading : "text-white",
                   )}
                 >
@@ -260,7 +260,7 @@ export function IndustryDetailSection({ industry }: IndustryDetailSectionProps) 
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Next step</p>
                 <h3
                   className={cn(
-                    "mt-3 font-serif text-2xl font-bold leading-tight sm:text-3xl",
+                    "mt-3 font-display text-2xl font-bold leading-tight sm:text-3xl",
                     isLightBand(3) ? lightHeading : "text-white",
                   )}
                 >

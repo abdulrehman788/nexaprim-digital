@@ -31,7 +31,7 @@ export function PackagesGrid() {
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-600">Programs</p>
           <h2
             id="packages-grid-heading"
-            className="mt-3 font-serif text-2xl font-bold text-slate-900 sm:text-3xl"
+            className="mt-3 font-display text-2xl font-bold text-slate-900 sm:text-3xl"
           >
             Pick your starting point
           </h2>
@@ -139,7 +139,7 @@ export function PackagesGrid() {
                       className={cn(
                         "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors",
                         isFeatured
-                          ? "bg-accent text-black group-hover:bg-gold-300"
+                          ? "bg-accent text-white group-hover:bg-gold-300"
                           : "bg-slate-900 text-white group-hover:bg-gold-600",
                       )}
                     >

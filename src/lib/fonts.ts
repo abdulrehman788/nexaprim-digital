@@ -1,34 +1,20 @@
-import { DM_Sans, Playfair_Display, Syne } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-/** Section headings & UI labels */
-export const fontDisplay = Syne({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["600", "700", "800"],
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-/** Hero headlines — elegant serif per design mockups */
-export const fontSerif = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["600", "700"],
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-/** Body copy & UI */
-export const fontSans = DM_Sans({
+/**
+ * Single Poppins load for the whole site (headings + body).
+ * Avoids duplicate Google Font requests from two next/font instances.
+ */
+export const fontSans = Poppins({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   preload: true,
   adjustFontFallback: true,
-  fallback: ["system-ui", "Segoe UI", "sans-serif"],
+  fallback: ["Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
 });
 
-export const fontVariables = `${fontDisplay.variable} ${fontSerif.variable} ${fontSans.variable}`;
+/** Alias — display styles use the same Poppins family via --font-sans. */
+export const fontDisplay = fontSans;
+
+export const fontVariables = fontSans.variable;

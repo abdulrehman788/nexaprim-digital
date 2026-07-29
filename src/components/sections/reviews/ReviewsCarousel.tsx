@@ -167,7 +167,7 @@ function ReviewSlide({ review, theme = "dark" }: ReviewSlideProps) {
         <div className="relative min-w-0">
           <span
             className={cn(
-              "pointer-events-none absolute -left-1 -top-3 font-serif text-6xl leading-none",
+              "pointer-events-none absolute -left-1 -top-3 font-display text-6xl leading-none",
               light ? "text-slate-200" : "text-white/[0.06]",
             )}
             aria-hidden="true"
@@ -177,7 +177,7 @@ function ReviewSlide({ review, theme = "dark" }: ReviewSlideProps) {
 
           <blockquote
             className={cn(
-              "relative font-serif text-lg leading-relaxed sm:text-xl sm:leading-8",
+              "relative font-display text-lg leading-relaxed sm:text-xl sm:leading-8",
               light ? "text-slate-800" : "text-white",
             )}
           >

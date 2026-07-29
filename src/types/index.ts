@@ -15,7 +15,7 @@ export interface TrustStat {
   id: string;
   value: string;
   label: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
 }
 
 export type IndustryIconId =

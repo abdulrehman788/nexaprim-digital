@@ -14,12 +14,10 @@ export function IndustriesSection() {
       <Container>
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-14 xl:gap-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
-              {industriesSection.overline}
-            </p>
+            <p className="section-overline">{industriesSection.overline}</p>
             <h2
               id="industries-heading"
-              className="mt-4 max-w-md font-serif text-[2rem] font-bold leading-[1.12] text-slate-900 sm:text-[2.35rem] lg:text-[2.5rem]"
+              className="mt-4 max-w-md font-display text-[2rem] font-bold leading-[1.12] text-slate-900 sm:text-[2.35rem] lg:text-[2.5rem]"
             >
               {industriesSection.title}
             </h2>

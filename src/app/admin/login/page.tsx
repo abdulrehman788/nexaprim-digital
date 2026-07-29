@@ -25,7 +25,7 @@ export default function AdminLoginPage() {
           </h1>
           <p className="mt-4 max-w-md text-base leading-relaxed text-white/80">
             Manage blog posts and client case studies. Schedule publishing and control what goes
-            live on nexaprime.digital.
+            live on expandova.com.
           </p>
           <ul className="mt-8 space-y-3">
             {[

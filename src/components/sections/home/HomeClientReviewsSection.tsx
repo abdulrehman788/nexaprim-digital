@@ -32,7 +32,7 @@ export function HomeClientReviewsSection() {
         <div className="flex items-end justify-between gap-4">
           <p
             id="home-reviews-heading"
-            className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-400"
+            className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-400"
           >
             {homeReviewsSection.overline}
           </p>
