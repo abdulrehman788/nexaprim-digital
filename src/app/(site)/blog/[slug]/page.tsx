@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlogArticle } from "@/components/sections/blog/BlogArticle";
-import { getAllBlogSlugs, getPublishedBlogPostBySlug } from "@/lib/content/blog";
+import {
+  getAllBlogSlugs,
+  getPublishedBlogPostBySlug,
+  getPublishedBlogPosts,
+} from "@/lib/content/blog";
 import { generatePageMetadata } from "@/lib/seo";
 
 interface BlogPostPageProps {
@@ -35,15 +39,20 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPublishedBlogPostBySlug(params.slug);
+  const [post, allPosts] = await Promise.all([
+    getPublishedBlogPostBySlug(params.slug),
+    getPublishedBlogPosts(),
+  ]);
 
   if (!post) {
     notFound();
   }
 
+  const latestPosts = allPosts.filter((item) => item.slug !== post.slug).slice(0, 5);
+
   return (
     <main className="bg-white">
-      <BlogArticle post={post} />
+      <BlogArticle post={post} latestPosts={latestPosts} />
     </main>
   );
 }

@@ -21,6 +21,8 @@ type ContactFormTheme = "dark" | "light";
 interface ContactFormProps {
   defaultIntent?: string;
   theme?: ContactFormTheme;
+  /** Tighter single-column layout for sidebars */
+  compact?: boolean;
 }
 
 const themeStyles = {
@@ -48,7 +50,19 @@ const themeStyles = {
   },
 } as const;
 
-export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps) {
+const compactLightStyles = {
+  form: "relative",
+  input:
+    "w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20",
+  label: "mb-1.5 block text-xs font-medium text-slate-900",
+  success:
+    "flex flex-col items-center rounded-xl border border-orange-200 bg-orange-50 px-4 py-8 text-center",
+  successTitle: "mt-3 font-display text-lg font-bold text-slate-900",
+  successMessage: "mt-1.5 text-sm leading-relaxed text-slate-600",
+  chevron: "text-orange-600",
+} as const;
+
+export function ContactForm({ defaultIntent, theme = "dark", compact = false }: ContactFormProps) {
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
@@ -106,18 +120,27 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
     }
   };
 
-  const styles = themeStyles[theme];
+  const styles = compact && theme === "light" ? compactLightStyles : themeStyles[theme];
+  const fieldGap = compact ? "gap-3" : "gap-5";
+  const idPrefix = compact ? "blog-contact" : "contact";
 
   if (submitState === "success") {
     return (
       <div className={styles.success} role="status">
-        <CheckCircle2 className="h-12 w-12 text-accent" aria-hidden="true" />
+        <CheckCircle2
+          className={cn("text-accent", compact ? "h-8 w-8" : "h-12 w-12")}
+          aria-hidden="true"
+        />
         <h3 className={styles.successTitle}>{contactSection.successTitle}</h3>
         <p className={styles.successMessage}>{contactSection.successMessage}</p>
         <Button
           type="button"
           variant="outline"
-          className={cn("mt-6", theme === "light" && "border-slate-200 text-slate-900")}
+          size={compact ? "sm" : "md"}
+          className={cn(
+            compact ? "mt-4 w-full" : "mt-6",
+            theme === "light" && "border-slate-200 text-slate-900",
+          )}
           onClick={() => setSubmitState("idle")}
         >
           Send another message
@@ -129,9 +152,9 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form} onFocus={markStarted}>
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-        <label htmlFor="contact-website">Website</label>
+        <label htmlFor={`${idPrefix}-website`}>Website</label>
         <input
-          id="contact-website"
+          id={`${idPrefix}-website`}
           type="text"
           tabIndex={-1}
           autoComplete="off"
@@ -139,87 +162,91 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-name" className={styles.label}>
+      <div className={cn("grid", fieldGap, !compact && "sm:grid-cols-2")}>
+        <div className={cn(!compact && "sm:col-span-1")}>
+          <label htmlFor={`${idPrefix}-name`} className={styles.label}>
             Full name <span className="text-accent">*</span>
           </label>
           <input
-            id="contact-name"
+            id={`${idPrefix}-name`}
             type="text"
             autoComplete="name"
             className={cn(styles.input, errors.name && "border-red-400 focus:border-red-400")}
             aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? "contact-name-error" : undefined}
+            aria-describedby={errors.name ? `${idPrefix}-name-error` : undefined}
             {...register("name")}
           />
           {errors.name ? (
-            <p id="contact-name-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id={`${idPrefix}-name-error`} className="mt-1.5 text-xs text-red-400" role="alert">
               {errors.name.message}
             </p>
           ) : null}
         </div>
 
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-email" className={styles.label}>
+        <div className={cn(!compact && "sm:col-span-1")}>
+          <label htmlFor={`${idPrefix}-email`} className={styles.label}>
             Email <span className="text-accent">*</span>
           </label>
           <input
-            id="contact-email"
+            id={`${idPrefix}-email`}
             type="email"
             autoComplete="email"
             className={cn(styles.input, errors.email && "border-red-400 focus:border-red-400")}
             aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? "contact-email-error" : undefined}
+            aria-describedby={errors.email ? `${idPrefix}-email-error` : undefined}
             {...register("email")}
           />
           {errors.email ? (
-            <p id="contact-email-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id={`${idPrefix}-email-error`} className="mt-1.5 text-xs text-red-400" role="alert">
               {errors.email.message}
             </p>
           ) : null}
         </div>
 
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-company" className={styles.label}>
-            Company
-          </label>
-          <input
-            id="contact-company"
-            type="text"
-            autoComplete="organization"
-            className={styles.input}
-            {...register("company")}
-          />
-        </div>
+        {!compact ? (
+          <>
+            <div className="sm:col-span-1">
+              <label htmlFor={`${idPrefix}-company`} className={styles.label}>
+                Company
+              </label>
+              <input
+                id={`${idPrefix}-company`}
+                type="text"
+                autoComplete="organization"
+                className={styles.input}
+                {...register("company")}
+              />
+            </div>
 
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-phone" className={styles.label}>
-            Phone
-          </label>
-          <input
-            id="contact-phone"
-            type="tel"
-            autoComplete="tel"
-            className={styles.input}
-            {...register("phone")}
-          />
-        </div>
+            <div className="sm:col-span-1">
+              <label htmlFor={`${idPrefix}-phone`} className={styles.label}>
+                Phone
+              </label>
+              <input
+                id={`${idPrefix}-phone`}
+                type="tel"
+                autoComplete="tel"
+                className={styles.input}
+                {...register("phone")}
+              />
+            </div>
+          </>
+        ) : null}
 
-        <div className="sm:col-span-2">
-          <label htmlFor="contact-intent" className={styles.label}>
+        <div className={cn(!compact && "sm:col-span-2")}>
+          <label htmlFor={`${idPrefix}-intent`} className={styles.label}>
             How can we help? <span className="text-accent">*</span>
           </label>
           <div className="relative">
             <select
-              id="contact-intent"
+              id={`${idPrefix}-intent`}
               className={cn(
                 styles.input,
                 "appearance-none pr-10",
                 errors.intent && "border-red-400 focus:border-red-400",
               )}
               aria-invalid={Boolean(errors.intent)}
-              aria-describedby={errors.intent ? "contact-intent-error" : undefined}
+              aria-describedby={errors.intent ? `${idPrefix}-intent-error` : undefined}
               {...register("intent")}
             >
               <option value="">Select a topic</option>
@@ -230,35 +257,38 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
               ))}
             </select>
             <ChevronDown
-              className={cn("pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2", styles.chevron)}
+              className={cn(
+                "pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2",
+                styles.chevron,
+              )}
               aria-hidden="true"
             />
           </div>
           {errors.intent ? (
-            <p id="contact-intent-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id={`${idPrefix}-intent-error`} className="mt-1.5 text-xs text-red-400" role="alert">
               {errors.intent.message}
             </p>
           ) : null}
         </div>
 
-        <div className="sm:col-span-2">
-          <label htmlFor="contact-message" className={styles.label}>
+        <div className={cn(!compact && "sm:col-span-2")}>
+          <label htmlFor={`${idPrefix}-message`} className={styles.label}>
             Message <span className="text-accent">*</span>
           </label>
           <textarea
-            id="contact-message"
-            rows={5}
+            id={`${idPrefix}-message`}
+            rows={compact ? 3 : 5}
             className={cn(
               styles.input,
               "resize-y",
               errors.message && "border-red-400 focus:border-red-400",
             )}
             aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? "contact-message-error" : undefined}
+            aria-describedby={errors.message ? `${idPrefix}-message-error` : undefined}
             {...register("message")}
           />
           {errors.message ? (
-            <p id="contact-message-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id={`${idPrefix}-message-error`} className="mt-1.5 text-xs text-red-400" role="alert">
               {errors.message.message}
             </p>
           ) : null}
@@ -273,12 +303,14 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
 
       <Button
         type="submit"
-        size="lg"
+        size={compact ? "md" : "lg"}
         className={cn(
-          "mt-6 w-full sm:w-auto",
+          compact ? "mt-4 w-full" : "mt-6 w-full sm:w-auto",
           theme === "dark"
             ? "bg-gold-gradient border-transparent text-white shadow-glow hover:opacity-90"
-            : undefined,
+            : compact
+              ? "border-transparent bg-orange-500 text-white hover:bg-orange-600"
+              : undefined,
         )}
         pill={theme === "light"}
         disabled={submitState === "loading"}
@@ -288,26 +320,28 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
           ) : undefined
         }
       >
-        {submitState === "loading" ? "Sending..." : contactSection.submitLabel}
+        {submitState === "loading" ? "Sending..." : compact ? "Send message" : contactSection.submitLabel}
       </Button>
 
-      <p
-        className={cn(
-          "mt-4 text-sm",
-          theme === "dark" ? "text-content-muted" : "text-slate-500",
-        )}
-      >
-        Messages go to{" "}
-        <a
-          href={`mailto:${siteConfig.email}`}
+      {!compact ? (
+        <p
           className={cn(
-            "font-semibold underline-offset-2 hover:underline",
-            theme === "dark" ? "text-accent" : "text-gold-600",
+            "mt-4 text-sm",
+            theme === "dark" ? "text-content-muted" : "text-slate-500",
           )}
         >
-          {siteConfig.email}
-        </a>
-      </p>
+          Messages go to{" "}
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className={cn(
+              "font-semibold underline-offset-2 hover:underline",
+              theme === "dark" ? "text-accent" : "text-gold-600",
+            )}
+          >
+            {siteConfig.email}
+          </a>
+        </p>
+      ) : null}
     </form>
   );
 }

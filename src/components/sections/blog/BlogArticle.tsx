@@ -1,3 +1,4 @@
+import { BlogSidebar } from "@/components/sections/blog/BlogSidebar";
 import { Container } from "@/components/ui/Container";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { lightBody, lightHeading, lightMuted } from "@/lib/section-surfaces";
@@ -86,30 +87,64 @@ function renderContent(content: string) {
   });
 }
 
-export function BlogArticle({ post }: { post: BlogPostPublic }) {
+type BlogArticleProps = {
+  post: BlogPostPublic;
+  latestPosts: BlogPostPublic[];
+};
+
+export function BlogArticle({ post, latestPosts }: BlogArticleProps) {
   const date = post.publishAt
     ? new Date(post.publishAt).toLocaleDateString(undefined, { dateStyle: "long" })
     : null;
 
   return (
     <article>
-      <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#05080f] pb-10 pt-28 sm:pb-12 sm:pt-32">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.18), transparent 55%)",
-          }}
-          aria-hidden="true"
-        />
+      <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#05080f] pb-12 pt-28 sm:pb-16 sm:pt-32">
+        {post.coverImage ? (
+          <div className="absolute inset-0" aria-hidden="true">
+            <OptimizedImage
+              src={post.coverImage}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              quality={75}
+              priority
+            />
+            {/* Dark on content (left), clear on empty (right) */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, rgba(5,8,15,0.92) 0%, rgba(5,8,15,0.82) 38%, rgba(5,8,15,0.45) 68%, rgba(5,8,15,0.18) 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, rgba(5,8,15,0.55) 0%, transparent 35%, rgba(5,8,15,0.35) 100%)",
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.18), transparent 55%)",
+            }}
+            aria-hidden="true"
+          />
+        )}
         <Container className="relative">
-          <header className="mx-auto max-w-3xl">
+          <header className="max-w-2xl lg:max-w-3xl">
             {post.tags.length > 0 ? (
               <ul className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full border border-orange-400/25 bg-orange-500/10 px-3 py-0.5 text-xs font-medium text-orange-200"
+                    className="rounded-full border border-orange-400/25 bg-orange-500/10 px-3 py-0.5 text-xs font-medium text-orange-200 backdrop-blur-sm"
                   >
                     {tag}
                   </li>
@@ -122,8 +157,8 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
             <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
-            <p className="mt-4 text-lg text-slate-300">{post.excerpt}</p>
-            <p className="mt-4 text-sm text-slate-400">
+            <p className="mt-4 text-lg text-slate-200/90">{post.excerpt}</p>
+            <p className="mt-4 text-sm text-slate-300/80">
               {post.author}
               {date ? ` · ${date}` : null}
             </p>
@@ -133,30 +168,22 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
 
       <section className="bg-white pb-16 pt-10 sm:pt-12">
         <Container>
-          {post.coverImage ? (
-            <div className="relative mx-auto aspect-[21/9] max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
-              <OptimizedImage
-                src={post.coverImage}
-                alt={post.coverImageAlt ?? post.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
-                quality={75}
-                priority
-              />
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(260px,3fr)] lg:gap-12">
+            <div className="min-w-0">
+              <div className="space-y-5">{renderContent(post.content)}</div>
+
+              <footer className="mt-12 border-t border-slate-200 pt-8">
+                <p className={cn("text-sm", lightMuted)}>
+                  Written by <span className={cn("font-medium", lightHeading)}>{post.author}</span>
+                  {date ? ` · ${date}` : null}
+                </p>
+              </footer>
             </div>
-          ) : null}
 
-          <div className="mx-auto mt-10 max-w-3xl space-y-5">
-            {renderContent(post.content)}
+            <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
+              <BlogSidebar posts={latestPosts} />
+            </aside>
           </div>
-
-          <footer className="mx-auto mt-12 max-w-3xl border-t border-slate-200 pt-8">
-            <p className={cn("text-sm", lightMuted)}>
-              Written by <span className={cn("font-medium", lightHeading)}>{post.author}</span>
-              {date ? ` · ${date}` : null}
-            </p>
-          </footer>
         </Container>
       </section>
     </article>
