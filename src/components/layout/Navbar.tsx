@@ -40,8 +40,8 @@ export function Navbar() {
                 <button
                   type="button"
                   className={cn(
-                    "relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-accent",
-                    active ? "text-accent" : "text-white",
+                    "relative flex items-center gap-1 px-3 py-2 font-display text-[13px] font-semibold tracking-wide transition-colors hover:text-orange-400",
+                    active ? "text-orange-400" : "text-slate-200",
                   )}
                   aria-expanded={openDropdown === link.label}
                   aria-haspopup="true"
@@ -50,7 +50,7 @@ export function Navbar() {
                   <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
                   {active ? (
                     <span
-                      className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-accent"
+                      className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-orange-500"
                       aria-hidden="true"
                     />
                   ) : null}
@@ -66,9 +66,9 @@ export function Navbar() {
                           href={child.href}
                           role="menuitem"
                           className={cn(
-                            "block px-4 py-2 text-sm transition-colors hover:bg-accent-muted hover:text-accent",
+                            "block px-4 py-2 text-sm transition-colors hover:bg-orange-500/10 hover:text-orange-400",
                             isNavLinkActive(pathname, child.href)
-                              ? "text-accent"
+                              ? "text-orange-400"
                               : "text-content-secondary",
                           )}
                         >
@@ -87,14 +87,14 @@ export function Navbar() {
               <Link
                 href={link.href}
                 className={cn(
-                  "relative block px-3 py-2 text-sm font-medium transition-colors hover:text-accent",
-                  isActive ? "text-accent" : "text-white",
+                  "relative block px-3 py-2 font-display text-[13px] font-semibold tracking-wide transition-colors hover:text-orange-400",
+                  isActive ? "text-orange-400" : "text-slate-200",
                 )}
               >
                 {link.label}
                 {isActive ? (
                   <span
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-accent"
+                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-orange-500"
                     aria-hidden="true"
                   />
                 ) : null}

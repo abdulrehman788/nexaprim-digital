@@ -23,7 +23,7 @@ export function MobileMenu() {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-white/30 text-white transition-colors hover:border-accent hover:text-accent"
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-white/20 text-white transition-colors hover:border-orange-400/50 hover:text-orange-400"
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -50,7 +50,7 @@ export function MobileMenu() {
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block rounded-md px-3 py-3 text-base font-medium text-content-primary transition-colors hover:bg-accent-muted hover:text-accent"
+                  className="block rounded-md px-3 py-3 font-display text-base font-semibold text-content-primary transition-colors hover:bg-orange-500/10 hover:text-orange-400"
                 >
                   {link.label}
                 </Link>
@@ -61,7 +61,7 @@ export function MobileMenu() {
                         <Link
                           href={child.href}
                           onClick={() => setIsOpen(false)}
-                          className="block px-3 py-2 text-sm text-content-secondary transition-colors hover:text-accent"
+                          className="block px-3 py-2 text-sm text-content-secondary transition-colors hover:text-orange-400"
                         >
                           {child.label}
                         </Link>

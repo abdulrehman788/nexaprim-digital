@@ -93,9 +93,13 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
 
   return (
     <article>
-      <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#050505] pb-10 pt-28 sm:pb-12 sm:pt-32">
+      <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#05080f] pb-10 pt-28 sm:pb-12 sm:pt-32">
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.1),transparent_55%)]"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.18), transparent 55%)",
+          }}
           aria-hidden="true"
         />
         <Container className="relative">
@@ -105,18 +109,21 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
                 {post.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full border border-white/10 px-3 py-0.5 text-xs font-medium text-content-secondary"
+                    className="rounded-full border border-orange-400/25 bg-orange-500/10 px-3 py-0.5 text-xs font-medium text-orange-200"
                   >
                     {tag}
                   </li>
                 ))}
               </ul>
             ) : null}
-            <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-400">
+              Expandova Insights
+            </p>
+            <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
-            <p className="mt-4 text-lg text-content-secondary">{post.excerpt}</p>
-            <p className="mt-4 text-sm text-content-muted">
+            <p className="mt-4 text-lg text-slate-300">{post.excerpt}</p>
+            <p className="mt-4 text-sm text-slate-400">
               {post.author}
               {date ? ` · ${date}` : null}
             </p>
@@ -127,13 +134,14 @@ export function BlogArticle({ post }: { post: BlogPostPublic }) {
       <section className="bg-white pb-16 pt-10 sm:pt-12">
         <Container>
           {post.coverImage ? (
-            <div className="relative mx-auto aspect-[21/9] max-w-5xl overflow-hidden rounded-2xl border border-slate-200">
+            <div className="relative mx-auto aspect-[21/9] max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
               <OptimizedImage
                 src={post.coverImage}
                 alt={post.coverImageAlt ?? post.title}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1200px) 100vw, 1200px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
+                quality={75}
                 priority
               />
             </div>

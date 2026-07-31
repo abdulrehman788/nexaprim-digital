@@ -8,6 +8,7 @@ import {
   Bold,
   ChevronDown,
   ExternalLink,
+  Eye,
   Heading2,
   ImageIcon,
   Italic,
@@ -15,12 +16,14 @@ import {
   List,
   ListOrdered,
   Loader2,
+  Pencil,
   Quote,
   Upload,
   X,
 } from "lucide-react";
 
 import { ContentStatusBadge } from "@/components/admin/ContentStatusBadge";
+import { MarkdownPreview } from "@/components/admin/MarkdownPreview";
 import { uploadAdminImage } from "@/lib/admin/upload-image";
 import type { BlogPostInput } from "@/lib/schemas/admin";
 import { slugify } from "@/lib/content/utils";
@@ -149,18 +152,6 @@ function safeMarkdownAlt(name: string) {
     .slice(0, 80) || "Image";
 }
 
-function extractContentImages(markdown: string) {
-  const images: { alt: string; src: string }[] = [];
-  const re = /!\[([^\]]*)\]\(([^)\s]+)\)/g;
-  let match: RegExpExecArray | null;
-  while ((match = re.exec(markdown)) !== null) {
-    const src = match[2];
-    if (!src) continue;
-    images.push({ alt: match[1] || "Image", src });
-  }
-  return images;
-}
-
 export function BlogEditorForm({ initial }: BlogEditorFormProps) {
   const router = useRouter();
   const isEdit = Boolean(initial?.id);
@@ -190,6 +181,7 @@ export function BlogEditorForm({ initial }: BlogEditorFormProps) {
   const [saving, setSaving] = useState(false);
   const [uploadingFeatured, setUploadingFeatured] = useState(false);
   const [uploadingInline, setUploadingInline] = useState(false);
+  const [editorView, setEditorView] = useState<"write" | "preview">("write");
 
   useEffect(() => {
     contentValueRef.current = content;
@@ -202,7 +194,6 @@ export function BlogEditorForm({ initial }: BlogEditorFormProps) {
       : undefined;
 
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0;
-  const contentImages = extractContentImages(content);
 
   function rememberSelection() {
     const el = contentRef.current;
@@ -284,7 +275,8 @@ export function BlogEditorForm({ initial }: BlogEditorFormProps) {
       const alt = safeMarkdownAlt(file.name);
       const snippet = `\n\n![${alt}](${url})\n\n`;
       insertMarkdown(snippet, anchor);
-      setUploadNotice("Image added to content.");
+      setUploadNotice("Image added — showing visual preview.");
+      setEditorView("preview");
     } catch (err) {
       if (err instanceof Error && err.message === "UNAUTHORIZED") return;
       setError(err instanceof Error ? err.message : "Image upload failed");
@@ -529,108 +521,145 @@ export function BlogEditorForm({ initial }: BlogEditorFormProps) {
           </div>
 
           <div className="flex flex-wrap items-center gap-0.5 border-b border-slate-100 bg-slate-50/90 px-2 py-1.5 sm:px-3">
-            {toolbar.map(({ kind, icon: Icon, label }) => (
+            <div className="mr-2 inline-flex rounded-lg bg-slate-200/70 p-0.5">
               <button
-                key={kind}
                 type="button"
-                title={label}
-                aria-label={label}
-                onClick={() => applyFormat(kind)}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-md text-slate-600 transition hover:bg-white hover:text-slate-900 hover:shadow-sm"
+                onClick={() => setEditorView("write")}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-semibold transition",
+                  editorView === "write"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 hover:text-slate-800",
+                )}
               >
-                <Icon className="h-4 w-4" aria-hidden="true" />
+                <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
+                Write
               </button>
-            ))}
-            <span className="mx-1 hidden h-5 w-px bg-slate-200 sm:block" aria-hidden="true" />
-            <button
-              type="button"
-              title="Insert image"
-              aria-label="Insert image"
-              disabled={uploadingInline}
-              onMouseDown={rememberSelection}
-              onClick={() => {
-                rememberSelection();
-                contentImageInputRef.current?.click();
-              }}
-              className="inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-slate-600 transition hover:bg-white hover:text-slate-900 hover:shadow-sm disabled:opacity-50"
-            >
-              {uploadingInline ? (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-              ) : (
-                <ImageIcon className="h-4 w-4" aria-hidden="true" />
-              )}
-              <span className="hidden text-xs font-semibold sm:inline">
-                {uploadingInline ? "Uploading…" : "Image"}
-              </span>
-            </button>
+              <button
+                type="button"
+                onClick={() => setEditorView("preview")}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-semibold transition",
+                  editorView === "preview"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 hover:text-slate-800",
+                )}
+              >
+                <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+                Visual
+              </button>
+            </div>
+
+            {editorView === "write" ? (
+              <>
+                {toolbar.map(({ kind, icon: Icon, label }) => (
+                  <button
+                    key={kind}
+                    type="button"
+                    title={label}
+                    aria-label={label}
+                    onClick={() => applyFormat(kind)}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-md text-slate-600 transition hover:bg-white hover:text-slate-900 hover:shadow-sm"
+                  >
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                ))}
+                <span className="mx-1 hidden h-5 w-px bg-slate-200 sm:block" aria-hidden="true" />
+                <button
+                  type="button"
+                  title="Insert image"
+                  aria-label="Insert image"
+                  disabled={uploadingInline}
+                  onMouseDown={rememberSelection}
+                  onClick={() => {
+                    rememberSelection();
+                    contentImageInputRef.current?.click();
+                  }}
+                  className="inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-slate-600 transition hover:bg-white hover:text-slate-900 hover:shadow-sm disabled:opacity-50"
+                >
+                  {uploadingInline ? (
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  ) : (
+                    <ImageIcon className="h-4 w-4" aria-hidden="true" />
+                  )}
+                  <span className="hidden text-xs font-semibold sm:inline">
+                    {uploadingInline ? "Uploading…" : "Image"}
+                  </span>
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                title="Insert image"
+                aria-label="Insert image"
+                disabled={uploadingInline}
+                onClick={() => {
+                  rememberSelection();
+                  contentImageInputRef.current?.click();
+                }}
+                className="inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-slate-600 transition hover:bg-white hover:text-slate-900 hover:shadow-sm disabled:opacity-50"
+              >
+                {uploadingInline ? (
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                ) : (
+                  <ImageIcon className="h-4 w-4" aria-hidden="true" />
+                )}
+                <span className="text-xs font-semibold">
+                  {uploadingInline ? "Uploading…" : "Add image"}
+                </span>
+              </button>
+            )}
             <span className="ml-auto hidden px-2 text-[11px] font-medium text-slate-400 sm:inline">
-              Markdown supported
+              {editorView === "preview" ? "Visual preview" : "Markdown write mode"}
             </span>
           </div>
 
-          <textarea
-            ref={contentRef}
-            value={content}
-            onChange={(e) => {
-              contentValueRef.current = e.target.value;
-              setContent(e.target.value);
-              selectionRef.current = {
-                start: e.target.selectionStart,
-                end: e.target.selectionEnd,
-              };
-            }}
-            onSelect={rememberSelection}
-            onKeyUp={rememberSelection}
-            onClick={rememberSelection}
-            placeholder={"Start writing…\n\n## Heading\n\nUse the Image button to upload photos into the article."}
-            className="min-h-[28rem] w-full resize-y border-0 bg-white px-5 py-5 font-mono text-[13px] leading-7 text-slate-800 outline-none placeholder:text-slate-300 sm:min-h-[34rem] sm:px-8 sm:py-6 sm:text-sm"
-            onPaste={(e) => {
-              const file = Array.from(e.clipboardData.files).find((f) => f.type.startsWith("image/"));
-              if (!file) return;
-              e.preventDefault();
-              rememberSelection();
-              void handleContentImageUpload(file);
-            }}
-            onDragOver={(e) => {
-              if (Array.from(e.dataTransfer.types).includes("Files")) {
+          {editorView === "write" ? (
+            <textarea
+              ref={contentRef}
+              value={content}
+              onChange={(e) => {
+                contentValueRef.current = e.target.value;
+                setContent(e.target.value);
+                selectionRef.current = {
+                  start: e.target.selectionStart,
+                  end: e.target.selectionEnd,
+                };
+              }}
+              onSelect={rememberSelection}
+              onKeyUp={rememberSelection}
+              onClick={rememberSelection}
+              placeholder={"Start writing…\n\n## Heading\n\nUse the Image button — then open Visual to see the photo."}
+              className="min-h-[28rem] w-full resize-y border-0 bg-white px-5 py-5 font-mono text-[13px] leading-7 text-slate-800 outline-none placeholder:text-slate-300 sm:min-h-[34rem] sm:px-8 sm:py-6 sm:text-sm"
+              onPaste={(e) => {
+                const file = Array.from(e.clipboardData.files).find((f) =>
+                  f.type.startsWith("image/"),
+                );
+                if (!file) return;
                 e.preventDefault();
-              }
-            }}
-            onDrop={(e) => {
-              const file = Array.from(e.dataTransfer.files).find((f) => f.type.startsWith("image/"));
-              if (!file) return;
-              e.preventDefault();
-              rememberSelection();
-              void handleContentImageUpload(file);
-            }}
-          />
-
-          {contentImages.length > 0 ? (
-            <div className="border-t border-slate-100 bg-slate-50/80 px-5 py-3 sm:px-8">
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                Images in content ({contentImages.length})
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {contentImages.map((image, index) => (
-                  <a
-                    key={`${image.src}-${index}`}
-                    href={image.src}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative h-16 w-24 overflow-hidden rounded-lg ring-1 ring-slate-200 transition hover:ring-orange-300"
-                    title={image.alt}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="h-full w-full object-cover"
-                    />
-                  </a>
-                ))}
-              </div>
+                rememberSelection();
+                void handleContentImageUpload(file);
+              }}
+              onDragOver={(e) => {
+                if (Array.from(e.dataTransfer.types).includes("Files")) {
+                  e.preventDefault();
+                }
+              }}
+              onDrop={(e) => {
+                const file = Array.from(e.dataTransfer.files).find((f) =>
+                  f.type.startsWith("image/"),
+                );
+                if (!file) return;
+                e.preventDefault();
+                rememberSelection();
+                void handleContentImageUpload(file);
+              }}
+            />
+          ) : (
+            <div className="min-h-[28rem] bg-white px-5 py-5 sm:min-h-[34rem] sm:px-8 sm:py-6">
+              <MarkdownPreview content={content} />
             </div>
-          ) : null}
+          )}
         </div>
 
         <aside className="space-y-3 lg:sticky lg:top-20 lg:self-start">
