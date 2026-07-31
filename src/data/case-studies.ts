@@ -18,7 +18,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A four-property hotel group was bleeding margin to OTAs. We rebuilt the booking funnel and shifted paid spend to high-intent direct traffic.",
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=70",
     imageAlt: "Luxury hotel lobby — Grand Vista Hotel Group case study",
     stats: [
       { label: "Direct bookings", value: "+220%" },
@@ -47,7 +47,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A regional clinic network needed compliant lead generation without sacrificing trust. Local SEO and education-first content did the heavy lifting.",
     image:
-      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=70",
     imageAlt: "Modern medical clinic — Meridian Health Network case study",
     stats: [
       { label: "New patient inquiries", value: "3x" },
@@ -76,7 +76,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A three-location restaurant group struggled with empty Tuesday–Thursday covers. Hyper-local ads and a simple loyalty loop changed the pattern.",
     image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=70",
     imageAlt: "Upscale restaurant interior — Urban Table case study",
     stats: [
       { label: "Weeknight covers", value: "+40%" },
@@ -105,7 +105,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A boutique brokerage competing against national portals needed a funnel that treated buyers and sellers differently — same brand, different paths.",
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=70",
     imageAlt: "Modern home exterior — Lakeside Realty Partners case study",
     stats: [
       { label: "Cost per lead", value: "-52%" },
@@ -134,7 +134,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "An online learning platform needed to stand out in a crowded ed-tech market without promising outcomes it could not guarantee.",
     image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=70",
     imageAlt: "University campus — BrightPath Academy case study",
     stats: [
       { label: "Enrollment inquiries", value: "+175%" },
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A DTC home goods brand was spending more each month for flat returns. We fixed the store, then optimized the ads.",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=70",
     imageAlt: "Shipping and fulfillment — Nova Commerce case study",
     stats: [
       { label: "Revenue growth", value: "+89%" },

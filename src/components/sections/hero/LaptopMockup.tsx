@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { heroContent } from "@/data/hero";
 
 export function LaptopMockup() {
@@ -11,13 +11,13 @@ export function LaptopMockup() {
     >
       <div className="overflow-hidden rounded-t-2xl border border-[#2d323c] bg-[#181b22] p-2 shadow-[0_28px_64px_rgba(0,0,0,0.55)]">
         <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#0a0c10]">
-          <Image
+          <OptimizedImage
             src={heroContent.laptopScreenImage}
             alt={heroContent.laptopScreenAlt}
             fill
-            priority
-            className="object-cover object-center"
+            quality={68}
             sizes="(max-width: 768px) 70vw, 360px"
+            className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />

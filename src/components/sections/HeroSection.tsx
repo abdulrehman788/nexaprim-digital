@@ -17,22 +17,22 @@ export function HeroSection() {
         <picture>
           <source
             type="image/avif"
-            srcSet="/images/hero/hero-earth-1280.avif 1280w, /images/hero/hero-earth-1920.avif 1920w, /images/hero/hero-earth-2560.avif 2560w"
+            srcSet="/images/hero/hero-earth-1280.avif 1280w, /images/hero/hero-earth-1920.avif 1920w"
             sizes="100vw"
           />
           <source
             type="image/webp"
-            srcSet="/images/hero/hero-earth-1280.webp 1280w, /images/hero/hero-earth-1920.webp 1920w, /images/hero/hero-earth-2560.webp 2560w"
+            srcSet="/images/hero/hero-earth-1280.webp 1280w, /images/hero/hero-earth-1920.webp 1920w"
             sizes="100vw"
           />
           {/* eslint-disable-next-line @next/next/no-img-element -- responsive local LCP asset; skip Next recompression */}
           <img
-            src="/images/hero/hero-earth-1920.jpg"
-            srcSet="/images/hero/hero-earth-1280.jpg 1280w, /images/hero/hero-earth-1920.jpg 1920w, /images/hero/hero-earth-2560.jpg 2560w"
+            src="/images/hero/hero-earth-1280.jpg"
+            srcSet="/images/hero/hero-earth-1280.jpg 1280w, /images/hero/hero-earth-1920.jpg 1920w"
             sizes="100vw"
             alt={heroContent.skylineAlt}
-            width={1920}
-            height={1280}
+            width={1280}
+            height={853}
             decoding="async"
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-[82%_center] sm:object-[76%_center] lg:object-[70%_center]"

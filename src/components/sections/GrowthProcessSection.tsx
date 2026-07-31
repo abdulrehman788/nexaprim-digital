@@ -110,6 +110,7 @@ export function GrowthProcessSection() {
                     alt=""
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
+                    quality={65}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-black/[0.04]" aria-hidden="true" />

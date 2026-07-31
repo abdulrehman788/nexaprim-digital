@@ -32,6 +32,7 @@ export function ClientLogoItem({
         height={120}
         loading="lazy"
         decoding="async"
+        fetchPriority="low"
         className={cn(
           "max-h-full object-contain object-center",
           isLarge

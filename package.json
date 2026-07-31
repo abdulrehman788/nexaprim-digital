@@ -15,6 +15,7 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "optimize:uploads": "node scripts/optimize-uploads.mjs",
+    "optimize:images": "node scripts/optimize-static-images.mjs && node scripts/optimize-uploads.mjs",
     "postinstall": "prisma generate"
   },
   "dependencies": {

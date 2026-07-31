@@ -134,7 +134,7 @@ export function IndustriesPageContent() {
                 <IndustryShowcaseImage
                   industry={industry}
                   index={index}
-                  priority={index < 2}
+                  priority={index === 0}
                 />
               );
               const copy = <IndustryShowcaseCopy industry={industry} Icon={Icon} />;

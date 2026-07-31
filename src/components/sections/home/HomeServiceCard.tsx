@@ -42,6 +42,7 @@ export function HomeServiceCard({ service }: HomeServiceCardProps) {
             alt=""
             fill
             sizes="220px"
+            quality={65}
             className="object-cover object-center transition-all duration-500 group-hover:scale-[1.08] group-hover:brightness-110"
           />
           <div

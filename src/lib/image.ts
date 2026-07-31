@@ -1,11 +1,17 @@
 /** Shared defaults and placeholders for next/image across the site. */
 
 export const imageDefaults = {
-  /** Hero / above-the-fold LCP images */
-  heroQuality: 82,
+  /** Hero / above-the-fold LCP images only */
+  heroQuality: 78,
   /** Cards, carousels, and below-the-fold photography */
-  contentQuality: 75,
+  contentQuality: 68,
+  /** Tiny logos / icons */
+  logoQuality: 60,
 } as const;
+
+/** Sensible responsive default when callers omit `sizes`. */
+export const defaultImageSizes =
+  "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
 /** Tiny neutral blur used while remote photos load (Unsplash, etc.). */
 export const imageBlurPlaceholder =

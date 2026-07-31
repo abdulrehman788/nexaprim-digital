@@ -30,7 +30,7 @@ export const packages: PackageDetail[] = [
     badge: "All Services",
     headline: "Every niche. One team. One roadmap.",
     heroImage:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Strategy team collaborating around a roadmap",
     longDescription:
       "Our complete engagement for brands that want one partner across the full stack — not six vendors pointing fingers. Digital strategy, SEO, paid and social media, brand and graphics design, web development, and marketing automation run as one program with unified reporting and a senior lead accountable to outcomes.",
@@ -106,7 +106,7 @@ export const packages: PackageDetail[] = [
     icon: Target,
     headline: "Win one segment completely before you scale everywhere.",
     heroImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Analytics dashboard showing niche market growth",
     longDescription:
       "Built for brands that need traction in a defined niche — a geography, service line, or buyer persona — without funding a full agency retainer. We concentrate spend and creative on the segment where you can win fastest, then document what works for expansion.",
@@ -144,7 +144,7 @@ export const packages: PackageDetail[] = [
     icon: Rocket,
     headline: "The full funnel — one team, one roadmap, one set of numbers.",
     heroImage:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Growth team planning a full-funnel campaign",
     longDescription:
       "Our flagship engagement for brands ready to treat marketing as a revenue system, not a collection of vendors. Strategy, creative, paid and organic channels, automation, and reporting run as one program with a senior lead accountable to outcomes.",
@@ -215,7 +215,7 @@ export const packages: PackageDetail[] = [
     icon: Layers,
     headline: "Look and sound like the market leader before you outspend everyone.",
     heroImage:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Brand design mood board and creative direction",
     longDescription:
       "For companies whose product is strong but their market presence still looks like a startup. We refine identity, messaging, and campaign creative so every touchpoint — site, ads, decks, social — feels cohesive and premium.",
@@ -253,7 +253,7 @@ export const packages: PackageDetail[] = [
     icon: Zap,
     headline: "Scale what converts. Cut what doesn't. Every week.",
     heroImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Performance marketing metrics on screen",
     longDescription:
       "For teams that already have offers and landing pages but need paid media and CRO run with discipline. We treat accounts like a trading desk — creative tests, audience splits, and landing feedback loops with fast iteration.",
@@ -292,7 +292,7 @@ export const packages: PackageDetail[] = [
     isEnterprise: true,
     headline: "Your requirements. Our custom quote.",
     heroImage:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70",
     heroImageAlt: "Modern corporate headquarters representing enterprise scale",
     longDescription:
       "Multi-brand portfolios, international rollouts, complex tech stacks, or engagements that don't fit a standard package — Enterprise is built around your brief. Share your goals, constraints, and timeline; we'll scope deliverables, team structure, and investment in a proposal within one business day of our discovery call.",

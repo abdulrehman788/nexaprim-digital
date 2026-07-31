@@ -21,7 +21,7 @@ function renderInline(text: string) {
     parts.push(
       <span key={`${src}-${match.index}`} className="my-4 block overflow-hidden rounded-xl border border-slate-200">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
+        <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" fetchPriority="low" />
       </span>,
     );
     last = match.index + match[0].length;
@@ -46,7 +46,7 @@ function renderContent(content: string) {
       return (
         <figure key={`img-${index}`} className="overflow-hidden rounded-xl border border-slate-200">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
+          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" fetchPriority="low" />
           {alt ? (
             <figcaption className={cn("border-t border-slate-100 px-3 py-2 text-center text-xs", lightMuted)}>
               {alt}

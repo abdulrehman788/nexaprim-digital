@@ -21,7 +21,7 @@ function renderInline(text: string) {
           className="my-3 block overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
+          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" />
           {alt ? (
             <span className="block border-t border-slate-100 px-3 py-1.5 text-center text-xs text-slate-500">
               {alt}
@@ -70,7 +70,7 @@ export function MarkdownPreview({
           className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 shadow-sm"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
+          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" />
           {alt ? (
             <figcaption className="border-t border-slate-100 px-3 py-2 text-center text-xs text-slate-500">
               {alt}

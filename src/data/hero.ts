@@ -14,10 +14,10 @@ export const heroContent = {
   skylineImagePreload: "/images/hero/hero-earth-1280.webp",
   skylineAlt:
     "Earth from space with glowing orbital arcs and a futuristic city skyline",
-  heroImage: "/images/hero/hero-devices-hd.png",
+  heroImage: "/images/hero/hero-devices-hd.webp",
   heroImageAlt:
     "Laptop and smartphone on a dark surface with golden light trails and mountain landscape on screen",
-  laptopScreenImage: "/images/hero/mountain-landscape.jpg",
+  laptopScreenImage: "/images/hero/mountain-landscape.webp",
   laptopScreenAlt: "Moody mountain landscape on laptop screen mockup",
   laptopScreenLines: ["Strategy.", "Design.", "Growth.", "Impact."],
   excellenceBadge: {
