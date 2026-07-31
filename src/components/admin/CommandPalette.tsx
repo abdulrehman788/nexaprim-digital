@@ -2,12 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import {
+  Activity,
   BookOpen,
+  CalendarClock,
+  ClipboardList,
   ExternalLink,
   FileText,
   LayoutDashboard,
+  Mail,
   Plus,
   Search,
+  ShoppingBag,
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -33,6 +38,46 @@ const commands: Command[] = [
     icon: LayoutDashboard,
     href: "/admin",
     keywords: "home overview",
+  },
+  {
+    id: "analytics",
+    label: "Analytics",
+    group: "Navigation",
+    icon: Activity,
+    href: "/admin/analytics",
+    keywords: "traffic sessions live visitors",
+  },
+  {
+    id: "orders",
+    label: "Orders",
+    group: "Navigation",
+    icon: ShoppingBag,
+    href: "/admin/orders",
+    keywords: "payments checkout",
+  },
+  {
+    id: "contacts",
+    label: "Contacts",
+    group: "Navigation",
+    icon: Mail,
+    href: "/admin/contacts",
+    keywords: "messages inbox",
+  },
+  {
+    id: "bookings",
+    label: "Call bookings",
+    group: "Navigation",
+    icon: CalendarClock,
+    href: "/admin/bookings",
+    keywords: "calls schedule",
+  },
+  {
+    id: "forms",
+    label: "Forms",
+    group: "Navigation",
+    icon: ClipboardList,
+    href: "/admin/forms",
+    keywords: "submissions",
   },
   {
     id: "blog",

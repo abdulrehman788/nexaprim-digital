@@ -76,6 +76,54 @@ All business copy, navigation data, and section content lives in `src/data/`. Co
 
 Optimized for [Vercel](https://vercel.com). Set `NEXT_PUBLIC_SITE_URL` in your environment variables.
 
+## Admin panel (ops dashboard)
+
+The site includes an authenticated admin area at `/admin` for content **and** operations:
+
+- Analytics (sessions, live visitors via SSE, countries, devices, form funnels)
+- Orders & payments (gateway-agnostic)
+- Contact submissions
+- Call bookings
+- Generic form submissions
+- Blog / Stories CMS
+
+### Local setup
+
+```bash
+cp .env.example .env.local
+# Set ADMIN_PASSWORD and ADMIN_SESSION_SECRET (min 16 chars)
+
+npm install
+npx prisma migrate dev
+npm run db:seed          # case studies + mock ops data
+npm run dev
+```
+
+Open [http://localhost:3000/admin](http://localhost:3000/admin) and sign in with `ADMIN_PASSWORD`.
+
+### Auth model
+
+Admin auth uses a signed HTTP-only cookie (`np_admin_session`) backed by `ADMIN_PASSWORD` + `ADMIN_SESSION_SECRET` — the same model as the existing CMS. An `AdminUser` row is seeded for future role expansion (`SUPER_ADMIN` / `ADMIN` / `SUPPORT`); login is still password-env based today.
+
+### Payment gateway keys
+
+Orders go through `src/lib/payments/gateway.ts` (`PaymentGateway` interface). Local default is **mock**.
+
+Mock checkout UI: `/checkout/mock?order=ORD-…&txn=mock_…` (returned from `POST /api/orders`, also linked from order detail).
+
+To plug in a real gateway later:
+
+1. Implement `createPayment`, `verifyPayment`, and `handleWebhook` for Stripe / JazzCash / EasyPaisa / PayPal.
+2. Register it in `getPaymentGateway()` and set `PAYMENT_GATEWAY=stripe` (or your name).
+3. Put secrets in env (`STRIPE_SECRET_KEY`, webhook secret, etc.) — never commit them.
+4. Point the provider webhook URL at `/api/payments/webhook`.
+
+Order rows already store `gatewayName` + `gatewayTxnId`, so multiple gateways can coexist without schema changes.
+
+### Tracking
+
+`SiteTracker` in the root layout pings `/api/analytics/track` on navigation and `/api/analytics/heartbeat` every ~25s for live visitors. Contact/booking POSTs persist to SQLite and still attempt email delivery via FormSubmit / `CONTACT_FORM_ENDPOINT`.
+
 ## Image Assets
 
 Placeholder SVG assets are included for development. Replace files in `public/images/` with production photography for hero mockups, industry cards, and case study imagery.

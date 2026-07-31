@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 const inputClass =
-  "w-full rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm text-zinc-900 shadow-sm outline-none transition-colors placeholder:text-zinc-400 focus:border-violet-400 focus:ring-2 focus:ring-violet-100";
+  "w-full rounded-lg border border-zinc-200 bg-white px-3.5 py-2.5 text-sm text-zinc-900 shadow-sm outline-none transition-colors placeholder:text-zinc-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-100";
 
 export function AdminLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
   return (
@@ -43,7 +43,7 @@ export function AdminButton({
       {...props}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50",
-        variant === "primary" && "bg-violet-600 text-white shadow-sm shadow-violet-200 hover:bg-violet-700",
+        variant === "primary" && "bg-orange-500 text-slate-900 shadow-sm shadow-orange-200 hover:bg-orange-400",
         variant === "secondary" &&
           "border border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-zinc-50",
         variant === "ghost" && "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900",

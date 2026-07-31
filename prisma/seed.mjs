@@ -6,6 +6,25 @@ const { caseStudies } = require("../src/data/case-studies.ts");
 
 const prisma = new PrismaClient();
 
+async function seedOpsMockData() {
+  console.log("Seeding admin ops mock data…");
+  // Skip analytics / contacts / bookings / orders / forms demo rows so
+  // admin dashboards reflect real site traffic and form submissions only.
+
+  await prisma.adminUser.upsert({
+    where: { email: "admin@expandova.com" },
+    create: {
+      name: "Super Admin",
+      email: "admin@expandova.com",
+      passwordHash: "managed-via-ADMIN_PASSWORD-env",
+      role: "SUPER_ADMIN",
+    },
+    update: { role: "SUPER_ADMIN" },
+  });
+
+  console.log("Admin ops mock data ready.");
+}
+
 async function main() {
   console.log("Seeding case studies…");
 
@@ -49,6 +68,7 @@ async function main() {
   }
 
   console.log(`Seeded ${caseStudies.length} case studies.`);
+  await seedOpsMockData();
 }
 
 main()

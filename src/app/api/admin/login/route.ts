@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { verifyAdminPassword } from "@/lib/admin-auth";
 import { adminSessionCookieOptions } from "@/lib/admin-session";
 import { loginSchema } from "@/lib/schemas/admin";
+import { assertProductionSecrets } from "@/lib/security/env";
 import { isAllowedRequestOrigin } from "@/lib/security/origin";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
@@ -11,6 +12,16 @@ const LOGIN_RATE_LIMIT = 5;
 const LOGIN_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 
 export async function POST(request: Request) {
+  try {
+    assertProductionSecrets();
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Admin authentication is misconfigured." },
+      { status: 503 },
+    );
+  }
+
   if (!isAllowedRequestOrigin(request)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }

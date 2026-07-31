@@ -4,7 +4,7 @@ import { formatRelativeDate } from "@/components/admin/ContentStatusBadge";
 import { Calendar, type CalendarEvent } from "@/components/admin/dashboard/Calendar";
 import { OverviewCard } from "@/components/admin/dashboard/OverviewCard";
 import { RecentContent, type RecentItem } from "@/components/admin/dashboard/RecentContent";
-import { WelcomeBanner } from "@/components/admin/dashboard/WelcomeBanner";
+import { OpsSummaryCards } from "@/components/admin/ops/OpsSummaryCards";
 import { prisma } from "@/lib/prisma";
 
 export default async function AdminDashboardPage() {
@@ -81,43 +81,52 @@ export default async function AdminDashboardPage() {
   }));
 
   return (
-    <div className="space-y-6">
-      <WelcomeBanner userName="Admin" />
+    <div className="relative space-y-6 overflow-x-hidden pb-2">
+      <OpsSummaryCards userName="Admin" />
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <OverviewCard
-          title="Blog Overview"
-          icon={FileText}
-          accent="violet"
-          total={blog.total}
-          totalLabel="Total Blog Posts"
-          viewAllHref="/admin/blog"
-          viewAllLabel="View all Blogs"
-          stats={[
-            { label: "Published", value: blog.published, dot: "bg-emerald-500" },
-            { label: "Drafts", value: blog.draft, dot: "bg-gray-400" },
-            { label: "Scheduled", value: blog.scheduled, dot: "bg-blue-500" },
-            { label: "Views", value: 0, dot: "bg-violet-500" },
-          ]}
-        />
-        <OverviewCard
-          title="Stories Overview"
-          icon={BookOpen}
-          accent="rose"
-          total={story.total}
-          totalLabel="Total Stories"
-          viewAllHref="/admin/stories"
-          viewAllLabel="View all Stories"
-          stats={[
-            { label: "Published", value: story.published, dot: "bg-emerald-500" },
-            { label: "Drafts", value: story.draft, dot: "bg-gray-400" },
-            { label: "Scheduled", value: story.scheduled, dot: "bg-blue-500" },
-            { label: "Views", value: 0, dot: "bg-rose-500" },
-          ]}
-        />
-      </div>
+      <section className="min-w-0 space-y-3">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-orange-600">
+            Content
+          </p>
+          <h2 className="mt-1 text-lg font-semibold tracking-tight text-slate-900">
+            Publishing performance
+          </h2>
+          <p className="mt-0.5 text-sm text-slate-500">
+            Blog and case-study health at a glance.
+          </p>
+        </div>
+        <div className="grid min-w-0 gap-4 lg:grid-cols-2">
+          <OverviewCard
+            title="Blog"
+            icon={FileText}
+            total={blog.total}
+            totalLabel="Total posts"
+            viewAllHref="/admin/blog"
+            viewAllLabel="View all"
+            stats={[
+              { label: "Published", value: blog.published, dot: "bg-emerald-500" },
+              { label: "Drafts", value: blog.draft, dot: "bg-slate-400" },
+              { label: "Scheduled", value: blog.scheduled, dot: "bg-orange-500" },
+            ]}
+          />
+          <OverviewCard
+            title="Stories"
+            icon={BookOpen}
+            total={story.total}
+            totalLabel="Total case studies"
+            viewAllHref="/admin/stories"
+            viewAllLabel="View all"
+            stats={[
+              { label: "Published", value: story.published, dot: "bg-emerald-500" },
+              { label: "Drafts", value: story.draft, dot: "bg-slate-400" },
+              { label: "Scheduled", value: story.scheduled, dot: "bg-orange-500" },
+            ]}
+          />
+        </div>
+      </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid min-w-0 gap-4 lg:grid-cols-2">
         <RecentContent blogs={blogItems} stories={storyItems} />
         <Calendar events={events} />
       </div>

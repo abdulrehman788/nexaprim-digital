@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
+import { trackFormFunnel } from "@/components/analytics/SiteTracker";
+import { formNameForIntent } from "@/lib/forms/intent";
 import { contactFormSchema, type ContactFormValues } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/Button";
 import {
@@ -51,6 +53,7 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
     "idle",
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [started, setStarted] = useState(false);
 
   const {
     register,
@@ -66,6 +69,16 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
       website: "",
     },
   });
+
+  useEffect(() => {
+    trackFormFunnel(formNameForIntent(defaultIntent ?? "contact"), "viewed");
+  }, [defaultIntent]);
+
+  const markStarted = () => {
+    if (started) return;
+    setStarted(true);
+    trackFormFunnel(formNameForIntent(defaultIntent ?? "contact"), "started");
+  };
 
   const onSubmit = async (values: ContactFormValues) => {
     setSubmitState("loading");
@@ -114,7 +127,7 @@ export function ContactForm({ defaultIntent, theme = "dark" }: ContactFormProps)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form} onFocus={markStarted}>
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="contact-website">Website</label>
         <input

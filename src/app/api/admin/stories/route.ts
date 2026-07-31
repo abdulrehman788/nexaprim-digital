@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { caseStudySchema } from "@/lib/schemas/admin";
 import { adminApiErrorResponse } from "@/lib/security/api-error";
+import { assertAdminApi } from "@/lib/security/guards";
 
 export async function GET() {
   const stories = await prisma.caseStudy.findMany({
@@ -13,6 +14,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   try {
     const body = await request.json();
     const data = caseStudySchema.parse(body);

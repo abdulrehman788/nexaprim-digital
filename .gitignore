@@ -39,3 +39,7 @@ next-env.d.ts
 # database
 /prisma/*.db
 /prisma/*.db-journal
+
+# admin uploads (keep folder)
+/public/images/uploads/*
+!/public/images/uploads/.gitkeep

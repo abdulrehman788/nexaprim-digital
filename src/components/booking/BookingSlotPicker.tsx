@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, CheckCircle2, Clock, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { trackFormFunnel } from "@/components/analytics/SiteTracker";
 import { Button } from "@/components/ui/Button";
 import { bookingPage } from "@/data/booking";
 import {
@@ -40,6 +41,11 @@ export function BookingSlotPicker() {
   const [selectedTime, setSelectedTime] = useState<BookingSlotTime | null>(null);
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    trackFormFunnel("book-a-call", "viewed");
+  }, []);
 
   const {
     register,
@@ -49,6 +55,12 @@ export function BookingSlotPicker() {
     resolver: zodResolver(bookingFormSchema),
     defaultValues: { website: "" },
   });
+
+  const markStarted = () => {
+    if (started) return;
+    setStarted(true);
+    trackFormFunnel("book-a-call", "started");
+  };
 
   const onSubmit = async (values: BookingFormValues) => {
     if (!selectedDate || !selectedTime) {
@@ -233,7 +245,7 @@ export function BookingSlotPicker() {
       ) : null}
 
       {step === "details" && selectedDate && selectedTime ? (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate onFocus={markStarted}>
           <button
             type="button"
             onClick={() => setStep("time")}

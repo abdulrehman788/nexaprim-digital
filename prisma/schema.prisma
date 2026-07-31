@@ -8,24 +8,24 @@ datasource db {
 }
 
 model BlogPost {
-  id            String   @id @default(cuid())
-  slug          String   @unique
+  id            String    @id @default(cuid())
+  slug          String    @unique
   title         String
   excerpt       String
   content       String
   coverImage    String?
   coverImageAlt String?
-  author        String   @default("Expandova")
-  tags          String   @default("[]")
-  status        String   @default("DRAFT")
+  author        String    @default("Expandova")
+  tags          String    @default("[]")
+  status        String    @default("DRAFT")
   publishAt     DateTime?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model CaseStudy {
-  id          String   @id @default(cuid())
-  slug        String   @unique
+  id          String    @id @default(cuid())
+  slug        String    @unique
   client      String
   industry    String
   headline    String
@@ -38,8 +38,138 @@ model CaseStudy {
   outcome     String
   quote       String?
   quoteAuthor String?
-  status      String   @default("DRAFT")
+  status      String    @default("DRAFT")
   publishAt   DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+/// Visitor analytics session (page views + live heartbeat)
+model AnalyticsSession {
+  id         String   @id @default(cuid())
+  sessionId  String
+  ip         String?
+  country    String?
+  countryCode String?
+  city       String?
+  device     String?
+  browser    String?
+  userAgent  String?
+  pageUrl    String
+  referrer   String?
+  startedAt  DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([lastSeenAt])
+  @@index([startedAt])
+  @@index([country])
+}
+
+/// Daily rollup for fast dashboard charts
+model AnalyticsDaily {
+  id        String   @id @default(cuid())
+  date      String   @unique // YYYY-MM-DD
+  sessions  Int      @default(0)
+  pageViews Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  intent    String?
+  message   String
+  isRead    Boolean  @default(false)
+  responded Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([isRead])
+}
+
+model CallBooking {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  preferredDate String?
+  preferredTime String?
+  timezone      String?
+  topic         String?
+  status        String   @default("PENDING") // PENDING | CONFIRMED | COMPLETED | CANCELLED
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  orderNumber   String   @unique
+  customerName String
+  email         String
+  phone         String?
+  amount        Float
+  currency      String   @default("USD")
+  status        String   @default("PENDING") // PENDING | PAID | FAILED | REFUNDED
+  gatewayName   String   @default("mock")
+  gatewayTxnId  String?
+  gatewayMeta   String?  // JSON
+  items         String   @default("[]") // JSON array
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([status])
+  @@index([orderNumber])
+}
+
+model FormSubmission {
+  id        String   @id @default(cuid())
+  formName  String
+  data      String // JSON
+  createdAt DateTime @default(now())
+
+  @@index([formName])
+  @@index([createdAt])
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ADMIN") // SUPER_ADMIN | ADMIN | SUPPORT
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  adminEmail String?
+  action     String
+  targetType String?
+  targetId   String?
+  meta       String? // JSON
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model FormFunnelEvent {
+  id        String   @id @default(cuid())
+  formName  String
+  sessionId String?
+  event     String // viewed | started | submitted
+  pageUrl   String?
+  createdAt DateTime @default(now())
+
+  @@index([formName, event])
+  @@index([createdAt])
 }

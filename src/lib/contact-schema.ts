@@ -12,11 +12,7 @@ export const contactPayloadSchema = z.object({
   preferredDate: z.string().trim().max(20).optional(),
   preferredTime: z.string().trim().max(20).optional(),
   timezone: z.string().trim().max(64).optional(),
-  website: z
-    .string()
-    .max(0, "Invalid submission")
-    .optional()
-    .or(z.literal("")),
+  website: z.string().max(200).optional().or(z.literal("")),
 });
 
 export type ContactPayload = z.infer<typeof contactPayloadSchema>;
@@ -32,6 +28,7 @@ export const contactFormSchema = z.object({
     .trim()
     .min(10, "Please share a few more details (at least 10 characters)")
     .max(5000),
+  // Client-side: empty honeypot only. Server allows any string and silently drops bots.
   website: z.string().max(0).optional().or(z.literal("")),
 });
 

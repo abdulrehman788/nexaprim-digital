@@ -1,14 +1,9 @@
 import Link from "next/link";
-import { BookOpen, Plus } from "lucide-react";
+import { BookOpen, CalendarClock, PenLine, Plus, Sparkles } from "lucide-react";
 
-import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { AdminCard } from "@/components/admin/ui/AdminCard";
+import { AdminListHeader } from "@/components/admin/AdminListHeader";
 import { StoriesTable, type StoryRow } from "@/components/admin/StoriesTable";
 import { prisma } from "@/lib/prisma";
-import { cn } from "@/lib/utils";
-
-const cardShadow =
-  "shadow-[0_1px_3px_rgba(16,24,40,0.04),0_12px_28px_-14px_rgba(16,24,40,0.12)]";
 
 export default async function AdminStoriesListPage() {
   let stories: Awaited<ReturnType<typeof prisma.caseStudy.findMany>> = [];
@@ -33,72 +28,105 @@ export default async function AdminStoriesListPage() {
     publishAt: story.publishAt ? story.publishAt.toISOString() : null,
   }));
 
-  const stats = [
-    { label: "Total", value: total, dot: "bg-rose-500", bar: "from-rose-500 to-pink-500" },
-    { label: "Published", value: published, dot: "bg-emerald-500", bar: "from-emerald-500 to-teal-500" },
-    { label: "Drafts", value: drafts, dot: "bg-zinc-400", bar: "from-zinc-400 to-zinc-500" },
-    { label: "Scheduled", value: scheduled, dot: "bg-blue-500", bar: "from-blue-500 to-indigo-500" },
-  ];
-
   return (
-    <div>
-      <AdminPageHeader
+    <div className="space-y-5 overflow-x-hidden">
+      <AdminListHeader
         eyebrow="Content"
         title="Case studies"
+        description="Client solution stories on /case-studies."
         icon={BookOpen}
-        iconClassName="from-rose-500 to-pink-600 shadow-rose-500/25"
-        description={
-          total > 0
-            ? `${total} ${total === 1 ? "story" : "stories"} · /case-studies`
-            : "Solution stories on /case-studies"
+        actions={
+          <>
+            <Link
+              href="/admin/stories/new"
+              className="inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-900 transition hover:brightness-110"
+              style={{ background: "linear-gradient(135deg, #f97316, #fb923c)" }}
+            >
+              <Plus className="h-4 w-4" aria-hidden="true" />
+              New story
+            </Link>
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
+            >
+              View /case-studies
+            </Link>
+          </>
         }
-        action={{ label: "New story", href: "/admin/stories/new" }}
       />
 
-      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className={cn(
-              "relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white p-4",
-              cardShadow,
-            )}
-          >
-            <div
-              className={cn(
-                "pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r",
-                stat.bar,
-              )}
-              aria-hidden="true"
-            />
-            <div className="flex items-center gap-1.5">
-              <span
-                className={cn("h-1.5 w-1.5 rounded-full", stat.dot)}
-                aria-hidden="true"
-              />
-              <span className="text-xs font-medium text-gray-500">{stat.label}</span>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_24px_-14px_rgba(15,23,42,0.1)]">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+              <BookOpen className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Total
+              </p>
+              <p className="text-xl font-semibold tabular-nums text-slate-900">{total}</p>
             </div>
-            <p className="mt-1.5 text-2xl font-bold tracking-tight tabular-nums text-gray-900">
-              {stat.value}
-            </p>
           </div>
-        ))}
+        </div>
+        <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_24px_-14px_rgba(15,23,42,0.1)]">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Published
+              </p>
+              <p className="text-xl font-semibold tabular-nums text-slate-900">{published}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_24px_-14px_rgba(15,23,42,0.1)]">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
+              <PenLine className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Drafts
+              </p>
+              <p className="text-xl font-semibold tabular-nums text-slate-900">{drafts}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_10px_24px_-14px_rgba(15,23,42,0.1)]">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700">
+              <CalendarClock className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Scheduled
+              </p>
+              <p className="text-xl font-semibold tabular-nums text-slate-900">{scheduled}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <AdminCard>
+      <section className="overflow-hidden rounded-[1.25rem] border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)]">
         {total === 0 ? (
           <div className="flex flex-col items-center justify-center px-6 py-20 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-rose-500 ring-1 ring-inset ring-rose-100">
-              <BookOpen className="h-7 w-7" strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <p className="mt-4 text-sm font-semibold text-gray-900">No case studies in database</p>
-            <p className="mt-1 text-xs text-gray-500">
-              Run <code className="rounded bg-gray-100 px-1.5 py-0.5 text-xs">npm run db:seed</code> or
-              add a new story.
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 ring-1 ring-slate-200/80">
+              <BookOpen className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <p className="text-base font-semibold text-slate-900">No case studies yet</p>
+            <p className="mt-1.5 max-w-sm text-sm text-slate-500">
+              Add a client story to publish on /case-studies.
             </p>
             <Link
               href="/admin/stories/new"
-              className="mt-5 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-violet-200 transition-colors hover:bg-violet-700"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:brightness-110"
+              style={{
+                background: "linear-gradient(135deg, #f97316, #fb923c)",
+                boxShadow: "0 10px 24px -8px rgba(249,115,22,0.45)",
+              }}
             >
               <Plus className="h-4 w-4" aria-hidden="true" />
               Add case study
@@ -107,7 +135,7 @@ export default async function AdminStoriesListPage() {
         ) : (
           <StoriesTable stories={rows} />
         )}
-      </AdminCard>
+      </section>
     </div>
   );
 }

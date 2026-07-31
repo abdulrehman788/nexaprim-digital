@@ -27,23 +27,30 @@ export function RecentContent({ blogs, stories }: RecentContentProps) {
   const items = tab === "blogs" ? blogs : stories;
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-gray-200/70 bg-[#ffffff] p-5 shadow-[0_1px_3px_rgba(16,24,40,0.04),0_12px_28px_-14px_rgba(16,24,40,0.12)] sm:p-6">
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold text-gray-900">Recent Content</h2>
-          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold tabular-nums text-gray-500">
-            {items.length}
-          </span>
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_14px_36px_-18px_rgba(15,23,42,0.16)]">
+      <div className="flex items-center justify-between gap-4 border-b border-slate-100 bg-gradient-to-r from-orange-50/40 via-white to-white px-5 py-4 sm:px-6">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-orange-600">
+            Activity
+          </p>
+          <div className="mt-0.5 flex items-center gap-2">
+            <h2 className="text-sm font-semibold text-slate-900">Recent content</h2>
+            <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-semibold tabular-nums text-slate-500">
+              {items.length}
+            </span>
+          </div>
         </div>
-        <div className="inline-flex rounded-lg bg-gray-100 p-0.5">
+        <div className="inline-flex rounded-xl bg-slate-100/90 p-1 ring-1 ring-inset ring-slate-200/70">
           {(["blogs", "stories"] as const).map((value) => (
             <button
               key={value}
               type="button"
               onClick={() => setTab(value)}
               className={cn(
-                "rounded-md px-3 py-1 text-xs font-semibold capitalize transition-colors",
-                tab === value ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-900",
+                "rounded-lg px-3 py-1.5 text-xs font-semibold capitalize transition",
+                tab === value
+                  ? "bg-white text-slate-900 shadow-sm ring-1 ring-orange-200/80"
+                  : "text-slate-500 hover:text-slate-800",
               )}
             >
               {value}
@@ -53,42 +60,43 @@ export function RecentContent({ blogs, stories }: RecentContentProps) {
       </div>
 
       {items.length === 0 ? (
-        <div className="flex flex-1 flex-col items-center justify-center py-10 text-center">
-          <span
-            className={cn(
-              "flex h-14 w-14 items-center justify-center rounded-2xl ring-1 ring-inset",
-              tab === "blogs"
-                ? "bg-violet-50 text-violet-500 ring-violet-100"
-                : "bg-rose-50 text-rose-500 ring-rose-100",
-            )}
-          >
-            <Inbox className="h-7 w-7" strokeWidth={1.5} aria-hidden="true" />
+        <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-50 text-orange-500 ring-1 ring-inset ring-orange-100">
+            <Inbox className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
           </span>
-          <p className="mt-4 text-sm font-semibold text-gray-900">No content yet</p>
-          <p className="mt-1 text-xs text-gray-500">
-            Start by creating your first {tab === "blogs" ? "blog post" : "story"}.
+          <p className="mt-4 text-sm font-semibold text-slate-900">No content yet</p>
+          <p className="mt-1 max-w-xs text-xs text-slate-500">
+            Create your first {tab === "blogs" ? "blog post" : "case study"} to fill this feed.
           </p>
           <Link
             href={tab === "blogs" ? "/admin/blog/new" : "/admin/stories/new"}
-            className="mt-5 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-violet-200 transition-colors hover:bg-violet-700"
+            className="mt-5 inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-orange-500/25 transition hover:bg-orange-600"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
-            {tab === "blogs" ? "Create Blog Post" : "Create Story"}
+            {tab === "blogs" ? "Create blog post" : "Create story"}
           </Link>
         </div>
       ) : (
-        <ul className="mt-4 flex-1 divide-y divide-gray-100">
+        <ul className="flex-1 divide-y divide-slate-100 px-2 py-1 sm:px-3">
           {items.map((item) => (
             <li key={item.id}>
               <Link
                 href={item.href}
-                className="flex items-center gap-3 py-3 transition-colors hover:bg-gray-50/80"
+                className="flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-orange-50/50"
               >
                 <span
+                  data-icon-badge={tab === "stories" ? "" : undefined}
                   className={cn(
-                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
-                    tab === "blogs" ? "bg-violet-50 text-violet-500" : "bg-rose-50 text-rose-500",
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                    tab === "blogs"
+                      ? "bg-orange-50 text-orange-600 ring-1 ring-inset ring-orange-100"
+                      : "text-white",
                   )}
+                  style={
+                    tab === "stories"
+                      ? { backgroundColor: "#0f172a", color: "#ffffff" }
+                      : undefined
+                  }
                 >
                   {tab === "blogs" ? (
                     <FileText className="h-4 w-4" aria-hidden="true" />
@@ -97,8 +105,8 @@ export function RecentContent({ blogs, stories }: RecentContentProps) {
                   )}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-gray-900">{item.title}</p>
-                  <p className="mt-0.5 text-xs text-gray-500">{item.dateLabel}</p>
+                  <p className="truncate text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p className="mt-0.5 text-xs text-slate-500">{item.dateLabel}</p>
                 </div>
                 <ContentStatusBadge status={item.status} />
               </Link>

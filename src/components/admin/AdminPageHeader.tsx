@@ -40,7 +40,7 @@ export function AdminPageHeader({
             <span
               className={cn(
                 "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg",
-                iconClassName ?? "from-violet-500 to-indigo-600 shadow-violet-500/25",
+                iconClassName ?? "from-orange-500 to-amber-500 shadow-orange-500/25",
               )}
               aria-hidden="true"
             >
@@ -49,7 +49,7 @@ export function AdminPageHeader({
           ) : null}
           <div>
             {eyebrow ? (
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-violet-500">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-orange-600">
                 {eyebrow}
               </p>
             ) : null}
@@ -62,7 +62,7 @@ export function AdminPageHeader({
         {action ? (
           <Link
             href={action.href}
-            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-violet-200 transition-colors hover:bg-violet-700"
+            className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm shadow-orange-200 transition-colors hover:bg-orange-400"
           >
             <ActionIcon className="h-4 w-4" aria-hidden="true" />
             {action.label}

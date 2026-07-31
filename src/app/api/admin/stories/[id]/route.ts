@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { caseStudySchema } from "@/lib/schemas/admin";
 import { adminApiErrorResponse } from "@/lib/security/api-error";
+import { assertAdminApi } from "@/lib/security/guards";
 
 interface RouteContext {
   params: { id: string };
@@ -16,6 +17,9 @@ export async function GET(_request: Request, { params }: RouteContext) {
 }
 
 export async function PATCH(request: Request, { params }: RouteContext) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   try {
     const existing = await prisma.caseStudy.findUnique({ where: { id: params.id } });
     if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -56,6 +60,9 @@ export async function PATCH(request: Request, { params }: RouteContext) {
 }
 
 export async function DELETE(_request: Request, { params }: RouteContext) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   const existing = await prisma.caseStudy.findUnique({ where: { id: params.id } });
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { FileText, BookOpen, Shield } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
+import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Sign in",
@@ -12,60 +13,69 @@ export const metadata: Metadata = {
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      <div className="admin-gradient-hero relative hidden w-[45%] overflow-hidden lg:flex lg:flex-col lg:justify-between lg:p-12">
-        <div className="relative">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 font-bold text-white backdrop-blur-sm">
-            N
-          </div>
-        </div>
-        <div className="relative">
-          <h1 className="text-3xl font-bold leading-tight tracking-tight text-white">
-            Content Studio
-          </h1>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-white/80">
-            Manage blog posts and client case studies. Schedule publishing and control what goes
-            live on expandova.com.
-          </p>
-          <ul className="mt-8 space-y-3">
-            {[
-              { icon: FileText, text: "Write & schedule blog articles" },
-              { icon: BookOpen, text: "Publish solution case studies" },
-              { icon: Shield, text: "Secure admin-only access" },
-            ].map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-center gap-3 text-sm text-white/90">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/15 ring-1 ring-white/20">
-                  <Icon className="h-4 w-4 text-white" aria-hidden="true" />
-                </span>
-                {text}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <p className="relative text-xs text-white/60">© Expandova</p>
+    <div className="admin-login-page fixed inset-0 z-[60] flex min-h-screen flex-col overflow-y-auto !bg-[#0b1220] !text-slate-100">
+      {/* Atmosphere */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-orange-500/20 blur-3xl" />
+        <div className="absolute -right-16 bottom-10 h-96 w-96 rounded-full bg-violet-600/20 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.06),_transparent_55%)]" />
       </div>
 
-      <div className="flex flex-1 flex-col justify-center px-6 py-12 sm:px-12">
-        <div className="mx-auto w-full max-w-[380px]">
-          <div className="mb-8 lg:hidden">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 font-bold text-white">
-              N
-            </div>
+      <header className="relative z-10 flex items-center justify-between px-5 py-5 sm:px-8">
+        <div className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl !bg-orange-500 text-sm font-bold !text-slate-950 shadow-lg shadow-orange-500/30">
+            E
+          </span>
+          <div>
+            <p className="text-sm font-semibold !text-white">{siteConfig.name}</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.2em] !text-slate-400">
+              Admin
+            </p>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-zinc-900">Welcome back</h2>
-          <p className="mt-2 text-sm text-zinc-500">Sign in to your admin account.</p>
-          <div className="mt-8 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
-            <Suspense fallback={<p className="text-sm text-zinc-400">Loading…</p>}>
+        </div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium !text-slate-300 transition hover:!bg-white/5 hover:!text-white"
+        >
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Website
+        </Link>
+      </header>
+
+      <main className="relative z-10 flex flex-1 items-center justify-center px-4 py-8 sm:px-6">
+        <div className="w-full max-w-[440px]">
+          <div className="mb-6 text-center sm:mb-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] !text-orange-400">
+              Secure admin
+            </p>
+            <h1 className="mt-3 text-3xl font-bold tracking-tight !text-white sm:text-4xl">
+              Sign in
+            </h1>
+            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed !text-slate-400">
+              Manage analytics, orders, leads, and content for {siteConfig.name}.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200/80 !bg-white p-6 shadow-2xl shadow-black/40 sm:p-8">
+            <Suspense
+              fallback={<div className="h-40 animate-pulse rounded-xl bg-slate-100" aria-hidden="true" />}
+            >
               <AdminLoginForm />
             </Suspense>
+
+            <div className="mt-6 flex items-center justify-center gap-2 border-t border-slate-100 pt-5">
+              <ShieldCheck className="h-4 w-4 shrink-0 !text-emerald-600" aria-hidden="true" />
+              <p className="text-xs font-medium !text-slate-500">
+                Encrypted session · Authorized staff only
+              </p>
+            </div>
           </div>
-          <p className="mt-6 text-center text-xs text-zinc-400">
-            <Link href="/" className="hover:text-zinc-600">
-              ← Return to website
-            </Link>
-          </p>
         </div>
-      </div>
+      </main>
+
+      <footer className="relative z-10 px-5 pb-5 text-center text-[11px] !text-slate-500 sm:px-8">
+        © {new Date().getFullYear()} {siteConfig.legalName}
+      </footer>
     </div>
   );
 }

@@ -16,9 +16,9 @@ const config: Record<
   },
   SCHEDULED: {
     label: "Scheduled",
-    dot: "bg-blue-500",
-    bg: "bg-blue-50",
-    text: "text-blue-700",
+    dot: "bg-orange-500",
+    bg: "bg-orange-50",
+    text: "text-orange-700",
   },
   PUBLISHED: {
     label: "Published",

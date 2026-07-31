@@ -188,3 +188,14 @@
     @apply h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500;
   }
 }
+
+/* Admin custom scroll — kill OS scrollbar chrome (arrows / white track) */
+.admin-hide-native-scroll {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.admin-hide-native-scroll::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}

@@ -5,7 +5,7 @@ import { ADMIN_SESSION_COOKIE } from "@/lib/admin-constants";
 export { ADMIN_SESSION_COOKIE };
 
 /** Session lifetime — keep in sync with cookie maxAge in admin-session.ts */
-export const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
+export const ADMIN_SESSION_TTL_SECONDS = 60 * 60 * 12; // 12 hours
 
 const SESSION_VERSION = "v2";
 

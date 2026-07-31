@@ -2,8 +2,9 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
-import { blogPostSchema } from "@/lib/schemas/admin";
+import { blogPostSchema, normalizeBlogPostInput } from "@/lib/schemas/admin";
 import { adminApiErrorResponse } from "@/lib/security/api-error";
+import { assertAdminApi } from "@/lib/security/guards";
 
 export async function GET() {
   const posts = await prisma.blogPost.findMany({
@@ -13,9 +14,12 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   try {
-    const body = await request.json();
-    const data = blogPostSchema.parse(body);
+    const body = (await request.json()) as Record<string, unknown>;
+    const data = blogPostSchema.parse(normalizeBlogPostInput(body));
 
     const publishAt = data.publishAt ? new Date(data.publishAt) : null;
 

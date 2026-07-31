@@ -48,7 +48,7 @@ const nextConfig = {
         key: "Content-Security-Policy",
         value: [
           "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.cal.com https://assets.calendly.com",
+          "script-src 'self' 'unsafe-inline' https://app.cal.com https://assets.calendly.com",
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: blob: https:",
           "font-src 'self'",
@@ -58,7 +58,16 @@ const nextConfig = {
           "base-uri 'self'",
           "form-action 'self'",
           "object-src 'none'",
+          "upgrade-insecure-requests",
         ].join("; "),
+      },
+      {
+        key: "Cross-Origin-Opener-Policy",
+        value: "same-origin",
+      },
+      {
+        key: "Cross-Origin-Resource-Policy",
+        value: "same-origin",
       },
     ];
 
@@ -67,6 +76,14 @@ const nextConfig = {
         key: "Strict-Transport-Security",
         value: "max-age=63072000; includeSubDomains; preload",
       });
+    } else {
+      // upgrade-insecure-requests breaks local http://localhost — strip in development.
+      const csp = securityHeaders.find((h) => h.key === "Content-Security-Policy");
+      if (csp) {
+        csp.value = csp.value
+          .replace("; upgrade-insecure-requests", "")
+          .replace("upgrade-insecure-requests", "");
+      }
     }
 
     // Long-lived immutable caching is only safe in production, where Next.js

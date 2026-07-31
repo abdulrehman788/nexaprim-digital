@@ -5,7 +5,9 @@ import {
   CONTACT_MAX_BODY_BYTES,
   contactPayloadSchema,
 } from "@/lib/contact-schema";
+import { formNameForIntent, isStrategyCallIntent } from "@/lib/forms/intent";
 import { siteConfig } from "@/lib/constants";
+import { prisma } from "@/lib/prisma";
 import { isAllowedRequestOrigin } from "@/lib/security/origin";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
@@ -53,39 +55,85 @@ export async function POST(request: Request) {
 
     const { website: honeypot, ...submission } = data;
 
-    if (honeypot) {
+    if (honeypot?.trim()) {
       return NextResponse.json({ success: true });
     }
 
+    const isCallBooking = isStrategyCallIntent(submission.intent);
+    const formName = formNameForIntent(submission.intent);
+
+    await prisma.$transaction(async (tx) => {
+      if (isCallBooking) {
+        await tx.callBooking.create({
+          data: {
+            name: submission.name,
+            email: submission.email,
+            phone: submission.phone ?? null,
+            preferredDate: submission.preferredDate ?? null,
+            preferredTime: submission.preferredTime ?? null,
+            timezone: submission.timezone ?? null,
+            topic: submission.message.slice(0, 500),
+            status: "PENDING",
+            notes: submission.company ? `Company: ${submission.company}` : null,
+          },
+        });
+      } else {
+        await tx.contactSubmission.create({
+          data: {
+            name: submission.name,
+            email: submission.email,
+            phone: submission.phone ?? null,
+            company: submission.company ?? null,
+            intent: submission.intent,
+            message: submission.message,
+          },
+        });
+      }
+
+      await tx.formSubmission.create({
+        data: {
+          formName,
+          data: JSON.stringify(submission),
+        },
+      });
+
+      await tx.formFunnelEvent.create({
+        data: {
+          formName,
+          event: "submitted",
+        },
+      });
+    });
+
     const inbox = getContactInbox();
     const customEndpoint = process.env.CONTACT_FORM_ENDPOINT?.trim();
-    // Default: FormSubmit delivers to the business inbox (confirm once via email).
     const endpoint =
       customEndpoint || `https://formsubmit.co/ajax/${encodeURIComponent(inbox)}`;
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        ...(process.env.CONTACT_FORM_API_KEY
-          ? { Authorization: `Bearer ${process.env.CONTACT_FORM_API_KEY}` }
-          : {}),
-      },
-      body: JSON.stringify({
-        ...submission,
-        to: inbox,
-        _to: inbox,
-        _replyto: submission.email,
-        _subject: `Expandova contact — ${submission.intent}`,
-      }),
-    });
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          ...(process.env.CONTACT_FORM_API_KEY
+            ? { Authorization: `Bearer ${process.env.CONTACT_FORM_API_KEY}` }
+            : {}),
+        },
+        body: JSON.stringify({
+          ...submission,
+          to: inbox,
+          _to: inbox,
+          _replyto: submission.email,
+          _subject: `Expandova contact — ${submission.intent}`,
+        }),
+      });
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Unable to send your message right now. Please try again later." },
-        { status: 502 },
-      );
+      if (!response.ok) {
+        console.error("Contact email delivery failed", response.status);
+      }
+    } catch (emailError) {
+      console.error("Contact email delivery error", emailError);
     }
 
     return NextResponse.json({ success: true });
