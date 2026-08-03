@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Smaller self-contained build for VPS / Docker (copies into .next/standalone)
+  output: "standalone",
   poweredByHeader: false,
   compress: true,
   experimental: {

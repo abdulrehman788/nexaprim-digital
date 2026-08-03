@@ -11,7 +11,7 @@ export const heroContent = {
   secondaryCta: "View Our Work",
   trustedLabel: "Trusted by innovators & leaders worldwide",
   skylineImage: "/images/hero/hero-earth-1920.webp",
-  skylineImagePreload: "/images/hero/hero-earth-1280.webp",
+  skylineImagePreload: "/images/hero/hero-earth-1280.avif",
   skylineAlt:
     "Earth from space with glowing orbital arcs and a futuristic city skyline",
   heroImage: "/images/hero/hero-devices-hd.webp",

@@ -2,12 +2,12 @@
 
 import { ContactFormWithIntent } from "@/components/forms/ContactFormWithIntent";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
-import type { BlogPostPublic } from "@/lib/content/blog";
+import type { BlogPostSummary } from "@/lib/content/blog";
 import { lightBody, lightHeading, lightMuted } from "@/lib/section-surfaces";
 import { cn } from "@/lib/utils";
 
 type BlogSidebarProps = {
-  posts: BlogPostPublic[];
+  posts: BlogPostSummary[];
 };
 
 export function BlogSidebar({ posts }: BlogSidebarProps) {

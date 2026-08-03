@@ -2,10 +2,30 @@ import { BlogSidebar } from "@/components/sections/blog/BlogSidebar";
 import { Container } from "@/components/ui/Container";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { lightBody, lightHeading, lightMuted } from "@/lib/section-surfaces";
-import type { BlogPostPublic } from "@/lib/content/blog";
+import type { BlogPostPublic, BlogPostSummary } from "@/lib/content/blog";
 import { cn } from "@/lib/utils";
 
 const IMAGE_RE = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+
+/** Only allow same-origin uploads or https images — blocks javascript:/data: abuse. */
+function isSafeContentImageSrc(src: string): boolean {
+  if (!src) return false;
+  if (src.startsWith("/images/")) return !src.includes("..");
+  try {
+    const url = new URL(src);
+    return url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function ContentImage({ src, alt }: { src: string; alt: string }) {
+  if (!isSafeContentImageSrc(src)) return null;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" fetchPriority="low" />
+  );
+}
 
 function renderInline(text: string) {
   const parts: React.ReactNode[] = [];
@@ -19,12 +39,13 @@ function renderInline(text: string) {
     }
     const alt = match[1] ?? "";
     const src = match[2] ?? "";
-    parts.push(
-      <span key={`${src}-${match.index}`} className="my-4 block overflow-hidden rounded-xl border border-slate-200">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" fetchPriority="low" />
-      </span>,
-    );
+    if (isSafeContentImageSrc(src)) {
+      parts.push(
+        <span key={`${src}-${match.index}`} className="my-4 block overflow-hidden rounded-xl border border-slate-200">
+          <ContentImage src={src} alt={alt} />
+        </span>,
+      );
+    }
     last = match.index + match[0].length;
   }
 
@@ -44,10 +65,10 @@ function renderContent(content: string) {
     if (soloImage) {
       const alt = soloImage[1] ?? "";
       const src = soloImage[2] ?? "";
+      if (!isSafeContentImageSrc(src)) return null;
       return (
         <figure key={`img-${index}`} className="overflow-hidden rounded-xl border border-slate-200">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={alt} className="h-auto w-full" loading="lazy" decoding="async" fetchPriority="low" />
+          <ContentImage src={src} alt={alt} />
           {alt ? (
             <figcaption className={cn("border-t border-slate-100 px-3 py-2 text-center text-xs", lightMuted)}>
               {alt}
@@ -89,7 +110,7 @@ function renderContent(content: string) {
 
 type BlogArticleProps = {
   post: BlogPostPublic;
-  latestPosts: BlogPostPublic[];
+  latestPosts: BlogPostSummary[];
 };
 
 export function BlogArticle({ post, latestPosts }: BlogArticleProps) {

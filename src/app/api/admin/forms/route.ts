@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 import { csvResponse, toCsv } from "@/lib/csv";
 import { prisma } from "@/lib/prisma";
 import { parsePagination, safeJsonParse, sanitizeDownloadFilename } from "@/lib/security/api-error";
+import { assertAdminApi } from "@/lib/security/guards";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,9 @@ function daysAgo(n: number) {
 }
 
 export async function GET(request: Request) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   try {
     const { searchParams } = new URL(request.url);
     const formName = searchParams.get("form")?.trim();

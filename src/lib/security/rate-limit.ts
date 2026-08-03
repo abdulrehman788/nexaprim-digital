@@ -49,11 +49,22 @@ export function checkRateLimit(
 }
 
 export function getClientIp(request: Request): string {
-  const forwarded = request.headers.get("x-forwarded-for");
+  // Prefer platform-provided IPs that proxies overwrite (harder to spoof).
+  const vercel = request.headers.get("x-vercel-forwarded-for");
+  if (vercel) {
+    return vercel.split(",")[0]?.trim() || "unknown";
+  }
 
+  const cf = request.headers.get("cf-connecting-ip");
+  if (cf?.trim()) return cf.trim();
+
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp?.trim()) return realIp.trim();
+
+  const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) {
     return forwarded.split(",")[0]?.trim() ?? "unknown";
   }
 
-  return request.headers.get("x-real-ip") ?? "unknown";
+  return "unknown";
 }

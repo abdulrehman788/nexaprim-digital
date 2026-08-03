@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
+import { assertAdminApi } from "@/lib/security/guards";
 
 import { realAnalyticsSessionWhere, toDateKey } from "@/lib/analytics/helpers";
 import { countLiveVisitors } from "@/lib/analytics/rollup";
@@ -46,6 +47,9 @@ function eachDateKey(from: Date, to: Date): string[] {
 }
 
 export async function GET(request: Request) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   try {
     const { searchParams } = new URL(request.url);
     const { from, to, preset } = parseRange(searchParams);

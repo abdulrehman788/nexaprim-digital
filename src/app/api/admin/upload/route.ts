@@ -7,6 +7,7 @@ import sharp from "sharp";
 
 import {
   assertAdminApi,
+  assertContentLength,
   assertRateLimit,
 } from "@/lib/security/guards";
 
@@ -79,6 +80,9 @@ export async function POST(request: Request) {
 
   const limited = assertRateLimit(request, "admin-upload", 20, 15 * 60 * 1000);
   if (limited) return limited;
+
+  const tooLarge = assertContentLength(request, MAX_BYTES);
+  if (tooLarge) return tooLarge;
 
   try {
     const form = await request.formData();

@@ -18,6 +18,9 @@ export async function GET(
   _request: Request,
   { params }: { params: { id: string } },
 ) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   const item = await prisma.order.findUnique({ where: { id: params.id } });
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({

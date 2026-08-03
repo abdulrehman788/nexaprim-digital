@@ -7,6 +7,9 @@ import { adminApiErrorResponse } from "@/lib/security/api-error";
 import { assertAdminApi } from "@/lib/security/guards";
 
 export async function GET() {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   const stories = await prisma.caseStudy.findMany({
     orderBy: [{ updatedAt: "desc" }],
   });

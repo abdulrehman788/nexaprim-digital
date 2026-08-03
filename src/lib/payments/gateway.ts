@@ -102,14 +102,17 @@ export function getPaymentGateway(): PaymentGateway {
       //   gateway = new StripePaymentGateway();
       //   break;
       case "mock":
-      default:
-        if (name !== "mock") {
-          console.warn(
-            `PAYMENT_GATEWAY="${name}" is not implemented yet — falling back to mock.`,
+        if (process.env.NODE_ENV === "production") {
+          throw new Error(
+            'PAYMENT_GATEWAY=mock is not allowed in production. Set PAYMENT_GATEWAY to a real provider.',
           );
         }
         gateway = new MockPaymentGateway();
         break;
+      default:
+        throw new Error(
+          `PAYMENT_GATEWAY="${name}" is not implemented. Configure a supported gateway.`,
+        );
     }
   }
   return gateway;

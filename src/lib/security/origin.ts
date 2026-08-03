@@ -8,16 +8,8 @@ function tryUrl(value: string): URL | null {
   }
 }
 
-function normalizeHost(host: string | null | undefined): string | null {
-  if (!host) return null;
-  const first = host.split(",")[0]?.trim().toLowerCase();
-  if (!first) return null;
-  // Strip default ports so https://x.com:443 matches x.com
-  return first.replace(/:443$/, "").replace(/:80$/, "");
-}
-
 function hostnameOnly(host: string): string {
-  return host.replace(/:\d+$/, "");
+  return host.replace(/:\d+$/, "").toLowerCase();
 }
 
 function withWwwHostnames(hostname: string): string[] {
@@ -27,12 +19,16 @@ function withWwwHostnames(hostname: string): string[] {
   return [hostname, `www.${hostname}`];
 }
 
+/**
+ * Explicit allowlist only — never trust request Host / X-Forwarded-Host
+ * (those are attacker-controlled when not overwritten by a trusted proxy).
+ */
 function getAllowedHostnames(): Set<string> {
   const hosts = new Set<string>();
 
   const addHostname = (hostname: string | null | undefined) => {
     if (!hostname) return;
-    const clean = hostnameOnly(hostname.toLowerCase());
+    const clean = hostnameOnly(hostname);
     for (const variant of withWwwHostnames(clean)) {
       hosts.add(variant);
     }
@@ -47,6 +43,8 @@ function getAllowedHostnames(): Set<string> {
     if (vercel) addHostname(vercel.hostname);
   }
 
+  // Optional comma-separated origins or hostnames, e.g.
+  // ALLOWED_ORIGINS=https://www.expandova.com,staging.expandova.com
   const extra = process.env.ALLOWED_ORIGINS?.split(",") ?? [];
   for (const item of extra) {
     const trimmed = item.trim();
@@ -65,19 +63,6 @@ function getAllowedHostnames(): Set<string> {
   return hosts;
 }
 
-function requestHosts(request: Request): string[] {
-  const values = [
-    request.headers.get("x-forwarded-host"),
-    request.headers.get("host"),
-  ];
-  const hosts: string[] = [];
-  for (const value of values) {
-    const normalized = normalizeHost(value);
-    if (normalized) hosts.push(normalized);
-  }
-  return hosts;
-}
-
 function isLocalDevHost(hostname: string): boolean {
   return (
     hostname === "localhost" ||
@@ -87,32 +72,17 @@ function isLocalDevHost(hostname: string): boolean {
   );
 }
 
-function isTrustedHostname(hostname: string, request: Request): boolean {
-  const clean = hostnameOnly(hostname.toLowerCase());
+function isTrustedHostname(hostname: string): boolean {
+  const clean = hostnameOnly(hostname);
   const allowed = getAllowedHostnames();
-
   if (allowed.has(clean)) return true;
-
-  // True same-origin behind reverse proxies: match any request Host /
-  // X-Forwarded-Host (including www variants of those hosts).
-  for (const host of requestHosts(request)) {
-    const requestHostname = hostnameOnly(host);
-    for (const variant of withWwwHostnames(requestHostname)) {
-      if (variant === clean) return true;
-    }
-  }
-
-  if (process.env.NODE_ENV === "development" && isLocalDevHost(clean)) {
-    return true;
-  }
-
+  if (process.env.NODE_ENV === "development" && isLocalDevHost(clean)) return true;
   return false;
 }
 
 /**
- * CSRF guard for state-changing API routes.
- * Trusts configured site hosts (www + apex), Vercel URL, ALLOWED_ORIGINS,
- * and the request's own Host / X-Forwarded-Host.
+ * CSRF guard for state-changing public/admin API routes.
+ * Compares Origin/Referer hostname against an explicit env allowlist only.
  */
 export function isAllowedRequestOrigin(request: Request): boolean {
   const originHeader = request.headers.get("origin");
@@ -120,16 +90,15 @@ export function isAllowedRequestOrigin(request: Request): boolean {
   if (originHeader && originHeader.toLowerCase() !== "null") {
     const originUrl = tryUrl(originHeader);
     if (!originUrl) return false;
-    return isTrustedHostname(originUrl.hostname, request);
+    return isTrustedHostname(originUrl.hostname);
   }
 
   const referer = request.headers.get("referer");
   if (!referer) {
-    // Same-origin fetch usually sends Origin; missing both is only OK in dev.
     return process.env.NODE_ENV === "development";
   }
 
   const refererUrl = tryUrl(referer);
   if (!refererUrl) return false;
-  return isTrustedHostname(refererUrl.hostname, request);
+  return isTrustedHostname(refererUrl.hostname);
 }

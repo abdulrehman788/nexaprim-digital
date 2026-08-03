@@ -1,10 +1,14 @@
-import { countLiveVisitors } from "@/lib/analytics/rollup";
+﻿import { countLiveVisitors } from "@/lib/analytics/rollup";
+import { assertAdminApi } from "@/lib/security/guards";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 /** Server-Sent Events stream of live visitor counts. */
 export async function GET() {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   const encoder = new TextEncoder();
   let closed = false;
   let interval: ReturnType<typeof setInterval> | undefined;

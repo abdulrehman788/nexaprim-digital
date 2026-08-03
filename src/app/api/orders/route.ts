@@ -49,27 +49,34 @@ export async function POST(request: Request) {
       unitPrice: item.unitPrice,
     }));
 
-    const itemsTotal = items.reduce((sum, item) => {
-      if (item.unitPrice == null) return sum;
-      return sum + item.unitPrice * item.quantity;
-    }, 0);
-
-    if (items.length > 0 && items.every((i) => i.unitPrice != null)) {
-      const delta = Math.abs(itemsTotal - body.amount);
-      if (delta > 0.01) {
-        return NextResponse.json(
-          { error: "Order amount does not match line items." },
-          { status: 400 },
-        );
-      }
+    if (items.length === 0 || !items.every((i) => i.unitPrice != null)) {
+      return NextResponse.json(
+        { error: "Order must include priced line items." },
+        { status: 400 },
+      );
     }
+
+    const itemsTotal = items.reduce(
+      (sum, item) => sum + (item.unitPrice as number) * item.quantity,
+      0,
+    );
+    const delta = Math.abs(itemsTotal - body.amount);
+    if (delta > 0.01) {
+      return NextResponse.json(
+        { error: "Order amount does not match line items." },
+        { status: 400 },
+      );
+    }
+
+    // Use server-computed total — never trust client amount alone.
+    const amount = Math.round(itemsTotal * 100) / 100;
 
     const orderNumber = await allocateOrderNumber();
     const gateway = getPaymentGateway();
 
     const payment = await gateway.createPayment({
       orderNumber,
-      amount: body.amount,
+      amount,
       currency,
       customerEmail: body.email,
       customerName: body.customerName,
@@ -81,7 +88,7 @@ export async function POST(request: Request) {
         customerName: body.customerName,
         email: body.email,
         phone: body.phone ?? null,
-        amount: body.amount,
+        amount,
         currency,
         status: payment.status,
         gatewayName: payment.gatewayName,

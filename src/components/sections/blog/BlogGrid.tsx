@@ -6,7 +6,7 @@ import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { ctaLinks } from "@/lib/constants";
 import {
   getPublishedBlogPosts,
-  type BlogPostPublic,
+  type BlogPostSummary,
 } from "@/lib/content/blog";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +25,7 @@ function cleanExcerpt(excerpt: string, max = 160) {
   return `${flat.slice(0, max).replace(/\s+\S*$/, "")}â€¦`;
 }
 
-function FeaturedPost({ post }: { post: BlogPostPublic }) {
+function FeaturedPost({ post }: { post: BlogPostSummary }) {
   const date = formatDate(post.publishAt);
 
   return (
@@ -94,7 +94,7 @@ function FeaturedPost({ post }: { post: BlogPostPublic }) {
   );
 }
 
-function PostRow({ post, index }: { post: BlogPostPublic; index: number }) {
+function PostRow({ post, index }: { post: BlogPostSummary; index: number }) {
   const date = formatDate(post.publishAt);
   const number = String(index + 1).padStart(2, "0");
 
@@ -135,7 +135,7 @@ function PostRow({ post, index }: { post: BlogPostPublic; index: number }) {
   );
 }
 
-function PostCard({ post }: { post: BlogPostPublic }) {
+function PostCard({ post }: { post: BlogPostSummary }) {
   const date = formatDate(post.publishAt);
 
   return (

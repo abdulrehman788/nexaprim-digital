@@ -74,7 +74,26 @@ All business copy, navigation data, and section content lives in `src/data/`. Co
 
 ## Deployment
 
-Optimized for [Vercel](https://vercel.com). Set `NEXT_PUBLIC_SITE_URL` in your environment variables.
+### VPS (recommended)
+
+Repo: https://github.com/abdulrehman788/nexaprim-digital.git  
+
+Full steps: **[docs/VPS_DEPLOY.md](docs/VPS_DEPLOY.md)**
+
+```bash
+# on the VPS
+sudo mkdir -p /var/www/expandova && sudo chown $USER:$USER /var/www/expandova
+cd /var/www/expandova
+git clone https://github.com/abdulrehman788/nexaprim-digital.git .
+cp .env.production.example .env   # fill ADMIN_* and NEXT_PUBLIC_SITE_URL
+chmod +x scripts/deploy-vps.sh scripts/docker-entrypoint.sh
+./scripts/deploy-vps.sh
+# then Nginx from deploy/nginx.conf + certbot (see docs/VPS_DEPLOY.md)
+```
+
+### Vercel
+
+Also works on [Vercel](https://vercel.com). Set the same env vars (`NEXT_PUBLIC_SITE_URL`, `ADMIN_*`, `DATABASE_URL`). Prefer Postgres on Vercel — SQLite is for single-VPS disks.
 
 ## Admin panel (ops dashboard)
 

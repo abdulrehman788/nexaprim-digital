@@ -11,6 +11,9 @@ interface RouteContext {
 }
 
 export async function GET(_request: Request, { params }: RouteContext) {
+  const denied = await assertAdminApi();
+  if (denied) return denied;
+
   const story = await prisma.caseStudy.findUnique({ where: { id: params.id } });
   if (!story) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(story);
