@@ -64,8 +64,10 @@ export function HomeClientReviewsSection() {
           {featuredReviews.map((review, index) => (
             <article
               key={review.id}
-              className={`rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-opacity ${
-                index === active ? "opacity-100" : "opacity-70 lg:opacity-100"
+              className={`rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-opacity sm:p-6 ${
+                index === active
+                  ? "opacity-100"
+                  : "hidden opacity-70 lg:block lg:opacity-100"
               }`}
             >
               <div className="flex items-start gap-4">

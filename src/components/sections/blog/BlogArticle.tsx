@@ -129,19 +129,25 @@ export function BlogArticle({ post, latestPosts }: BlogArticleProps) {
               fill
               className="object-cover object-center"
               sizes="100vw"
-              quality={75}
               priority
             />
-            {/* Dark on content (left), clear on empty (right) */}
+            {/* Dark wash: stronger on mobile for title contrast; side wash on desktop */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 lg:hidden"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, rgba(5,8,15,0.78) 0%, rgba(5,8,15,0.55) 45%, rgba(5,8,15,0.82) 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 hidden lg:block"
               style={{
                 backgroundImage:
                   "linear-gradient(90deg, rgba(5,8,15,0.92) 0%, rgba(5,8,15,0.82) 38%, rgba(5,8,15,0.45) 68%, rgba(5,8,15,0.18) 100%)",
               }}
             />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 hidden lg:block"
               style={{
                 backgroundImage:
                   "linear-gradient(180deg, rgba(5,8,15,0.55) 0%, transparent 35%, rgba(5,8,15,0.35) 100%)",
@@ -175,10 +181,10 @@ export function BlogArticle({ post, latestPosts }: BlogArticleProps) {
             <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-violet-300">
               Expandova Insights
             </p>
-            <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mt-3 font-display text-[1.75rem] font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
-            <p className="mt-4 text-lg text-slate-200/90">{post.excerpt}</p>
+            <p className="mt-4 text-base text-slate-200/90 sm:text-lg">{post.excerpt}</p>
             <p className="mt-4 text-sm text-slate-300/80">
               {post.author}
               {date ? ` · ${date}` : null}

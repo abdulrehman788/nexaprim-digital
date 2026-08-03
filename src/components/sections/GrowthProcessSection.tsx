@@ -70,7 +70,7 @@ export function GrowthProcessSection() {
           </p>
           <h2
             id="growth-process-heading"
-            className="mt-3 font-display text-display-sm font-bold text-white sm:text-display-md"
+            className="mt-3 font-display text-2xl font-bold text-white sm:text-display-md"
           >
             The Expansive{" "}
             <span className="text-gold-gradient">Growth</span>{" "}

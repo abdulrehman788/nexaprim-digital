@@ -54,7 +54,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex shrink-0 items-center justify-center text-center font-semibold whitespace-nowrap transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    "inline-flex min-w-0 items-center justify-center text-center font-semibold whitespace-normal transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:shrink-0 sm:whitespace-nowrap",
     pill ? "rounded-full" : "rounded-lg",
     variantStyles[variant],
     sizeStyles[size],

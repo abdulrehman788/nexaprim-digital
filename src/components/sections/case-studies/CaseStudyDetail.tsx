@@ -41,13 +41,13 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
             {study.summary}
           </p>
 
-          <ul className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-8 sm:max-w-lg">
+          <ul className="mt-10 grid grid-cols-1 gap-4 border-t border-white/10 pt-8 sm:max-w-lg sm:grid-cols-3 sm:gap-4">
             {study.stats.map((stat) => (
-              <li key={stat.label}>
+              <li key={stat.label} className="min-w-0 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
                 <span className="font-display text-2xl font-bold text-accent sm:text-3xl">
                   {stat.value}
                 </span>
-                <p className="mt-1 text-xs text-content-muted">{stat.label}</p>
+                <p className="mt-1 text-sm text-content-muted sm:text-xs">{stat.label}</p>
               </li>
             ))}
           </ul>

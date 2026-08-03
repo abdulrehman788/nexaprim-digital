@@ -87,7 +87,13 @@ export function IndustryCarousel({ industries, className }: IndustryCarouselProp
         {industries.map((industry) => (
           <IndustryCard key={industry.id} industry={industry} />
         ))}
+        {/* Peek spacer so the last card doesn't sit flush against the edge */}
+        <div className="w-4 shrink-0 sm:hidden" aria-hidden="true" />
       </div>
+
+      <p className="mt-3 text-center text-xs font-medium text-slate-400 sm:hidden">
+        Swipe to explore industries
+      </p>
 
       <button
         type="button"

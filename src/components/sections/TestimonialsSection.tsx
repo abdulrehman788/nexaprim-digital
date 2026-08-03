@@ -18,7 +18,7 @@ export function TestimonialsSection() {
             </p>
             <h2
               id="testimonials-heading"
-              className="mt-3 font-display text-display-sm font-bold text-content-primary sm:text-display-md"
+              className="mt-3 font-display text-2xl font-bold text-content-primary sm:text-display-md"
             >
               {testimonialsSection.title}
             </h2>
@@ -44,19 +44,19 @@ export function TestimonialsSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6">
+                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
                     <p className="text-xs font-semibold uppercase tracking-wider text-accent">
                       {item.industry}
                     </p>
                     <h3 className="mt-2 font-display text-xl font-bold text-content-primary sm:text-2xl">
                       {item.headline}
                     </h3>
-                    <p className="mt-2 text-sm text-content-secondary line-clamp-2">
+                    <p className="mt-2 hidden text-sm text-content-secondary line-clamp-2 sm:block">
                       {item.description}
                     </p>
                     <Link
                       href={item.href}
-                      className="mt-4 inline-flex items-center gap-1 rounded-lg border border-border bg-navy-900/60 px-4 py-2 text-sm font-semibold text-content-primary backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+                      className="mt-4 inline-flex min-h-11 items-center gap-1 rounded-lg border border-border bg-navy-900/60 px-4 py-2.5 text-sm font-semibold text-content-primary backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
                     >
                       View Case Study
                       <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

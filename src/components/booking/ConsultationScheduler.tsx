@@ -9,7 +9,7 @@ const CalEmbed = dynamic(
     ssr: false,
     loading: () => (
       <div
-        className="min-h-[640px] w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03]"
+        className="min-h-[28rem] w-full max-w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03] sm:min-h-[640px]"
         aria-hidden="true"
       />
     ),
@@ -35,7 +35,7 @@ export function ConsultationScheduler() {
   const bookingConfig = getBookingConfig();
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#111118] p-6 sm:p-8">
+    <div className="rounded-2xl border border-white/10 bg-[#111118] p-4 sm:p-8">
       <p className="text-center text-sm text-content-secondary sm:text-base">
         {bookingConfig ? bookingPage.embedNote : bookingPage.slotPickerNote}
       </p>

@@ -8,7 +8,7 @@ export function BookPageContent() {
     <>
       <section
         aria-labelledby="book-heading"
-        className="relative overflow-hidden px-4 pb-10 pt-36 sm:px-6 sm:pb-12 sm:pt-40 lg:pt-44"
+        className="relative overflow-hidden pb-10 pt-36 sm:pb-12 sm:pt-40 lg:pt-44"
       >
         <StarryNightBackground />
         <div

@@ -118,11 +118,11 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
         </p>
         <p className="mt-2.5 flex-1 text-sm leading-relaxed text-slate-700">{study.summary}</p>
 
-        <ul className="mt-5 grid grid-cols-3 gap-2">
+        <ul className="mt-5 grid grid-cols-3 gap-1.5 sm:gap-2">
           {study.stats.map((stat, index) => (
             <li
               key={stat.label}
-              className="rounded-xl bg-gradient-to-b from-slate-50 to-white px-2 py-3 text-center ring-1 ring-slate-100 transition-all duration-300 group-hover:from-gold-50/80 group-hover:to-white group-hover:ring-gold-200/60"
+              className="min-w-0 rounded-xl bg-gradient-to-b from-slate-50 to-white px-1.5 py-3 text-center ring-1 ring-slate-100 transition-all duration-300 group-hover:from-gold-50/80 group-hover:to-white group-hover:ring-gold-200/60 sm:px-2"
             >
               <span
                 className={`block font-display text-sm font-bold leading-tight sm:text-base ${
@@ -131,7 +131,7 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
               >
                 {stat.value}
               </span>
-              <span className="mt-1 block text-[9px] font-semibold uppercase leading-tight tracking-wide text-slate-500">
+              <span className="mt-1 block text-[10px] font-semibold uppercase leading-snug tracking-wide text-slate-500 sm:text-[11px]">
                 {stat.label}
               </span>
             </li>

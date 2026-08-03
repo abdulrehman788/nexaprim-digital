@@ -406,7 +406,7 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
 
           <div className="overflow-hidden rounded-3xl border border-white/[0.1] bg-[#0d0d12] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.9)]">
             <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+              <div className="flex flex-col justify-center px-5 py-7 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">{overline}</p>
                 <p className="mt-2 text-xs font-medium text-content-muted">{categoryLabel}</p>
                 <h1
@@ -427,13 +427,13 @@ export function ServiceDetailArticle({ service }: ServiceDetailArticleProps) {
                 {service.heroSecondaryLine ? (
                   <p className="mt-3 text-sm font-medium text-accent/90">{service.heroSecondaryLine}</p>
                 ) : null}
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Button href={ctaLinks.strategyCall} size="lg" pill>
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Button href={ctaLinks.strategyCall} size="lg" pill className="w-full sm:w-auto">
                     {ctaLabel}
                   </Button>
                   <a
                     href={includedAnchor}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-accent hover:text-accent"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-accent hover:text-accent sm:w-auto"
                   >
                     See what&apos;s included
                   </a>

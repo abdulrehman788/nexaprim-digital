@@ -16,7 +16,7 @@ export function ServicesSection() {
             <p className="section-overline">Our services</p>
             <h2
               id="services-heading"
-              className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
+              className="mt-3 font-display text-2xl font-bold text-slate-900 sm:text-display-md"
             >
               Every Niche. One{" "}
               <span className="text-gold-gradient">Accountable</span>{" "}

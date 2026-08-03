@@ -27,7 +27,7 @@ interface ContactFormProps {
 
 const themeStyles = {
   dark: {
-    form: "relative",
+    form: "relative overflow-hidden",
     input:
       "w-full rounded-lg border border-white/10 bg-black/40 px-4 py-3 text-sm text-content-primary placeholder:text-content-muted transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20",
     label: "mb-2 block text-sm font-medium text-content-primary",
@@ -38,7 +38,7 @@ const themeStyles = {
     chevron: "text-accent",
   },
   light: {
-    form: "relative rounded-2xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8",
+    form: "relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-soft sm:p-8",
     input:
       "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-500/20",
     label: "mb-2 block text-sm font-medium text-slate-900",
@@ -51,7 +51,7 @@ const themeStyles = {
 } as const;
 
 const compactLightStyles = {
-  form: "relative",
+  form: "relative overflow-hidden",
   input:
     "w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20",
   label: "mb-1.5 block text-xs font-medium text-slate-900",
@@ -151,7 +151,11 @@ export function ContactForm({ defaultIntent, theme = "dark", compact = false }: 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form} onFocus={markStarted}>
-      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute left-0 top-0 h-px w-px overflow-hidden opacity-0"
+        aria-hidden="true"
+        style={{ clipPath: "inset(50%)" }}
+      >
         <label htmlFor={`${idPrefix}-website`}>Website</label>
         <input
           id={`${idPrefix}-website`}

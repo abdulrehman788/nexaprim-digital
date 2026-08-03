@@ -9,7 +9,7 @@ export function ReviewsHero() {
   return (
     <section
       aria-labelledby="reviews-hero-heading"
-      className="relative overflow-hidden px-4 pb-12 pt-36 sm:px-6 sm:pb-16 sm:pt-40 lg:pt-44"
+      className="relative overflow-hidden pb-12 pt-36 sm:pb-16 sm:pt-40 lg:pt-44"
     >
       <StarryNightBackground />
       <div

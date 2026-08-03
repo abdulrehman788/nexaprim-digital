@@ -8,7 +8,7 @@ import { ctaLinks } from "@/lib/constants";
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050510]/95 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050510] supports-[backdrop-filter]:bg-[#050510]/95 supports-[backdrop-filter]:backdrop-blur-md">
       <Container as="div" className="relative flex h-[72px] items-center">
         <Logo />
 

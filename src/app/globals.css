@@ -28,10 +28,11 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
-    @apply bg-surface-primary font-sans text-content-primary antialiased;
+    @apply max-w-[100vw] overflow-x-clip bg-surface-primary font-sans text-content-primary antialiased;
   }
 
   h1,

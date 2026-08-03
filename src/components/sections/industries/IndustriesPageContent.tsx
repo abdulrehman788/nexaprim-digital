@@ -113,12 +113,12 @@ export function IndustriesPageContent() {
             <h2 id="industries-list-heading" className="sr-only">
               All industries
             </h2>
-            <nav aria-label="Jump to industry" className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            <nav aria-label="Jump to industry" className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 scrollbar-hide">
               {industries.map((industry) => (
                 <a
                   key={industry.id}
                   href={`#industry-${industry.id}`}
-                  className="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-gold-400 hover:bg-gold-50 hover:text-gold-800"
+                  className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-gold-400 hover:bg-gold-50 hover:text-gold-800"
                 >
                   {industry.title}
                 </a>

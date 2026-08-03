@@ -28,12 +28,11 @@ export function ClientLogos() {
           <ul className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-3 sm:gap-5">
             {clients.map((client) => (
               <li key={client.id} className="w-full">
-                <div className="flex h-full min-h-[5.5rem] items-center justify-center rounded-xl border border-white/10 bg-[#0a0a0a] px-4 py-4 sm:min-h-[6.25rem] sm:px-5">
+                <div className="flex h-[5.75rem] items-center justify-center rounded-xl border border-white/10 bg-[#0a0a0a] px-4 py-3 sm:h-[6.5rem] sm:px-5 lg:h-28">
                   <ClientLogoItem
                     name={client.name}
                     logo={client.logo}
                     logoAlt={client.logoAlt}
-                    size={client.logoSize}
                   />
                 </div>
               </li>

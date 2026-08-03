@@ -161,8 +161,11 @@ export function BookingSlotPicker() {
               >
                 {index + 1}
               </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-xs">
+              <span className="hidden text-[10px] font-semibold uppercase tracking-[0.12em] sm:inline sm:text-xs sm:tracking-[0.18em]">
                 {item.label}
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide sm:hidden">
+                {item.label.split(" ")[0]}
               </span>
             </li>
           );

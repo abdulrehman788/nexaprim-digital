@@ -220,9 +220,9 @@ export function HeroVisual() {
           </div>
         </div>
 
-        {/* Revenue Growth — top right */}
+        {/* Revenue Growth — top right (desktop only — keeps phone hero short) */}
         <div
-          className={`${glass} p-3.5 sm:p-4 lg:absolute lg:right-0 lg:top-0 lg:z-20 lg:w-[42%] xl:w-48`}
+          className={`${glass} hidden p-3.5 sm:p-4 lg:absolute lg:right-0 lg:top-0 lg:z-20 lg:block lg:w-[42%] xl:w-48`}
         >
           <p className="text-[0.7rem] font-medium text-slate-400">{revenueGrowth.label}</p>
           <p className="mt-1 font-display text-2xl font-extrabold tracking-tight text-white sm:text-[1.65rem]">
@@ -236,7 +236,7 @@ export function HeroVisual() {
 
         {/* Client Satisfaction — mid right */}
         <div
-          className={`${glass} p-3.5 sm:p-4 lg:absolute lg:right-0 lg:top-[38%] lg:z-20 lg:w-[40%] xl:w-44`}
+          className={`${glass} hidden p-3.5 sm:p-4 lg:absolute lg:right-0 lg:top-[38%] lg:z-20 lg:block lg:w-[40%] xl:w-44`}
         >
           <p className="text-[0.7rem] font-medium text-slate-400">
             {clientSatisfaction.label}
@@ -257,7 +257,7 @@ export function HeroVisual() {
 
         {/* Active Projects — bottom */}
         <div
-          className={`${glass} p-3.5 sm:p-4 lg:absolute lg:bottom-0 lg:left-[8%] lg:z-20 lg:w-[55%] xl:left-10 xl:w-64`}
+          className={`${glass} hidden p-3.5 sm:p-4 lg:absolute lg:bottom-0 lg:left-[8%] lg:z-20 lg:block lg:w-[55%] xl:left-10 xl:w-64`}
         >
           <p className="text-[0.7rem] font-medium text-slate-400">{activeProjects.label}</p>
           <div className="mt-1 flex flex-wrap items-baseline gap-2">

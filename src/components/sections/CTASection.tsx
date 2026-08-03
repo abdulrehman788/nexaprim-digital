@@ -13,7 +13,7 @@ export function CTASection() {
             <div className="bg-surface-primary px-6 py-14 sm:px-10 lg:py-20">
               <h2
                 id="cta-heading"
-                className="font-display text-display-sm text-content-primary sm:text-display-md"
+                className="font-display text-2xl text-content-primary sm:text-display-md"
               >
                 {ctaSection.title}
               </h2>

@@ -36,7 +36,7 @@ export function ServicesCatalog() {
           </p>
           <h2
             id="services-catalog-heading"
-            className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
+            className="mt-3 font-display text-2xl font-bold text-slate-900 sm:text-display-md"
           >
             Everything you need to expand
           </h2>

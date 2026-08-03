@@ -12,7 +12,7 @@ export function IndustryCard({ industry }: IndustryCardProps) {
   const Icon = industryIcons[industry.iconId];
 
   return (
-    <article className="group w-[16.75rem] shrink-0 snap-start sm:w-[18rem] lg:w-[19rem]">
+    <article className="group w-[min(16.75rem,85vw)] shrink-0 snap-start sm:w-[18rem] lg:w-[19rem]">
       <Link href={industry.href} className="block">
         <div className="relative">
           <IndustryCardArt image={industry.image} label={industry.imageAlt} />

@@ -163,7 +163,7 @@ export function PackageDetailSection({ pkg }: PackageDetailSectionProps) {
             ) : null}
 
             <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+              <div className="flex flex-col justify-center p-5 sm:p-8 lg:p-12">
                 <div className="flex flex-wrap items-center gap-3">
                   {pkg.badge ? <Badge>{pkg.badge}</Badge> : null}
                   {pkg.featured ? (

@@ -114,17 +114,25 @@ curl -I http://127.0.0.1:3000/
 
 ## 5. Nginx + HTTPS
 
-Install the **HTTP-only** config first (no SSL lines — required so `nginx -t` passes):
+Install the **HTTP-only** config first (no SSL lines — required so `nginx -t` passes).
+
+Do **not** add a custom `/.well-known/` location — Certbot’s `--nginx` plugin handles ACME challenges. A custom empty webroot causes **404** and cert failure.
 
 ```bash
-sudo mkdir -p /var/www/certbot
 sudo cp /var/www/expandova/deploy/nginx.conf /etc/nginx/sites-available/expandova
 sudo ln -sf /etc/nginx/sites-available/expandova /etc/nginx/sites-enabled/expandova
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-Then let Certbot create certificates **and** add the `443 ssl` blocks:
+Confirm nothing else still binds 80/443 (old Docker stacks):
+
+```bash
+sudo ss -tlnp | grep -E ':80|:443'
+# should show nginx only, not docker-proxy on 80/443
+```
+
+Then Certbot:
 
 ```bash
 sudo certbot --nginx -d expandova.com -d www.expandova.com

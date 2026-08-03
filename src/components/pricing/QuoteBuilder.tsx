@@ -160,10 +160,10 @@ export function QuoteBuilder() {
                     <button
                       type="button"
                       onClick={() => toggle(id)}
-                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-content-muted transition-colors hover:bg-white/10 hover:text-white"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-content-muted transition-colors hover:bg-white/10 hover:text-white"
                       aria-label={`Remove ${svc.name}`}
                     >
-                      <X className="h-3.5 w-3.5" />
+                      <X className="h-4 w-4" />
                     </button>
                   </li>
                 );

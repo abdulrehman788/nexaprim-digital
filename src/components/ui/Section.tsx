@@ -35,7 +35,7 @@ export function Section({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       className={cn(
-        "py-20 lg:py-28",
+        "py-14 sm:py-20 lg:py-28",
         divider && variant === "dark" && "border-t border-border-subtle",
         divider && variant === "light" && "border-t border-navy-100",
         variantStyles[variant],

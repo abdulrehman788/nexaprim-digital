@@ -41,7 +41,6 @@ function FeaturedPost({ post }: { post: BlogPostSummary }) {
               alt={post.coverImageAlt ?? post.title}
               fill
               priority
-              quality={72}
               className="object-cover transition duration-700 group-hover:scale-[1.03]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 560px"
             />
@@ -149,7 +148,6 @@ function PostCard({ post }: { post: BlogPostSummary }) {
             src={post.coverImage}
             alt={post.coverImageAlt ?? post.title}
             fill
-            quality={68}
             className="object-cover transition duration-700 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
           />

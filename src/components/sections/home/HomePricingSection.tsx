@@ -36,7 +36,7 @@ export function HomePricingSection() {
           </p>
           <h2
             id="home-pricing-heading"
-            className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
+            className="mt-3 font-display text-2xl font-bold text-slate-900 sm:text-display-md"
           >
             {homePricingSection.titleLine1}{" "}
             <span className="text-gold-gradient">Scale</span>{" "}
@@ -47,7 +47,7 @@ export function HomePricingSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 pt-3 sm:grid-cols-2 lg:grid-cols-4">
           {pricingPackages.map((pkg) => {
             const meta = packageIcons[pkg.id];
             const Icon = meta?.icon ?? Rocket;
@@ -57,7 +57,7 @@ export function HomePricingSection() {
               <div
                 key={pkg.id}
                 className={cn(
-                  "relative flex flex-col rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_48px_-16px_rgba(124,58,237,0.22)]",
+                  "relative flex flex-col rounded-2xl border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_48px_-16px_rgba(124,58,237,0.22)] sm:p-6",
                   pkg.highlighted
                     ? "border-violet-300 ring-2 ring-violet-200 hover:ring-violet-300"
                     : "border-slate-200 hover:border-violet-200",

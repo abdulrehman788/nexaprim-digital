@@ -15,7 +15,7 @@ export function PackagesSection() {
           <div className="lg:sticky lg:top-28">
             <h2
               id="packages-heading"
-              className="font-display text-display-sm text-content-primary sm:text-display-md"
+              className="font-display text-2xl text-content-primary sm:text-display-md"
             >
               {packagesSection.title}
             </h2>

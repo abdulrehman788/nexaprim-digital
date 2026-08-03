@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
-import { SiteTracker } from "@/components/analytics/SiteTracker";
-import { WebVitals } from "@/components/analytics/WebVitals";
+import { DeferredAnalytics } from "@/components/analytics/DeferredAnalytics";
 import { fontVariables } from "@/lib/fonts";
 import { siteConfig } from "@/lib/constants";
 
@@ -149,8 +148,7 @@ export default function RootLayout({
         ) : null}
       </head>
       <body className="antialiased">
-        <WebVitals />
-        <SiteTracker />
+        <DeferredAnalytics />
         {children}
       </body>
     </html>

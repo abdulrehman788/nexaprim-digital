@@ -82,14 +82,30 @@ export function HomePageContent() {
   return (
     <>
       <HeroSection />
-      <ServicesSection />
-      <GrowthProcessSection />
-      <IndustriesSection />
-      <ClientLogos />
-      <HomePricingSection />
-      <TestimonialsSection />
-      <HomeClientReviewsSection />
-      <HomeConnectCta />
+      <div className="content-auto">
+        <ServicesSection />
+      </div>
+      <div className="content-auto">
+        <GrowthProcessSection />
+      </div>
+      <div className="content-auto">
+        <IndustriesSection />
+      </div>
+      <div className="content-auto">
+        <ClientLogos />
+      </div>
+      <div className="content-auto">
+        <HomePricingSection />
+      </div>
+      <div className="content-auto">
+        <TestimonialsSection />
+      </div>
+      <div className="content-auto">
+        <HomeClientReviewsSection />
+      </div>
+      <div className="content-auto">
+        <HomeConnectCta />
+      </div>
     </>
   );
 }

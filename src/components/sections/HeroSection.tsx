@@ -4,36 +4,38 @@ import { ArrowRight, Play } from "lucide-react";
 import { HeroTrustBar } from "@/components/sections/hero/HeroTrustBar";
 import { HeroVisual } from "@/components/sections/hero/HeroVisual";
 import { Container } from "@/components/ui/Container";
-import { heroContent, heroFeatures } from "@/data/hero";
+import { heroContent } from "@/data/hero";
 import { ctaLinks } from "@/lib/constants";
 
 export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[#050505]"
+      className="relative isolate flex min-h-0 flex-col overflow-x-clip bg-[#050505] lg:min-h-[100svh]"
     >
       <div className="absolute inset-0 -z-10">
         <picture>
+          {/* Prefer 1280 for most viewports; only ship 1920 on large desktops */}
           <source
+            media="(min-width: 1440px)"
             type="image/avif"
-            srcSet="/images/hero/hero-earth-1280.avif 1280w, /images/hero/hero-earth-1920.avif 1920w"
-            sizes="100vw"
+            srcSet="/images/hero/hero-earth-1920.avif"
           />
           <source
+            media="(min-width: 1440px)"
             type="image/webp"
-            srcSet="/images/hero/hero-earth-1280.webp 1280w, /images/hero/hero-earth-1920.webp 1920w"
-            sizes="100vw"
+            srcSet="/images/hero/hero-earth-1920.webp"
           />
+          <source type="image/avif" srcSet="/images/hero/hero-earth-1280.avif" />
+          <source type="image/webp" srcSet="/images/hero/hero-earth-1280.webp" />
           {/* eslint-disable-next-line @next/next/no-img-element -- responsive local LCP asset; skip Next recompression */}
           <img
             src="/images/hero/hero-earth-1280.jpg"
-            srcSet="/images/hero/hero-earth-1280.jpg 1280w, /images/hero/hero-earth-1920.jpg 1920w"
-            sizes="100vw"
             alt={heroContent.skylineAlt}
             width={1280}
             height={853}
             decoding="async"
+            loading="eager"
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-[82%_center] sm:object-[76%_center] lg:object-[70%_center]"
           />
@@ -49,21 +51,21 @@ export function HeroSection() {
         />
       </div>
 
-      <Container className="relative flex flex-1 flex-col justify-center pb-0 pt-24 sm:pt-28 lg:pt-28">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-x-8 xl:gap-x-10">
+      <Container className="relative flex flex-1 flex-col justify-center pb-8 pt-24 sm:pb-10 sm:pt-28 lg:pb-0 lg:pt-28">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-x-8 xl:gap-x-10">
           {/* No opacity fade on LCP copy — keeps headline paintable immediately */}
           <div className="relative z-10 flex min-w-0 flex-col">
-            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-violet-400/40 bg-violet-500/10 px-4 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white sm:text-xs">
+            <span className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-violet-400/40 bg-violet-500/10 px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-white sm:mb-5 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
               <span
-                className="h-1.5 w-1.5 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.9)]"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.9)]"
                 aria-hidden="true"
               />
-              {heroContent.overline}
+              <span className="truncate">{heroContent.overline}</span>
             </span>
 
             <h1
               id="hero-heading"
-              className="font-display text-[clamp(2rem,4.4vw+0.4rem,3.75rem)] font-extrabold leading-[1.05] tracking-[-0.02em] text-white"
+              className="font-display text-[clamp(1.75rem,4.2vw+0.55rem,3.75rem)] font-extrabold leading-[1.05] tracking-[-0.02em] text-white"
             >
               {heroContent.headlineLine1}
               <br />
@@ -76,47 +78,31 @@ export function HeroSection() {
               {heroContent.description}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-8 flex flex-nowrap items-center gap-2 sm:gap-3">
               <Link
                 href={ctaLinks.strategyCall}
-                className="bg-gold-gradient inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-7 text-sm font-semibold text-white shadow-glow transition-opacity hover:opacity-90 sm:text-base"
+                className="bg-gold-gradient inline-flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full px-3 text-[0.7rem] font-semibold leading-tight text-white shadow-glow transition-opacity hover:opacity-90 sm:h-12 sm:flex-none sm:gap-2.5 sm:px-7 sm:text-base"
               >
-                {heroContent.primaryCta}
-                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="sm:hidden">Book a Free Call</span>
+                <span className="hidden sm:inline">{heroContent.primaryCta}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden="true" />
               </Link>
               <Link
                 href="/case-studies"
-                className="inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-white/35 bg-white/[0.04] px-7 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/10 sm:text-base"
+                className="inline-flex h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-white/35 bg-white/[0.04] px-3 text-[0.7rem] font-semibold leading-tight text-white transition-colors hover:border-white/60 hover:bg-white/10 sm:h-12 sm:flex-none sm:gap-2.5 sm:px-7 sm:text-base"
               >
                 {heroContent.secondaryCta}
                 <span
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/50"
+                  className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/50 sm:h-7 sm:w-7"
                   aria-hidden="true"
                 >
-                  <Play className="h-3 w-3 fill-white text-white" />
+                  <Play className="h-2.5 w-2.5 fill-white text-white sm:h-3 sm:w-3" />
                 </span>
               </Link>
             </div>
-
-            <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5 sm:mt-8">
-              {heroFeatures.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2 text-xs font-medium text-slate-300 sm:text-sm"
-                >
-                  <span
-                    className="flex h-4 w-4 items-center justify-center rounded-full bg-violet-500/25 text-[0.65rem] font-bold text-violet-300"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
 
-          <div className="relative z-10 w-full min-w-0 lg:animate-fade-in-up">
+          <div className="relative z-10 hidden w-full min-w-0 lg:block lg:animate-fade-in-up">
             <HeroVisual />
           </div>
         </div>

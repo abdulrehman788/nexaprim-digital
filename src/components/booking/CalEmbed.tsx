@@ -11,7 +11,7 @@ interface CalEmbedProps {
 function EmbedSkeleton() {
   return (
     <div
-      className="min-h-[640px] w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03]"
+      className="min-h-[28rem] w-full max-w-full animate-pulse rounded-xl border border-white/[0.06] bg-white/[0.03] sm:min-h-[640px]"
       aria-hidden="true"
     />
   );
@@ -62,12 +62,12 @@ export function CalEmbed({ config }: CalEmbedProps) {
   }, [config.provider, isVisible]);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="w-full max-w-full overflow-x-clip">
       {!isVisible ? (
         <EmbedSkeleton />
       ) : config.provider === "calendly" ? (
         <div
-          className="calendly-inline-widget min-h-[640px] w-full overflow-hidden rounded-xl border border-white/[0.06] bg-black/20"
+          className="calendly-inline-widget min-h-[28rem] w-full max-w-full overflow-hidden rounded-xl border border-white/[0.06] bg-black/20 sm:min-h-[640px]"
           data-url={config.embedUrl}
         />
       ) : (
@@ -75,7 +75,7 @@ export function CalEmbed({ config }: CalEmbedProps) {
           title="Book a free consultation"
           src={config.embedUrl}
           loading="lazy"
-          className="min-h-[640px] w-full rounded-xl border border-white/[0.06] bg-black/20"
+          className="min-h-[28rem] w-full max-w-full rounded-xl border border-white/[0.06] bg-black/20 sm:min-h-[640px]"
           allow="payment"
         />
       )}

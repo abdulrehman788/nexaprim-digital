@@ -1,29 +1,15 @@
-import { cn } from "@/lib/utils";
-
 interface ClientLogoItemProps {
   name: string;
   logo: string;
   logoAlt: string;
-  /** md = Nexus default; lg = slightly bigger/bolder for light wordmarks */
+  /** Kept for data compat — all logos use one uniform size on the strip. */
   size?: "md" | "lg";
 }
 
-/** Uniform logo box — scales partner marks; lg reads bolder on the dark strip. */
-export function ClientLogoItem({
-  name,
-  logo,
-  logoAlt,
-  size = "md",
-}: ClientLogoItemProps) {
-  const isLarge = size === "lg";
-
+/** Uniform logo box so every partner mark has equal visual weight. */
+export function ClientLogoItem({ name, logo, logoAlt }: ClientLogoItemProps) {
   return (
-    <div
-      className={cn(
-        "flex w-full items-center justify-center",
-        isLarge ? "h-[4.75rem] sm:h-[5.5rem]" : "h-14 sm:h-16",
-      )}
-    >
+    <div className="flex h-14 w-full items-center justify-center sm:h-16 lg:h-[4.5rem]">
       {/* eslint-disable-next-line @next/next/no-img-element -- mixed logo formats/backgrounds */}
       <img
         src={logo}
@@ -33,12 +19,7 @@ export function ClientLogoItem({
         loading="lazy"
         decoding="async"
         fetchPriority="low"
-        className={cn(
-          "max-h-full object-contain object-center",
-          isLarge
-            ? "max-w-[15rem] scale-[1.08] contrast-125 brightness-110 sm:max-w-[17rem]"
-            : "max-w-[12.5rem] sm:max-w-[14.5rem]",
-        )}
+        className="h-full w-auto max-w-[min(100%,16rem)] object-contain object-center"
       />
       <span className="sr-only">{name}</span>
     </div>
