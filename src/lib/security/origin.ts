@@ -1,12 +1,48 @@
 import { siteConfig } from "@/lib/constants";
 
+function tryOrigin(value: string): string | null {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
+}
+
+function withWwwVariant(origin: string): string[] {
+  try {
+    const url = new URL(origin);
+    const { protocol, hostname, port } = url;
+    const hostWithPort = port ? `${hostname}:${port}` : hostname;
+
+    if (hostname.startsWith("www.")) {
+      const apex = hostname.slice(4);
+      const apexHost = port ? `${apex}:${port}` : apex;
+      return [origin, `${protocol}//${apexHost}`];
+    }
+
+    return [origin, `${protocol}//www.${hostWithPort}`];
+  } catch {
+    return [origin];
+  }
+}
+
 function getAllowedOrigins(): Set<string> {
   const origins = new Set<string>();
 
-  try {
-    origins.add(new URL(siteConfig.url).origin);
-  } catch {
-    // Ignore invalid configured site URL.
+  const configured = tryOrigin(siteConfig.url);
+  if (configured) {
+    for (const variant of withWwwVariant(configured)) {
+      origins.add(variant);
+    }
+  }
+
+  // Vercel preview / production deployment URL
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl) {
+    const vercelOrigin = tryOrigin(
+      vercelUrl.startsWith("http") ? vercelUrl : `https://${vercelUrl}`,
+    );
+    if (vercelOrigin) origins.add(vercelOrigin);
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -26,23 +62,44 @@ function isLocalDevHost(hostname: string): boolean {
   );
 }
 
+function requestHost(request: Request): string | null {
+  const forwarded = request.headers.get("x-forwarded-host");
+  if (forwarded) {
+    // First value if a proxy chain is present
+    return forwarded.split(",")[0]?.trim().toLowerCase() || null;
+  }
+  return request.headers.get("host")?.toLowerCase() ?? null;
+}
+
 /**
- * Allow same-origin admin POSTs. In development, also allow any localhost /
- * loopback port and LAN hosts that match the request Host header (phone testing).
+ * CSRF guard for state-changing API routes.
+ * Allows true same-origin (Origin/Referer host === request Host) plus the
+ * configured site URL (www + apex) and Vercel deployment host.
  */
 export function isAllowedRequestOrigin(request: Request): boolean {
   const allowedOrigins = getAllowedOrigins();
-  const origin = request.headers.get("origin");
-  const host = request.headers.get("host");
+  const originHeader = request.headers.get("origin");
+  const host = requestHost(request);
 
-  if (origin) {
+  if (originHeader) {
+    const origin = tryOrigin(originHeader);
+    if (!origin) return false;
+
+    // Same-origin POST — works for www, apex, previews, custom domains
+    if (host) {
+      try {
+        if (new URL(origin).host.toLowerCase() === host) return true;
+      } catch {
+        return false;
+      }
+    }
+
     if (allowedOrigins.has(origin)) return true;
 
     if (process.env.NODE_ENV === "development") {
       try {
         const originUrl = new URL(origin);
         if (isLocalDevHost(originUrl.hostname)) return true;
-        if (host && originUrl.host === host) return true;
       } catch {
         return false;
       }
@@ -57,17 +114,26 @@ export function isAllowedRequestOrigin(request: Request): boolean {
     return process.env.NODE_ENV === "development";
   }
 
-  try {
-    const refererUrl = new URL(referer);
-    if (allowedOrigins.has(refererUrl.origin)) return true;
+  const refererOrigin = tryOrigin(referer);
+  if (!refererOrigin) return false;
 
-    if (process.env.NODE_ENV === "development") {
-      if (isLocalDevHost(refererUrl.hostname)) return true;
-      if (host && refererUrl.host === host) return true;
+  if (host) {
+    try {
+      if (new URL(refererOrigin).host.toLowerCase() === host) return true;
+    } catch {
+      return false;
     }
-
-    return false;
-  } catch {
-    return false;
   }
+
+  if (allowedOrigins.has(refererOrigin)) return true;
+
+  if (process.env.NODE_ENV === "development") {
+    try {
+      if (isLocalDevHost(new URL(refererOrigin).hostname)) return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
 }
