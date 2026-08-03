@@ -4,7 +4,9 @@ services:
       context: .
       args:
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://expandova.com}
-    image: expandova-web:latest
+    # Local image only — do not pull from Docker Hub
+    image: expandova-web:local
+    pull_policy: build
     restart: unless-stopped
     env_file:
       - .env
@@ -13,10 +15,8 @@ services:
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://expandova.com}
-      # SQLite on the named volume (override in .env if you use Postgres)
       DATABASE_URL: ${DATABASE_URL:-file:/app/data/prod.db}
     ports:
-      # Bind to localhost only — Nginx on the host terminates TLS
       - "127.0.0.1:3000:3000"
     volumes:
       - expandova_data:/app/data

@@ -88,11 +88,19 @@ curl -I http://127.0.0.1:3000/
 
 ## 5. Nginx + HTTPS
 
+Install the **HTTP-only** config first (no SSL lines — required so `nginx -t` passes):
+
 ```bash
+sudo mkdir -p /var/www/certbot
 sudo cp /var/www/expandova/deploy/nginx.conf /etc/nginx/sites-available/expandova
 sudo ln -sf /etc/nginx/sites-available/expandova /etc/nginx/sites-enabled/expandova
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
+```
+
+Then let Certbot create certificates **and** add the `443 ssl` blocks:
+
+```bash
 sudo certbot --nginx -d expandova.com -d www.expandova.com
 ```
 
@@ -124,10 +132,14 @@ sudo ufw enable
 
 | Symptom | Fix |
 |---------|-----|
+| Build fails: `DATABASE_URL` / Prisma / `/blog` prerender | Pull latest Dockerfile (build-time SQLite is set). Rebuild: `./scripts/deploy-vps.sh` |
+| `nginx -t` fails: SSL without certificate | Use latest `deploy/nginx.conf` (HTTP only), then run Certbot |
 | Admin **Forbidden** | Rebuild after setting `NEXT_PUBLIC_SITE_URL` + `ALLOWED_ORIGINS` correctly |
 | Admin **misconfigured** | Strong `ADMIN_PASSWORD` / `ADMIN_SESSION_SECRET` (no placeholders) |
 | 502 Bad Gateway | `docker compose -f /var/www/expandova/docker-compose.yml ps` |
 | Empty DB after recreate | Never run `docker compose down -v` (that deletes volumes) |
+| `containerd` / `containerd.io` conflict | Stick with Ubuntu `docker.io` package; don’t also install Docker CE |
+| Docker Hub pull denied for `expandova-web` | Expected — image is built locally (`pull_policy: build`) |
 
 Full detail also lives in this file; PM2 (no Docker) option is below.
 

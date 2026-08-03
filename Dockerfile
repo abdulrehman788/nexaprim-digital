@@ -20,7 +20,13 @@ ARG NEXT_PUBLIC_SITE_URL=https://expandova.com
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npx prisma generate && npm run build
+# Prisma + Next prerender need DATABASE_URL at build time (throwaway SQLite).
+# Runtime uses the real DATABASE_URL from compose/.env (volume-mounted DB).
+ENV DATABASE_URL="file:/app/prisma/build.db"
+
+RUN npx prisma generate \
+  && npx prisma migrate deploy \
+  && npm run build
 
 FROM node:20-bookworm-slim AS runner
 WORKDIR /app
@@ -29,6 +35,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+# Default; overridden by compose/env_file at runtime
+ENV DATABASE_URL="file:/app/data/prod.db"
 
 RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates \
   && rm -rf /var/lib/apt/lists/* \
