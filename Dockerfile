@@ -20,11 +20,14 @@ ARG NEXT_PUBLIC_SITE_URL=https://expandova.com
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Prisma + Next prerender need DATABASE_URL at build time (throwaway SQLite).
-# Runtime uses the real DATABASE_URL from compose/.env (volume-mounted DB).
-ENV DATABASE_URL="file:/app/prisma/build.db"
-
-RUN npx prisma generate \
+# Prisma + Next.js both read `.env` during `next build` prerender.
+# Host `.env` is dockerignored, so write a build-only env file here.
+# Runtime still uses compose/env_file DATABASE_URL (volume DB).
+RUN printf '%s\n' \
+  'DATABASE_URL="file:/app/prisma/build.db"' \
+  "NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}" \
+  > .env \
+  && npx prisma generate \
   && npx prisma migrate deploy \
   && npm run build
 

@@ -6,6 +6,32 @@ Use these commands on an **Ubuntu 22.04+** VPS. Replace nothing in the clone URL
 
 ---
 
+## Fix a broken deploy (git pull blocked / old Dockerfile)
+
+If `git pull` says local changes would be overwritten (often `scripts/deploy-vps.sh` or `deploy/nginx.conf`):
+
+```bash
+cd /var/www/expandova
+
+# Keep your production secrets (.env is gitignored — safe)
+# Discard local edits to tracked files so pull can apply the fixes:
+git fetch origin
+git reset --hard origin/master
+
+# Confirm the fixed Dockerfile contains build.db (must show a match):
+grep -n 'build.db' Dockerfile
+
+# Confirm nginx has NO "listen 443 ssl" before certbot:
+grep -n 'listen 443' deploy/nginx.conf || echo "OK: no 443 ssl yet"
+
+chmod +x scripts/deploy-vps.sh scripts/docker-entrypoint.sh
+./scripts/deploy-vps.sh
+```
+
+Then reinstall Nginx HTTP config and Certbot (section 5 below).
+
+---
+
 ## 0. Push latest code from your PC first
 
 On your Windows machine (project folder):
