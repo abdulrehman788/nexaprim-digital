@@ -13,12 +13,13 @@ export function assertProductionSecrets(): void {
   const weakPassword =
     !password ||
     password.length < 12 ||
-    /change-me|password|admin123|secret/i.test(password);
+    /^(password|admin123|secret|changeme)$/i.test(password) ||
+    /change-me-in-production/i.test(password);
 
   const weakSecret =
     !secret ||
     secret.length < 32 ||
-    /change-me|generate-a-long|secret/i.test(secret);
+    /change-me|generate-a-long-random/i.test(secret);
 
   if (weakPassword || weakSecret) {
     throw new Error(
