@@ -41,7 +41,7 @@ export function HomeConnectCta() {
             className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-slate-900 transition-opacity hover:opacity-90 sm:text-base"
           >
             {homeConnectCta.cta}
-            <ArrowRight className="h-4 w-4 text-orange-500" aria-hidden="true" />
+            <ArrowRight className="h-4 w-4 text-violet-600" aria-hidden="true" />
           </Link>
         </div>
       </Container>

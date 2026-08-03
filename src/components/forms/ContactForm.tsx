@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -53,13 +53,13 @@ const themeStyles = {
 const compactLightStyles = {
   form: "relative",
   input:
-    "w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20",
+    "w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20",
   label: "mb-1.5 block text-xs font-medium text-slate-900",
   success:
-    "flex flex-col items-center rounded-xl border border-orange-200 bg-orange-50 px-4 py-8 text-center",
+    "flex flex-col items-center rounded-xl border border-violet-200 bg-violet-50 px-4 py-8 text-center",
   successTitle: "mt-3 font-display text-lg font-bold text-slate-900",
   successMessage: "mt-1.5 text-sm leading-relaxed text-slate-600",
-  chevron: "text-orange-600",
+  chevron: "text-violet-600",
 } as const;
 
 export function ContactForm({ defaultIntent, theme = "dark", compact = false }: ContactFormProps) {
@@ -309,7 +309,7 @@ export function ContactForm({ defaultIntent, theme = "dark", compact = false }: 
           theme === "dark"
             ? "bg-gold-gradient border-transparent text-white shadow-glow hover:opacity-90"
             : compact
-              ? "border-transparent bg-orange-500 text-white hover:bg-orange-600"
+              ? "border-transparent bg-gold-gradient text-white hover:opacity-90"
               : undefined,
         )}
         pill={theme === "light"}

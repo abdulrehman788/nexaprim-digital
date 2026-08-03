@@ -39,7 +39,7 @@ export function HomePricingSection() {
             className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
           >
             {homePricingSection.titleLine1}{" "}
-            <span className="text-brand-purple">Scale</span>{" "}
+            <span className="text-gold-gradient">Scale</span>{" "}
             <span className="text-brand-orange">with confidence.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">

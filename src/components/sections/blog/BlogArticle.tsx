@@ -132,7 +132,7 @@ export function BlogArticle({ post, latestPosts }: BlogArticleProps) {
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.18), transparent 55%)",
+                "radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.22), transparent 55%)",
             }}
             aria-hidden="true"
           />
@@ -144,14 +144,14 @@ export function BlogArticle({ post, latestPosts }: BlogArticleProps) {
                 {post.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full border border-orange-400/25 bg-orange-500/10 px-3 py-0.5 text-xs font-medium text-orange-200 backdrop-blur-sm"
+                    className="rounded-full border border-violet-400/25 bg-violet-500/10 px-3 py-0.5 text-xs font-medium text-violet-200 backdrop-blur-sm"
                   >
                     {tag}
                   </li>
                 ))}
               </ul>
             ) : null}
-            <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-400">
+            <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-violet-300">
               Expandova Insights
             </p>
             <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">

@@ -8,7 +8,7 @@ import { ctaLinks } from "@/lib/constants";
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-[#05080f]/95 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050510]/95 backdrop-blur-md">
       <Container as="div" className="relative flex h-[72px] items-center">
         <Logo />
 
@@ -19,7 +19,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-3">
           <a
             href={ctaLinks.consultation}
-            className="hidden shrink-0 items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_-12px_rgba(249,115,22,0.85)] transition hover:bg-orange-400 lg:inline-flex"
+            className="bg-gold-gradient shadow-glow hidden shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 lg:inline-flex"
           >
             Book a Free Call
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

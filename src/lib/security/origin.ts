@@ -17,12 +17,38 @@ function getAllowedOrigins(): Set<string> {
   return origins;
 }
 
+function isLocalDevHost(hostname: string): boolean {
+  return (
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname === "[::1]" ||
+    hostname === "::1"
+  );
+}
+
+/**
+ * Allow same-origin admin POSTs. In development, also allow any localhost /
+ * loopback port and LAN hosts that match the request Host header (phone testing).
+ */
 export function isAllowedRequestOrigin(request: Request): boolean {
   const allowedOrigins = getAllowedOrigins();
   const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
 
   if (origin) {
-    return allowedOrigins.has(origin);
+    if (allowedOrigins.has(origin)) return true;
+
+    if (process.env.NODE_ENV === "development") {
+      try {
+        const originUrl = new URL(origin);
+        if (isLocalDevHost(originUrl.hostname)) return true;
+        if (host && originUrl.host === host) return true;
+      } catch {
+        return false;
+      }
+    }
+
+    return false;
   }
 
   const referer = request.headers.get("referer");
@@ -32,7 +58,15 @@ export function isAllowedRequestOrigin(request: Request): boolean {
   }
 
   try {
-    return allowedOrigins.has(new URL(referer).origin);
+    const refererUrl = new URL(referer);
+    if (allowedOrigins.has(refererUrl.origin)) return true;
+
+    if (process.env.NODE_ENV === "development") {
+      if (isLocalDevHost(refererUrl.hostname)) return true;
+      if (host && refererUrl.host === host) return true;
+    }
+
+    return false;
   } catch {
     return false;
   }

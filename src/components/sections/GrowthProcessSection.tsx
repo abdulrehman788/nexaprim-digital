@@ -73,7 +73,7 @@ export function GrowthProcessSection() {
             className="mt-3 font-display text-display-sm font-bold text-white sm:text-display-md"
           >
             The Expansive{" "}
-            <span className="text-brand-purple">Growth</span>{" "}
+            <span className="text-gold-gradient">Growth</span>{" "}
             <span className="text-brand-orange">Process</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-content-secondary sm:text-lg">

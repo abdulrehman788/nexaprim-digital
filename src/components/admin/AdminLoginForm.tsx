@@ -29,11 +29,19 @@ export function AdminLoginForm() {
     setLoading(false);
 
     if (!response.ok) {
-      if (response.status === 429) {
-        setError("Too many login attempts. Please try again later.");
-      } else {
-        setError("Invalid password. Please try again.");
+      let message = "Invalid password. Please try again.";
+      try {
+        const data = (await response.json()) as { error?: string };
+        if (typeof data.error === "string" && data.error.trim()) {
+          message = data.error;
+        }
+      } catch {
+        // keep default
       }
+      if (response.status === 429) {
+        message = "Too many login attempts. Please try again later.";
+      }
+      setError(message);
       return;
     }
 

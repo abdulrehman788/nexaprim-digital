@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { ContactFormWithIntent } from "@/components/forms/ContactFormWithIntent";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
@@ -40,7 +40,7 @@ export function BlogSidebar({ posts }: BlogSidebarProps) {
                 <li key={post.id}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="group flex gap-3 rounded-xl outline-none transition-colors focus-visible:ring-2 focus-visible:ring-orange-500/40"
+                    className="group flex gap-3 rounded-xl outline-none transition-colors focus-visible:ring-2 focus-visible:ring-violet-500/40"
                   >
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
                       {post.coverImage ? (
@@ -53,7 +53,7 @@ export function BlogSidebar({ posts }: BlogSidebarProps) {
                           quality={65}
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-[10px] font-semibold uppercase tracking-wider text-orange-300">
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-[10px] font-semibold uppercase tracking-wider text-violet-300">
                           Blog
                         </div>
                       )}
@@ -61,7 +61,7 @@ export function BlogSidebar({ posts }: BlogSidebarProps) {
                     <div className="min-w-0 flex-1">
                       <p
                         className={cn(
-                          "line-clamp-2 text-sm font-semibold leading-snug transition-colors group-hover:text-orange-600",
+                          "line-clamp-2 text-sm font-semibold leading-snug transition-colors group-hover:text-violet-700",
                           lightHeading,
                         )}
                       >
@@ -80,7 +80,7 @@ export function BlogSidebar({ posts }: BlogSidebarProps) {
 
         <Link
           href="/blog"
-          className="mt-5 inline-flex text-sm font-semibold text-orange-600 underline-offset-2 hover:underline"
+          className="mt-5 inline-flex text-sm font-semibold text-violet-600 underline-offset-2 hover:underline"
         >
           View all posts
         </Link>
@@ -97,7 +97,7 @@ export function BlogSidebar({ posts }: BlogSidebarProps) {
           Let&apos;s talk growth
         </h2>
         <p className={cn("mt-1 text-sm", lightMuted)}>
-          Tell us what you&apos;re building — we&apos;ll reply within one business day.
+          Tell us what you&apos;re building â€” we&apos;ll reply within one business day.
         </p>
         <div className="mt-5">
           <ContactFormWithIntent theme="light" compact defaultIntent="general" />

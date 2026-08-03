@@ -31,8 +31,8 @@ export function sectionShell(index: number, warm = false): string {
 export const lightHeading = "text-slate-900";
 export const lightBody = "text-slate-600";
 export const lightMuted = "text-slate-500";
-export const lightOverline = "text-orange-600";
-export const lightAccentPurple = "text-orange-600";
+export const lightOverline = "text-violet-600";
+export const lightAccentPurple = "text-violet-600";
 export const lightAccentOrange = "text-orange-500";
 
 /** Light inner cards */

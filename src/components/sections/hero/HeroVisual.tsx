@@ -80,7 +80,7 @@ function PerformanceChart() {
         <circle cx="360" cy="28" r="5" fill="#fb923c" />
         <circle cx="360" cy="28" r="10" fill="#fb923c" fillOpacity="0.25" />
       </svg>
-      <span className="absolute right-0 top-1 rounded-md bg-orange-500 px-1.5 py-0.5 text-[0.6rem] font-bold text-white shadow-lg sm:text-[0.65rem]">
+      <span className="absolute right-0 top-1 rounded-md bg-accent px-1.5 py-0.5 text-[0.6rem] font-bold text-white shadow-lg sm:text-[0.65rem]">
         {chartPeak}
       </span>
       <div className="mt-1 flex justify-between px-0.5 text-[0.6rem] font-medium text-slate-500 sm:text-[0.65rem]">
@@ -248,7 +248,7 @@ export function HeroVisual() {
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
-                className="h-3.5 w-3.5 fill-orange-400 text-orange-400"
+                className="h-3.5 w-3.5 fill-violet-400 text-violet-400"
                 aria-hidden="true"
               />
             ))}

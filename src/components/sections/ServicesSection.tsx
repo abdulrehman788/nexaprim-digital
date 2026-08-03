@@ -19,7 +19,7 @@ export function ServicesSection() {
               className="mt-3 font-display text-display-sm font-bold text-slate-900 sm:text-display-md"
             >
               Every Niche. One{" "}
-              <span className="text-brand-purple">Accountable</span>{" "}
+              <span className="text-gold-gradient">Accountable</span>{" "}
               <span className="text-brand-orange">Team.</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
