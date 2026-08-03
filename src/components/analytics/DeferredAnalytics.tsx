@@ -25,11 +25,16 @@ export function DeferredAnalytics() {
       if (!cancelled) setReady(true);
     };
 
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      const id = window.requestIdleCallback(enable, { timeout: 4000 });
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    if (typeof idleWindow.requestIdleCallback === "function") {
+      const id = idleWindow.requestIdleCallback(enable, { timeout: 4000 });
       return () => {
         cancelled = true;
-        window.cancelIdleCallback(id);
+        idleWindow.cancelIdleCallback?.(id);
       };
     }
 
