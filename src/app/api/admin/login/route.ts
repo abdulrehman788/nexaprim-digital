@@ -4,7 +4,6 @@ import { verifyAdminPassword } from "@/lib/admin-auth";
 import { adminSessionCookieOptions } from "@/lib/admin-session";
 import { loginSchema } from "@/lib/schemas/admin";
 import { assertProductionSecrets } from "@/lib/security/env";
-import { isAllowedRequestOrigin } from "@/lib/security/origin";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 // Brute-force protection: the admin is a single shared password, so cap guesses.
@@ -12,6 +11,9 @@ const LOGIN_RATE_LIMIT = 5;
 const LOGIN_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 
 export async function POST(request: Request) {
+  // Login is protected by password + rate limit. Origin checks here break on
+  // reverse proxies / www mismatch / privacy browsers (Origin: null) and block
+  // legitimate admins. CSRF matters more after a session cookie exists.
   try {
     assertProductionSecrets();
   } catch (error) {
@@ -20,10 +22,6 @@ export async function POST(request: Request) {
       { error: "Admin authentication is misconfigured." },
       { status: 503 },
     );
-  }
-
-  if (!isAllowedRequestOrigin(request)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const clientIp = getClientIp(request);
