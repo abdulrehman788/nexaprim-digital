@@ -1,23 +1,17 @@
 import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/constants";
+import { siteRoutes } from "@/lib/site-routes";
 
-/** Refresh sitemap periodically for crawlers. */
 export const revalidate = 3600;
 
-const sitemapPages = [
-  { path: "/", priority: 1, changeFrequency: "weekly" as const },
-  { path: "/about", priority: 0.9, changeFrequency: "monthly" as const },
-  { path: "/services", priority: 0.9, changeFrequency: "weekly" as const },
-  { path: "/reviews", priority: 0.8, changeFrequency: "weekly" as const },
-] as const;
-
+/** Lean public sitemap — home, about, services hub + details, reviews, contact. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url.replace(/\/$/, "");
   const now = new Date();
 
-  return sitemapPages.map(({ path, priority, changeFrequency }) => ({
-    url: `${baseUrl}${path === "/" ? "/" : path}`,
+  return siteRoutes.map(({ path, priority, changeFrequency }) => ({
+    url: `${baseUrl}${path || "/"}`,
     lastModified: now,
     changeFrequency,
     priority,
